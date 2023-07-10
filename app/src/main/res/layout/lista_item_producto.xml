@@ -13,7 +13,7 @@
 
         <ImageView
             android:id="@+id/viewImagen"
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_weight=".1"
             android:padding="2dp"
@@ -35,44 +35,39 @@
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <TextView
                     android:id="@+id/viewCantidad"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingEnd="5dp"
                     android:textColor="#DC494444"
                     android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/viewPrecio"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:layout_gravity="left"
-                    android:paddingStart="8dp"
+                    android:textColor="#DC494444"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/viewTienda"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:textColor="#DC494444"
                     android:textSize="16sp" />
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/viewTienda"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:textColor="#DC494444"
-                android:textSize="16sp" />
-
-
 
         </LinearLayout>
     </LinearLayout>

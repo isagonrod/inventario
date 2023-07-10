@@ -25,7 +25,7 @@ public class EditarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ver);
+        setContentView(R.layout.activity_nuevo);
 
         txtNombre = findViewById(R.id.txtNombre);
         txtCantidad = findViewById(R.id.txtCantidad);

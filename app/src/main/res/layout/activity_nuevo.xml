@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".NuevoActivity"
     android:layout_margin="10dp">
@@ -35,7 +36,7 @@
         android:id="@+id/txtCantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         android:labelFor="@+id/viewCantidad"
         android:textSize="24sp"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -51,7 +52,7 @@
         android:id="@+id/txtPrecio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="number|numberDecimal"
         android:labelFor="@+id/viewPrecio"
         android:textSize="24sp"
         tools:ignore="SpeakableTextPresentCheck"
@@ -76,9 +77,38 @@
 
     <Button
         android:id="@+id/btnGuardar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/save"
+        android:layout_margin="10dp"/>
+
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_guardar"
-        android:textSize="24sp" />
+        android:layout_margin="10dp"
+        android:columnCount="4">
+
+        <Button
+            android:id="@+id/fabEditar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_columnWeight="2"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:background="@drawable/edit"
+            android:clickable="true" />
+
+        <Button
+            android:id="@+id/fabEliminar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_columnWeight="2"
+            android:layout_gravity="left"
+            android:layout_margin="5dp"
+            android:background="@drawable/delete"
+            android:clickable="true" />
+
+    </GridLayout>
 
 </LinearLayout>

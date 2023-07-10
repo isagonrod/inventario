@@ -2,11 +2,14 @@ package isamix.inventario;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
@@ -41,9 +44,9 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
 
         DbProductos dbProductos = new DbProductos(ListaActivity.this);
 
-        listaArrayProductos = new ArrayList<>();
+        listaArrayProductos = dbProductos.mostrarProductos();
 
-        adapter = new ListaProductosAdapter(dbProductos.mostrarProductos());
+        adapter = new ListaProductosAdapter(listaArrayProductos);
         listaProductos.setAdapter(adapter);
 
         // Pinta la línea divisoria entre elementos de la lista
@@ -56,6 +59,20 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
         addProduct.setOnClickListener(v -> {
             Intent intent = new Intent(ListaActivity.this, NuevoActivity.class);
             startActivity(intent);
+        });
+
+        deleteProduct.setOnClickListener(v -> {
+            for (int i=0; i < listaProductos.getChildCount(); i++) {
+                View listItem = listaProductos.getChildAt(i);
+                int itemColor = listItem.getBackground() != null ?
+                        ((ColorDrawable)listItem.getBackground()).getColor() : 0xFFFFFFFF;
+                if (itemColor == Color.CYAN) {
+                    //TODO: esto creo que no funciona muy bien...
+                    dbProductos.eliminarProducto(this.listaArrayProductos.get(i).getId());
+                    listaArrayProductos.remove(i);
+                    i--;
+                }
+            }
         });
     }
 

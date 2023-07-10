@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menuNuevo:
+            case R.id.menuNuevoProducto:
                 nuevoProducto();
                 return true;
             default:

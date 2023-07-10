@@ -44,7 +44,7 @@ public class NuevoActivity extends AppCompatActivity {
     private void limpiar() {
         txtNombre.setText("");
         txtCantidad.setText("");
-        txtPrecio.setText("€");
+        txtPrecio.setText("");
         txtTienda.setText("");
     }
 }

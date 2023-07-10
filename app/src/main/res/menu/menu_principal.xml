@@ -3,6 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuNuevo"
-        android:title="@string/menu_nuevo" />
+        android:id="@+id/menuNuevoProducto"
+        android:title="@string/menu_nuevo_producto" />
+
+    <item
+        android:id="@+id/menuNuevoTextil"
+        android:title="@string/menu_nuevo_textil" />
+
+    <item
+        android:id="@+id/menuNuevoLibro"
+        android:title="@string/menu_nuevo_libro" />
 </menu>

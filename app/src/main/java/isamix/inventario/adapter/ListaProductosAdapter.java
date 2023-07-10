@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +25,6 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
 
     ArrayList<Producto> listaProductos;
     ArrayList<Producto> listaOriginal;
-    ArrayList<Producto> listaCompra;
 
     public ListaProductosAdapter(ArrayList<Producto> listaProductos) {
         this.listaProductos = listaProductos;
@@ -87,8 +88,14 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
             });
 
             itemView.setOnLongClickListener(v -> {
-                itemView.setBackgroundColor(Color.CYAN);
-                // Añadir el producto seleccionado a la lista de la compra
+                //TODO: Falta poner que se deseleccione todo si se hace click en otro sitio
+                int itemColor = v.getBackground() != null ?
+                        ((ColorDrawable)v.getBackground()).getColor() : 0xFFFFFFFF;
+                if (itemColor == Color.WHITE) {
+                    itemView.setBackgroundColor(Color.CYAN);
+                } else {
+                    itemView.setBackgroundColor(Color.WHITE);
+                }
 
                 return true;
             });

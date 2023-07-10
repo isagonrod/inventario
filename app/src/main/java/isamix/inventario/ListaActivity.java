@@ -1,10 +1,14 @@
 package isamix.inventario;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
@@ -19,13 +23,19 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
     RecyclerView listaProductos;
     ArrayList<Producto> listaArrayProductos;
     ListaProductosAdapter adapter;
+    Button addProduct, editProduct, addListProduct, deleteProduct;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
 
         txtBuscar = findViewById(R.id.txtBuscar);
+        addProduct = findViewById(R.id.fabNuevo);
+        //editProduct = findViewById(R.id.fabEditar);
+        addListProduct = findViewById(R.id.fabListaCompra);
+        deleteProduct = findViewById(R.id.fabEliminar);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
@@ -36,11 +46,17 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
         adapter = new ListaProductosAdapter(dbProductos.mostrarProductos());
         listaProductos.setAdapter(adapter);
 
+        // Pinta la línea divisoria entre elementos de la lista
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
                 this, new LinearLayoutManager(this).getOrientation());
         listaProductos.addItemDecoration(dividerItemDecoration);
 
         txtBuscar.setOnQueryTextListener(this);
+
+        addProduct.setOnClickListener(v -> {
+            Intent intent = new Intent(ListaActivity.this, NuevoActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override

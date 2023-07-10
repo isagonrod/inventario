@@ -3,6 +3,7 @@ package isamix.inventario.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
 
     ArrayList<Producto> listaProductos;
     ArrayList<Producto> listaOriginal;
+    ArrayList<Producto> listaCompra;
 
     public ListaProductosAdapter(ArrayList<Producto> listaProductos) {
         this.listaProductos = listaProductos;
@@ -82,6 +84,13 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
                 Intent intent = new Intent(context, VerActivity.class);
                 intent.putExtra("ID", listaProductos.get(getAdapterPosition()).getId());
                 context.startActivity(intent);
+            });
+
+            itemView.setOnLongClickListener(v -> {
+                itemView.setBackgroundColor(Color.CYAN);
+                // Añadir el producto seleccionado a la lista de la compra
+
+                return true;
             });
         }
     }

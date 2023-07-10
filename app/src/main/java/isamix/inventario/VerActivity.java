@@ -9,13 +9,14 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import isamix.inventario.db.DbProductos;
 import isamix.inventario.entity.Producto;
 
 public class VerActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
+    TextView txtNombre, txtCantidad, txtPrecio, txtTienda;
     Button btnGuardar, fabEditar, fabEliminar;
     Producto producto;
     int id = 0;
@@ -53,16 +54,9 @@ public class VerActivity extends AppCompatActivity {
         if (producto != null) {
 
             txtNombre.setText(producto.getNombre());
-            txtNombre.setInputType(InputType.TYPE_NULL);
-
             txtCantidad.setText(producto.getCantidad());
-            txtCantidad.setInputType(InputType.TYPE_NULL);
-
             txtPrecio.setText(producto.getPrecio());
-            txtPrecio.setInputType(InputType.TYPE_NULL);
-
             txtTienda.setText(producto.getTienda());
-            txtTienda.setInputType(InputType.TYPE_NULL);
 
             btnGuardar.setVisibility(View.INVISIBLE);
 
@@ -82,18 +76,15 @@ public class VerActivity extends AppCompatActivity {
                             lista();
                         }
                     })
-                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int i) {
+                    .setNegativeButton("NO", (dialog, i) -> {
 
-                        }
                     })
                     .show();
         });
     }
 
     private void lista() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ListaActivity.class);
         startActivity(intent);
     }
 }

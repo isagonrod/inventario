@@ -2,10 +2,13 @@
     <string name="app_name">Inventario</string>
     <string name="hint_nombre">Nombre:</string>
     <string name="hint_cantidad">Cantidad:</string>
-    <string name="hint_precio">Precio:</string>
+    <string name="hint_precio">Precio por unidad:</string>
     <string name="hint_tienda">Tienda:</string>
     <string name="hint_imagen">URL de la imagen:</string>
     <string name="btn_guardar">Guardar producto</string>
     <string name="menu_nuevo">Nuevo producto</string>
     <string name="moneda"> €</string>
+    <string name="lista_productos">PRODUCTOS</string>
+    <string name="lista_muebles">MUEBLES</string>
+    <string name="lista_textil">TEXTIL</string>
 </resources>

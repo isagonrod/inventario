@@ -17,29 +17,41 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".EditarActivity"
+            android:name=".ListaActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <activity
+            android:name=".EditarActivity"
+            android:exported="false"
+            android:parentActivityName=".ListaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ListaActivity" />
+        </activity>
+
         <activity
             android:name=".VerActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ListaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".ListaActivity" />
         </activity>
+
         <activity
             android:name=".NuevoActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ListaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".ListaActivity" />
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -48,7 +60,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

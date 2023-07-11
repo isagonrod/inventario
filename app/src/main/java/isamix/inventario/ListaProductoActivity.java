@@ -1,8 +1,6 @@
 package isamix.inventario;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -17,23 +15,24 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 
-import isamix.inventario.adapter.ListaProductosAdapter;
+import isamix.inventario.adapter.ListaProductoAdapter;
 import isamix.inventario.db.DbProductos;
 import isamix.inventario.entity.Producto;
 
-public class ListaActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListaProductoActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     SearchView txtBuscar;
     RecyclerView listaProductos;
     ArrayList<Producto> listaArrayProductos;
-    ListaProductosAdapter adapter;
+    ArrayList<Producto> listaCompraProductos;
+    ListaProductoAdapter adapter;
     Button addProduct, addListProduct, deleteProduct;
 
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista);
+        setContentView(R.layout.activity_lista_producto);
 
         txtBuscar = findViewById(R.id.txtBuscar);
         addProduct = findViewById(R.id.fabNuevo);
@@ -42,11 +41,11 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
-        DbProductos dbProductos = new DbProductos(ListaActivity.this);
+        DbProductos dbProductos = new DbProductos(ListaProductoActivity.this);
 
         listaArrayProductos = dbProductos.mostrarProductos();
 
-        adapter = new ListaProductosAdapter(listaArrayProductos);
+        adapter = new ListaProductoAdapter(listaArrayProductos);
         listaProductos.setAdapter(adapter);
 
         // Pinta la línea divisoria entre elementos de la lista
@@ -57,7 +56,7 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
         txtBuscar.setOnQueryTextListener(this);
 
         addProduct.setOnClickListener(v -> {
-            Intent intent = new Intent(ListaActivity.this, NuevoActivity.class);
+            Intent intent = new Intent(ListaProductoActivity.this, NuevoProductoActivity.class);
             startActivity(intent);
         });
 
@@ -70,6 +69,18 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
                     // TODO: Peta y solo borra uno (si se seleccionan varios), si solo se selecciona uno, funciona perfectamente
                     dbProductos.eliminarProducto(this.listaArrayProductos.get(i).getId());
                     adapter.eliminarItem(i);
+                }
+            }
+        });
+
+        addListProduct.setOnClickListener(v -> {
+            for (int i = 0; i < listaProductos.getChildCount(); i++) {
+                View listItem = listaProductos.getChildAt(i);
+                int itemColor = listItem.getBackground() != null ?
+                        ((ColorDrawable) listItem.getBackground()).getColor() : 0xFFFFFFFF;
+                if (itemColor == Color.CYAN) {
+                    listaArrayProductos.get(i).setParaComprar(true);
+                    listItem.setBackgroundColor(Color.WHITE);
                 }
             }
         });

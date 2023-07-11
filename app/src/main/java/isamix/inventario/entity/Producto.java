@@ -7,6 +7,9 @@ public class Producto {
     private String cantidad;
     private String precio;
     private String tienda;
+    private boolean paraComprar = false;
+
+    public Producto() {}
 
     // getter/setter de ID
 
@@ -56,5 +59,21 @@ public class Producto {
 
     public void setTienda(String tienda) {
         this.tienda = tienda;
+    }
+
+    // getter/setter de COMPRAR
+
+    public boolean isParaComprar() {
+        return paraComprar;
+    }
+
+    public void setParaComprar(boolean paraComprar) {
+        this.paraComprar = paraComprar;
+    }
+
+    // TO STRING
+
+    public String toString() {
+        return this.cantidad + " - " + this.nombre + " - | Precio/unidad: " + this.precio;
     }
 }

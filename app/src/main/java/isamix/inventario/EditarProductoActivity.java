@@ -3,7 +3,6 @@ package isamix.inventario;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 import isamix.inventario.db.DbProductos;
 import isamix.inventario.entity.Producto;
 
-public class EditarActivity extends AppCompatActivity {
+public class EditarProductoActivity extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
     Button btnGuardar, fabEditar, fabEliminar;
@@ -25,7 +24,7 @@ public class EditarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nuevo);
+        setContentView(R.layout.activity_nuevo_producto);
 
         txtNombre = findViewById(R.id.txtNombre);
         txtCantidad = findViewById(R.id.txtCantidad);
@@ -51,7 +50,7 @@ public class EditarActivity extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        final DbProductos dbProductos = new DbProductos(EditarActivity.this);
+        final DbProductos dbProductos = new DbProductos(EditarProductoActivity.this);
         producto = dbProductos.verProducto(id);
 
         if (producto != null) {
@@ -67,19 +66,19 @@ public class EditarActivity extends AppCompatActivity {
                         txtCantidad.getText().toString(), txtPrecio.getText().toString(),
                         txtTienda.getText().toString());
                 if (correcto) {
-                    Toast.makeText(EditarActivity.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
                     verRegistro();
                 } else {
-                    Toast.makeText(EditarActivity.this, "ERROR AL MODIFICAR PRODUCTO", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarProductoActivity.this, "ERROR AL MODIFICAR PRODUCTO", Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(EditarActivity.this, "DEBE RELLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditarProductoActivity.this, "DEBE RELLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
             }
         });
     }
 
     private void verRegistro() {
-        Intent intent = new Intent(this, VerActivity.class);
+        Intent intent = new Intent(this, VerProductoActivity.class);
         intent.putExtra("ID", id);
         startActivity(intent);
     }

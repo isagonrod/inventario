@@ -67,6 +67,33 @@ public class DbProductos extends DbHelper {
         return listaProductos;
     }
 
+    public ArrayList<Producto> mostrarProductosParaComprar() {
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ArrayList<Producto> listaProductos = new ArrayList<>();
+        Producto producto;
+        Cursor cursorProductos;
+
+        // TODO: Revisar formato del BOOLEAN porque está dando problemas.
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " WHERE paraComprar = 1 ORDER BY nombre ASC", null);
+
+        if (cursorProductos.moveToFirst()) {
+            do {
+                producto = new Producto();
+                producto.setId(cursorProductos.getInt(0));
+                producto.setNombre(cursorProductos.getString(1));
+                producto.setCantidad(cursorProductos.getString(2));
+                producto.setPrecio(cursorProductos.getString(3));
+                producto.setTienda(cursorProductos.getString(4));
+                listaProductos.add(producto);
+            } while (cursorProductos.moveToNext());
+        }
+        cursorProductos.close();
+        return listaProductos;
+    }
+
     public Producto verProducto(int id) {
 
         DbHelper dbHelper = new DbHelper(context);

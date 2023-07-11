@@ -1,6 +1,8 @@
 package isamix.inventario;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,7 +11,6 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
@@ -26,7 +27,7 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
     RecyclerView listaProductos;
     ArrayList<Producto> listaArrayProductos;
     ListaProductosAdapter adapter;
-    Button addProduct, editProduct, addListProduct, deleteProduct;
+    Button addProduct, addListProduct, deleteProduct;
 
     @SuppressLint("ResourceType")
     @Override
@@ -36,7 +37,6 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
 
         txtBuscar = findViewById(R.id.txtBuscar);
         addProduct = findViewById(R.id.fabNuevo);
-        //editProduct = findViewById(R.id.fabEditar);
         addListProduct = findViewById(R.id.fabListaCompra);
         deleteProduct = findViewById(R.id.fabEliminar);
         listaProductos = findViewById(R.id.listaProductos);
@@ -62,18 +62,18 @@ public class ListaActivity extends AppCompatActivity implements SearchView.OnQue
         });
 
         deleteProduct.setOnClickListener(v -> {
-            for (int i=0; i < listaProductos.getChildCount(); i++) {
+            for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
                 int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable)listItem.getBackground()).getColor() : 0xFFFFFFFF;
+                        ((ColorDrawable) listItem.getBackground()).getColor() : 0xFFFFFFFF;
                 if (itemColor == Color.CYAN) {
-                    //TODO: esto creo que no funciona muy bien...
+                    // TODO: Peta y solo borra uno (si se seleccionan varios), si solo se selecciona uno, funciona perfectamente
                     dbProductos.eliminarProducto(this.listaArrayProductos.get(i).getId());
-                    listaArrayProductos.remove(i);
-                    i--;
+                    adapter.eliminarItem(i);
                 }
             }
         });
+
     }
 
     @Override

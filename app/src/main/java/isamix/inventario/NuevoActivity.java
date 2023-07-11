@@ -2,6 +2,7 @@ package isamix.inventario;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,7 +12,7 @@ import isamix.inventario.db.DbProductos;
 public class NuevoActivity extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
-    Button btnGuardar;
+    Button btnGuardar, favEditar, favEliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,10 @@ public class NuevoActivity extends AppCompatActivity {
         txtPrecio = findViewById(R.id.txtPrecio);
         txtTienda = findViewById(R.id.txtTienda);
         btnGuardar = findViewById(R.id.btnGuardar);
+        favEditar = findViewById(R.id.fabEditar);
+        favEditar.setVisibility(View.INVISIBLE);
+        favEliminar = findViewById(R.id.fabEliminar);
+        favEliminar.setVisibility(View.INVISIBLE);
 
         btnGuardar.setOnClickListener(v -> {
             DbProductos dbProductos = new DbProductos(NuevoActivity.this);

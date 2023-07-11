@@ -63,6 +63,12 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
         notifyDataSetChanged();
     }
 
+    public void eliminarItem(int position) {
+        listaProductos.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, listaProductos.size());
+    }
+
     @Override
     public int getItemCount() {
         return listaProductos.size();

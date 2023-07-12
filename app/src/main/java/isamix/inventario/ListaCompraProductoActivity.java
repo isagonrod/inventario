@@ -44,7 +44,11 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
 
         txtCompra.setOnQueryTextListener(this);
 
-        // TODO: No funciona el botón. Se supone que debería funcionar borrando los elementos marcados
+        /*
+         * TODO: No funciona el botón.
+         *  Se supone que debería funcionar borrando los elementos marcados.
+         *  Solo borra si se marca de uno en uno, pero si hay varios marcados, peta la app.
+         */
         btnTerminarCompra.setOnClickListener(v -> {
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);

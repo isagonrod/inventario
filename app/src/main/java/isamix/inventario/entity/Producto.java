@@ -72,10 +72,4 @@ public class Producto {
     public void setParaComprar(int paraComprar) {
         this.paraComprar = paraComprar;
     }
-
-    // TO STRING
-
-    public String toString() {
-        return this.cantidad + " - " + this.nombre + " - | Precio/unidad: " + this.precio;
-    }
 }

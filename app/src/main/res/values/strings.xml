@@ -17,5 +17,6 @@
     <string name="lista_libros">LIBROS</string>
     <string name="lista_textil">JUEGOS</string>
     <string name="lista_compra">LISTA DE LA COMPRA</string>
-    <string name="separator"> | </string>
+    <string name="separator">|</string>
+    <string name="hint_para_comprar">¿Es para comprar?</string>
 </resources>

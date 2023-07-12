@@ -57,8 +57,6 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        producto = dbProductos.verProducto(id);
-
         /*
          * TODO: No funciona el botón.
          *  Se supone que debería funcionar borrando los elementos marcados.
@@ -67,21 +65,14 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
         btnTerminarCompra.setOnClickListener(v -> {
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
-
-                // Método para inicializar el "ID"
-                if (producto != null) {
-                    producto.setId(listItem.getId());
-                    id = producto.getId();
-                }
-
                 int itemColor = listItem.getBackground() != null ? ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.YELLOW) {
                     /*
                      * TODO: Lo suyo sería que se pudiera poner una cantidad
                      *  y se sumara al total que ya hay
-                     *  además de que se borrara de la lista de la compra
                      */
-                    dbProductos.finCompra(id);
+                    dbProductos.finCompra(this.listaCompra.get(i).getId());
+                    listaProductos.removeView(listItem);
                     adapter.eliminarItem(i);
                 }
             }

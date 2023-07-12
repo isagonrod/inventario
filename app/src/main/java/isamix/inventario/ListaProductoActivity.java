@@ -65,12 +65,9 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
                 int itemColor = listItem.getBackground() != null ?
                         ((ColorDrawable) listItem.getBackground()).getColor() : 0xFFFFFFFF;
                 if (itemColor == Color.CYAN) {
-                    /*
-                     * TODO: Peta y solo borra uno (si se seleccionan varios),
-                     *  si solo se selecciona uno, funciona a ratos
-                     */
                     dbProductos.eliminarProducto(this.listaArrayProductos.get(i).getId());
                     adapter.eliminarItem(i);
+                    listaProductos.removeView(listItem);
                 }
             }
         });

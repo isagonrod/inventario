@@ -3,8 +3,11 @@ package isamix.inventario.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +63,12 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
         notifyDataSetChanged();
     }
 
+    public void eliminarItem(int position) {
+        listaProductos.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, listaProductos.size());
+    }
+
     @Override
     public int getItemCount() {
         return listaProductos.size();
@@ -82,6 +91,19 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
                 Intent intent = new Intent(context, VerActivity.class);
                 intent.putExtra("ID", listaProductos.get(getAdapterPosition()).getId());
                 context.startActivity(intent);
+            });
+
+            itemView.setOnLongClickListener(v -> {
+                //TODO: Falta poner que se deseleccione todo si se hace click en otro sitio
+                int itemColor = v.getBackground() != null ?
+                        ((ColorDrawable)v.getBackground()).getColor() : 0xFFFFFFFF;
+                if (itemColor == Color.WHITE) {
+                    itemView.setBackgroundColor(Color.CYAN);
+                } else {
+                    itemView.setBackgroundColor(Color.WHITE);
+                }
+
+                return true;
             });
         }
     }

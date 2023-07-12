@@ -124,9 +124,9 @@ public class DbProductos extends DbHelper {
         } catch (Exception ex) {
             ex.toString();
             correcto = false;
-        } finally {
-            db.close();
         }
+
+        db.close();
 
         return correcto;
     }

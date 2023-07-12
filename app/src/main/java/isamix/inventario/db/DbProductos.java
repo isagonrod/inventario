@@ -147,7 +147,7 @@ public class DbProductos extends DbHelper {
         DbHelper dbHelper = new DbHelper(context);
 
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
-            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET paraComprar = 49 WHERE id = '" + id + "'");
+            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET paraComprar = 48 WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();

@@ -19,4 +19,5 @@
     <string name="lista_compra">LISTA DE LA COMPRA</string>
     <string name="separator">|</string>
     <string name="hint_para_comprar">¿Es para comprar?</string>
+    <string name="terminar_compra">Terminar compra</string>
 </resources>

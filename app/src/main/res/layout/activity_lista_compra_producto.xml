@@ -9,21 +9,31 @@
     tools:context=".ListaProductoActivity">
 
     <TextView
-        android:text="@string/lista_compra"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textAlignment="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/lista_compra"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <android.support.v7.widget.SearchView
         android:id="@+id/txtCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:queryHint="Indica la tienda"/>
+        app:queryHint="Indica la tienda" />
 
-        <android.support.v7.widget.RecyclerView
+    <Button
+        android:id="@+id/btnTerminarCompra"
+        android:text="@string/terminar_compra"
+        android:backgroundTint="@color/pink"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true" />
+
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/listaProductos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

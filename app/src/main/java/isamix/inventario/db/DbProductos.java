@@ -77,7 +77,7 @@ public class DbProductos extends DbHelper {
         Cursor cursorProductos;
 
         // TODO: Revisar formato del BOOLEAN porque está dando problemas.
-        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " WHERE paraComprar = 1 ORDER BY nombre ASC", null);
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " WHERE paraComprar LIKE 'true' ORDER BY nombre ASC", null);
 
         if (cursorProductos.moveToFirst()) {
             do {

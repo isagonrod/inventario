@@ -79,7 +79,7 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
                 int itemColor = listItem.getBackground() != null ?
                         ((ColorDrawable) listItem.getBackground()).getColor() : 0xFFFFFFFF;
                 if (itemColor == Color.CYAN) {
-                    listaArrayProductos.get(i).setParaComprar(true);
+                    listaArrayProductos.get(i).setParaComprar(1);
                     listItem.setBackgroundColor(Color.WHITE);
                 }
             }

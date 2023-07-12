@@ -1,5 +1,6 @@
 package isamix.inventario.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -9,8 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import isamix.inventario.R;
 import isamix.inventario.entity.Producto;
@@ -34,7 +39,26 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CompraViewHolder holder, int position) {
-        holder.producto.setText(listaProductos.get(position).toString());
+        holder.checkBox.setDrawingCacheEnabled(false);
+        holder.txtCantidad.setText(listaProductos.get(position).getCantidad());
+        holder.txtNombre.setText(listaProductos.get(position).getNombre());
+        holder.txtPrecio.setText(listaProductos.get(position).getPrecio());
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void listaCompraPorTienda(String tienda) {
+        int longitud = tienda.length();
+
+        if (longitud == 0) {
+            listaProductos.clear();
+            listaProductos.addAll(listaOriginal);
+        } else {
+            List<Producto> collection = listaProductos.stream().filter(i -> i.getTienda().toLowerCase()
+                    .contains(tienda.toLowerCase())).collect(Collectors.toList());
+            listaProductos.clear();
+            listaProductos.addAll(collection);
+        }
+        notifyDataSetChanged();
     }
 
     @Override
@@ -44,16 +68,20 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
 
     public class CompraViewHolder extends RecyclerView.ViewHolder {
 
-        CheckBox producto;
+        CheckBox checkBox;
+        EditText txtCantidad;
+        TextView txtNombre, txtPrecio;
 
         public CompraViewHolder(@NonNull View itemView) {
             super(itemView);
-            producto = itemView.findViewById(R.id.checkBox);
-            producto.setText(listaProductos.toString());
+            checkBox = itemView.findViewById(R.id.checkBox);
+            txtCantidad = itemView.findViewById(R.id.txtCantidad);
+            txtNombre = itemView.findViewById(R.id.txtNombre);
+            txtPrecio = itemView.findViewById(R.id.txtPrecio);
 
             itemView.setOnClickListener(view -> {
-                listaProductos.get(getAdapterPosition()).setParaComprar(false);
-                producto.setPaintFlags(producto.getPaintFlags());
+                checkBox.setDrawingCacheEnabled(true);
+                listaProductos.get(getAdapterPosition()).setParaComprar(0);
             });
         }
     }

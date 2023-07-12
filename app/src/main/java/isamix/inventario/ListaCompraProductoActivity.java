@@ -9,6 +9,7 @@ import android.support.v7.widget.SearchView;
 
 import java.util.ArrayList;
 
+import isamix.inventario.adapter.ListaCompraAdapter;
 import isamix.inventario.adapter.ListaProductoAdapter;
 import isamix.inventario.db.DbProductos;
 import isamix.inventario.entity.Producto;
@@ -17,7 +18,7 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
 
     RecyclerView listaProductos;
     ArrayList<Producto> listaCompra;
-    ListaProductoAdapter adapter;
+    ListaCompraAdapter adapter;
     SearchView txtCompra;
 
     @Override
@@ -31,7 +32,7 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
 
         DbProductos dbProductos = new DbProductos(ListaCompraProductoActivity.this);
         listaCompra = dbProductos.mostrarProductosParaComprar();
-        adapter = new ListaProductoAdapter(listaCompra);
+        adapter = new ListaCompraAdapter(listaCompra);
         listaProductos.setAdapter(adapter);
 
         txtCompra.setOnQueryTextListener(this);

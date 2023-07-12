@@ -62,21 +62,6 @@ public class ListaProductoAdapter extends RecyclerView.Adapter<ListaProductoAdap
         notifyDataSetChanged();
     }
 
-    // TODO: No funciona. Agrega la lista entera de productos que existe en base de datos. Sí busca por tienda.
-    @SuppressLint("NotifyDataSetChanged")
-    public void listaCompraPorTienda(String tienda) {
-        int longitud = tienda.length();
-        if (longitud == 0) {
-            listaProductos.clear();
-        } else {
-            List<Producto> collection = listaProductos.stream().filter(i -> i.getTienda().toLowerCase()
-                    .contains(tienda.toLowerCase())).collect(Collectors.toList());
-            listaProductos.clear();
-            listaProductos.addAll(collection);
-        }
-        notifyDataSetChanged();
-    }
-
     public void eliminarItem(int position) {
         listaProductos.remove(position);
         notifyItemRemoved(position);

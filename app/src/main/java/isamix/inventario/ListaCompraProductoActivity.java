@@ -26,6 +26,8 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
     ListaCompraAdapter adapter;
     SearchView txtCompra;
     Button btnTerminarCompra;
+    Producto producto;
+    int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,19 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
 
         txtCompra.setOnQueryTextListener(this);
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                id = -1;
+            } else {
+                id = extras.getInt("ID");
+            }
+        } else {
+            id = (int) savedInstanceState.getSerializable("ID");
+        }
+
+        producto = dbProductos.verProducto(id);
+
         /*
          * TODO: No funciona el botón.
          *  Se supone que debería funcionar borrando los elementos marcados.
@@ -52,6 +67,13 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
         btnTerminarCompra.setOnClickListener(v -> {
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
+
+                // Método para inicializar el "ID"
+                if (producto != null) {
+                    producto.setId(listItem.getId());
+                    id = producto.getId();
+                }
+
                 int itemColor = listItem.getBackground() != null ? ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.YELLOW) {
                     /*
@@ -59,7 +81,7 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
                      *  y se sumara al total que ya hay
                      *  además de que se borrara de la lista de la compra
                      */
-                    dbProductos.finCompra(this.listaCompra.get(i).getId());
+                    dbProductos.finCompra(id);
                     adapter.eliminarItem(i);
                 }
             }

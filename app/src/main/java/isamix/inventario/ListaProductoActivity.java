@@ -80,7 +80,6 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
                         ((ColorDrawable) listItem.getBackground()).getColor() : 0xFFFFFFFF;
                 if (itemColor == Color.CYAN) {
                     listaArrayProductos.get(i).setParaComprar(49);
-                    listItem.setBackgroundColor(Color.WHITE);
                     dbProductos.editarProducto(
                             this.listaArrayProductos.get(i).getId(),
                             this.listaArrayProductos.get(i).getNombre(),
@@ -88,6 +87,7 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
                             this.listaArrayProductos.get(i).getPrecio(),
                             this.listaArrayProductos.get(i).getTienda(),
                             this.listaArrayProductos.get(i).isParaComprar());
+                    listItem.setBackgroundColor(Color.WHITE);
                 }
             }
         });

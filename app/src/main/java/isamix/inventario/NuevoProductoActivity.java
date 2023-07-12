@@ -39,7 +39,7 @@ public class NuevoProductoActivity extends AppCompatActivity {
                     txtCantidad.getText().toString(),
                     txtPrecio.getText().toString(),
                     txtTienda.getText().toString(),
-                    viewParaComprar.isChecked()?'1':'0');
+                    Integer.parseInt(viewParaComprar.isChecked()? "49" : "48"));
 
             if (id > 0) {
                 Toast.makeText(NuevoProductoActivity.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();

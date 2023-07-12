@@ -61,7 +61,7 @@ public class EditarProductoActivity extends AppCompatActivity {
             txtCantidad.setText(producto.getCantidad());
             txtPrecio.setText(producto.getPrecio());
             txtTienda.setText(producto.getTienda());
-            viewParaComprar.setChecked(producto.isParaComprar() != 0);
+            viewParaComprar.setChecked(producto.isParaComprar() != 48);
         }
 
         btnGuardar.setOnClickListener(v -> {
@@ -71,7 +71,7 @@ public class EditarProductoActivity extends AppCompatActivity {
                         txtCantidad.getText().toString(),
                         txtPrecio.getText().toString(),
                         txtTienda.getText().toString(),
-                        viewParaComprar.isChecked()?'1':'0');
+                        Integer.parseInt(viewParaComprar.isChecked()? "49" : "48"));
                 if (correcto) {
                     Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
                     verRegistro();

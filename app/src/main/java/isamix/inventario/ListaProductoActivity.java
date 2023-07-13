@@ -85,7 +85,7 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
                             this.listaArrayProductos.get(i).getCantidad(),
                             this.listaArrayProductos.get(i).getPrecio(),
                             this.listaArrayProductos.get(i).getTienda(),
-                            this.listaArrayProductos.get(i).isParaComprar());
+                            48);
                     listItem.setBackgroundColor(Color.WHITE);
                 }
             }

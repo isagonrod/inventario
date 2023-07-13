@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,7 +15,6 @@ import isamix.inventario.entity.Producto;
 public class EditarProductoActivity extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
-    CheckBox viewParaComprar;
     Button btnGuardar, fabEditar, fabEliminar;
     Producto producto;
     int id = 0;
@@ -32,7 +30,6 @@ public class EditarProductoActivity extends AppCompatActivity {
         txtCantidad = findViewById(R.id.txtCantidad);
         txtPrecio = findViewById(R.id.txtPrecio);
         txtTienda = findViewById(R.id.txtTienda);
-        viewParaComprar = findViewById(R.id.viewParaComprar);
 
         btnGuardar = findViewById(R.id.btnGuardar);
 
@@ -61,7 +58,6 @@ public class EditarProductoActivity extends AppCompatActivity {
             txtCantidad.setText(producto.getCantidad());
             txtPrecio.setText(producto.getPrecio());
             txtTienda.setText(producto.getTienda());
-            viewParaComprar.setChecked(producto.isParaComprar() != 48);
         }
 
         btnGuardar.setOnClickListener(v -> {
@@ -71,7 +67,7 @@ public class EditarProductoActivity extends AppCompatActivity {
                         txtCantidad.getText().toString(),
                         txtPrecio.getText().toString(),
                         txtTienda.getText().toString(),
-                        Integer.parseInt(viewParaComprar.isChecked()? "49" : "48"));
+                        48);
                 if (correcto) {
                     Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
                     verRegistro();

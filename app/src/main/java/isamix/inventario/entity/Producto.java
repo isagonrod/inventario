@@ -10,7 +10,7 @@ public class Producto {
     private int paraComprar;
 
     public Producto() {
-        this.paraComprar = 0;
+        this.paraComprar = 48;
     }
 
     // getter/setter de ID

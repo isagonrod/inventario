@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,7 +12,6 @@ import isamix.inventario.db.DbProductos;
 public class NuevoProductoActivity extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
-    CheckBox viewParaComprar;
     Button btnGuardar, favEditar, favEliminar;
 
     @Override
@@ -25,7 +23,6 @@ public class NuevoProductoActivity extends AppCompatActivity {
         txtCantidad = findViewById(R.id.txtCantidad);
         txtPrecio = findViewById(R.id.txtPrecio);
         txtTienda = findViewById(R.id.txtTienda);
-        viewParaComprar = findViewById(R.id.viewParaComprar);
         btnGuardar = findViewById(R.id.btnGuardar);
         favEditar = findViewById(R.id.fabEditar);
         favEditar.setVisibility(View.INVISIBLE);
@@ -39,7 +36,8 @@ public class NuevoProductoActivity extends AppCompatActivity {
                     txtCantidad.getText().toString(),
                     txtPrecio.getText().toString(),
                     txtTienda.getText().toString(),
-                    Integer.parseInt(viewParaComprar.isChecked()? "49" : "48"));
+                    48
+            );
 
             if (id > 0) {
                 Toast.makeText(NuevoProductoActivity.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();
@@ -55,6 +53,6 @@ public class NuevoProductoActivity extends AppCompatActivity {
         txtCantidad.setText("");
         txtPrecio.setText("");
         txtTienda.setText("");
-        viewParaComprar.setChecked(false);
+        //viewParaComprar.setChecked(false);
     }
 }

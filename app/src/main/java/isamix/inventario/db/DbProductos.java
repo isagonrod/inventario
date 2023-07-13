@@ -79,7 +79,7 @@ public class DbProductos extends DbHelper {
         Cursor cursorProductos;
 
         // 48 = false | 49 = true
-        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " WHERE paraComprar = 49 ORDER BY nombre ASC", null);
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " WHERE cantidad = '0' OR paraComprar = 49 ORDER BY nombre ASC", null);
 
         if (cursorProductos.moveToFirst()) {
             do {

@@ -142,12 +142,12 @@ public class DbProductos extends DbHelper {
         return correcto;
     }
 
-    public boolean finCompra(int id) {
+    public boolean finCompra(int id, String cantidad) {
         boolean correcto;
         DbHelper dbHelper = new DbHelper(context);
 
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
-            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET paraComprar = 48 WHERE id = '" + id + "'");
+            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET cantidad = '" + cantidad + "', paraComprar = 48 WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();

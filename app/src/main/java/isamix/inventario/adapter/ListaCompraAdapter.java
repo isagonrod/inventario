@@ -37,6 +37,7 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CompraViewHolder holder, int position) {
+        holder.txtCantidad.setText(listaProductos.get(position).getCantidad());
         holder.txtNombre.setText(listaProductos.get(position).getNombre());
         holder.txtPrecio.setText(listaProductos.get(position).getPrecio());
     }
@@ -84,6 +85,7 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
                 if (itemColor == Color.WHITE) {
                     itemView.setBackgroundColor(Color.YELLOW);
                     listaProductos.get(getAdapterPosition()).setParaComprar(49);
+                    listaProductos.get(getAdapterPosition()).setCantidad(String.valueOf(txtCantidad.getText()));
                 } else {
                     itemView.setBackgroundColor(Color.WHITE);
                     listaProductos.get(getAdapterPosition()).setParaComprar(48);

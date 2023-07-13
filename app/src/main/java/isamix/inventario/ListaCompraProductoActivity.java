@@ -26,7 +26,6 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
     ListaCompraAdapter adapter;
     SearchView txtCompra;
     Button btnTerminarCompra;
-    Producto producto;
     int id = 0;
 
     @Override
@@ -57,21 +56,12 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        /*
-         * TODO: No funciona el botón.
-         *  Se supone que debería funcionar borrando los elementos marcados.
-         *  Solo borra si se marca de uno en uno, pero si hay varios marcados, peta la app.
-         */
         btnTerminarCompra.setOnClickListener(v -> {
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
                 int itemColor = listItem.getBackground() != null ? ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.YELLOW) {
-                    /*
-                     * TODO: Lo suyo sería que se pudiera poner una cantidad
-                     *  y se sumara al total que ya hay
-                     */
-                    dbProductos.finCompra(this.listaCompra.get(i).getId());
+                    dbProductos.finCompra(this.listaCompra.get(i).getId(), this.listaCompra.get(i).getCantidad());
                     listaProductos.removeView(listItem);
                     adapter.eliminarItem(i);
                 }

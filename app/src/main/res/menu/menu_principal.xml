@@ -13,4 +13,8 @@
     <item
         android:id="@+id/menuNuevoLibro"
         android:title="@string/menu_nuevo_libro" />
+
+    <item
+        android:id="@+id/menuListaCompra"
+        android:title="@string/menu_lista_compra" />
 </menu>

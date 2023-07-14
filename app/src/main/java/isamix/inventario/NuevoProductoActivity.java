@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import isamix.inventario.db.DbProductos;
 
-public class NuevoActivity extends AppCompatActivity {
+public class NuevoProductoActivity extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
     Button btnGuardar, favEditar, favEliminar;
@@ -17,7 +17,7 @@ public class NuevoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nuevo);
+        setContentView(R.layout.activity_nuevo_producto);
 
         txtNombre = findViewById(R.id.txtNombre);
         txtCantidad = findViewById(R.id.txtCantidad);
@@ -30,18 +30,20 @@ public class NuevoActivity extends AppCompatActivity {
         favEliminar.setVisibility(View.INVISIBLE);
 
         btnGuardar.setOnClickListener(v -> {
-            DbProductos dbProductos = new DbProductos(NuevoActivity.this);
+            DbProductos dbProductos = new DbProductos(NuevoProductoActivity.this);
             long id = dbProductos.insertarProducto(
                     txtNombre.getText().toString(),
                     txtCantidad.getText().toString(),
                     txtPrecio.getText().toString(),
-                    txtTienda.getText().toString());
+                    txtTienda.getText().toString(),
+                    48
+            );
 
             if (id > 0) {
-                Toast.makeText(NuevoActivity.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();
+                Toast.makeText(NuevoProductoActivity.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();
                 limpiar();
             } else {
-                Toast.makeText(NuevoActivity.this, "ERROR AL GUARDAR PRODUCTO", Toast.LENGTH_LONG).show();
+                Toast.makeText(NuevoProductoActivity.this, "ERROR AL GUARDAR PRODUCTO", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -51,5 +53,6 @@ public class NuevoActivity extends AppCompatActivity {
         txtCantidad.setText("");
         txtPrecio.setText("");
         txtTienda.setText("");
+        //viewParaComprar.setChecked(false);
     }
 }

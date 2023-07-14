@@ -7,6 +7,11 @@ public class Producto {
     private String cantidad;
     private String precio;
     private String tienda;
+    private int paraComprar;
+
+    public Producto() {
+        this.paraComprar = 48;
+    }
 
     // getter/setter de ID
 
@@ -56,5 +61,15 @@ public class Producto {
 
     public void setTienda(String tienda) {
         this.tienda = tienda;
+    }
+
+    // getter/setter de COMPRAR
+
+    public int isParaComprar() {
+        return paraComprar;
+    }
+
+    public void setParaComprar(int paraComprar) {
+        this.paraComprar = paraComprar;
     }
 }

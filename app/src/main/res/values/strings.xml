@@ -11,8 +11,13 @@
     <string name="menu_nuevo_producto">Nuevo producto</string>
     <string name="menu_nuevo_textil">Nuevo textil</string>
     <string name="menu_nuevo_libro">Nuevo libro</string>
+    <string name="menu_lista_compra">Lista de la compra</string>
     <string name="moneda">€</string>
     <string name="lista_productos">PRODUCTOS</string>
     <string name="lista_libros">LIBROS</string>
     <string name="lista_textil">JUEGOS</string>
+    <string name="lista_compra">LISTA DE LA COMPRA</string>
+    <string name="separator">|</string>
+    <string name="hint_para_comprar">¿Es para comprar?</string>
+    <string name="terminar_compra">Terminar compra</string>
 </resources>

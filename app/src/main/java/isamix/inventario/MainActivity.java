@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (idSeleccionado) {
             case R.id.listaProductos:
-                listaSeleccionada = ListaActivity.class;
+                listaSeleccionada = ListaProductoActivity.class;
                 break;
 
             case R.id.listaTextil:
@@ -51,15 +51,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuNuevoProducto:
-                nuevoProducto();
+                cambiarVentana(NuevoProductoActivity.class);
+                return true;
+            case R.id.menuListaCompra:
+                cambiarVentana(ListaCompraProductoActivity.class);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void nuevoProducto() {
-        Intent intent = new Intent(this, NuevoActivity.class);
+    private void cambiarVentana(Class<?> activity) {
+        Intent intent = new Intent(this, activity);
         startActivity(intent);
     }
 

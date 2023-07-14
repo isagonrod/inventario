@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".ListaActivity">
+    tools:context=".ListaProductoActivity">
 
     <SearchView
         android:id="@+id/txtBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:queryHint="Indica el nombre del producto"
         app:actionViewClass="androix.appcompat.widget.SearchView" />
 
     <LinearLayout
@@ -29,15 +30,6 @@
             android:layout_margin="5dp"
             android:background="@drawable/add"
             android:clickable="true" />
-
-<!--        <Button-->
-<!--            android:id="@+id/fabEditar"-->
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_margin="5dp"-->
-<!--            android:background="@drawable/edit"-->
-<!--            android:clickable="true" />-->
 
         <Button
             android:id="@+id/fabListaCompra"

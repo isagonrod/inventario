@@ -19,7 +19,7 @@ public class DbProductos extends DbHelper {
         this.context = context;
     }
 
-    public long insertarProducto(String nombre, String cantidad, String precio, String tienda) {
+    public long insertarProducto(String nombre, String cantidad, String precio, String tienda, int paraComprar) {
 
         long id = 0;
 
@@ -32,6 +32,7 @@ public class DbProductos extends DbHelper {
             values.put("cantidad", cantidad);
             values.put("precio", precio);
             values.put("tienda", tienda);
+            values.put("paraComprar", paraComprar);
 
             id = db.insert(TABLE_INVENTARIO, null, values);
         } catch (Exception ex) {
@@ -60,6 +61,35 @@ public class DbProductos extends DbHelper {
                 producto.setCantidad(cursorProductos.getString(2));
                 producto.setPrecio(cursorProductos.getString(3));
                 producto.setTienda(cursorProductos.getString(4));
+                producto.setParaComprar(cursorProductos.getInt(5));
+                listaProductos.add(producto);
+            } while (cursorProductos.moveToNext());
+        }
+        cursorProductos.close();
+        return listaProductos;
+    }
+
+    public ArrayList<Producto> mostrarProductosParaComprar() {
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ArrayList<Producto> listaProductos = new ArrayList<>();
+        Producto producto;
+        Cursor cursorProductos;
+
+        // 48 = false | 49 = true
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " WHERE cantidad = '0' OR paraComprar = 49 ORDER BY nombre ASC", null);
+
+        if (cursorProductos.moveToFirst()) {
+            do {
+                producto = new Producto();
+                producto.setId(cursorProductos.getInt(0));
+                producto.setNombre(cursorProductos.getString(1));
+                producto.setCantidad(cursorProductos.getString(2));
+                producto.setPrecio(cursorProductos.getString(3));
+                producto.setTienda(cursorProductos.getString(4));
+                producto.setParaComprar(cursorProductos.getInt(5));
                 listaProductos.add(producto);
             } while (cursorProductos.moveToNext());
         }
@@ -89,23 +119,39 @@ public class DbProductos extends DbHelper {
         return producto;
     }
 
-    public boolean editarProducto(int id, String nombre, String cantidad, String precio, String tienda) {
+    public boolean editarProducto(int id, String nombre, String cantidad, String precio, String tienda, int paraComprar) {
 
         boolean correcto;
 
         DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        try {
-            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET " + "nombre = '" + nombre + "', " +
-                    "cantidad = '"+ cantidad +"', " + "precio = '" + precio + "', " +
-                    "tienda = '" + tienda + "' " + " WHERE id = '" + id + "'");
+        try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
+            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET " +
+                    "nombre = '" + nombre + "', " +
+                    "cantidad = '" + cantidad + "', " +
+                    "precio = '" + precio + "', " +
+                    "tienda = '" + tienda + "', " +
+                    "paraComprar = " + paraComprar +
+                    " WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();
             correcto = false;
-        } finally {
-            db.close();
+        }
+
+        return correcto;
+    }
+
+    public boolean finCompra(int id, String cantidad) {
+        boolean correcto;
+        DbHelper dbHelper = new DbHelper(context);
+
+        try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
+            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET cantidad = '" + cantidad + "', paraComprar = 48 WHERE id = '" + id + "'");
+            correcto = true;
+        } catch (Exception ex) {
+            ex.toString();
+            correcto = false;
         }
 
         return correcto;

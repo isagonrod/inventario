@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
@@ -102,5 +105,26 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
     public boolean onQueryTextChange(String s) {
         adapter.filtrado(s);
         return false;
+    }
+
+    /* *** *** *** MENÚ PRINCIPAL *** *** *** */
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_principal, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menuListaCompra) {
+            verListaCompra();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void verListaCompra() {
+        Intent intent = new Intent(this, ListaCompraProductoActivity.class);
+        startActivity(intent);
     }
 }

@@ -46,23 +46,17 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    // Método para ir cambiando de pantalla al hacer click sobre las opciones
-    @SuppressLint("NonConstantResourceId")
+    // Método para ir a la pantalla de la lista de la compra
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menuNuevoProducto:
-                cambiarVentana(NuevoProductoActivity.class);
-                return true;
-            case R.id.menuListaCompra:
-                cambiarVentana(ListaCompraProductoActivity.class);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.menuListaCompra) {
+            verListaCompra();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
-    private void cambiarVentana(Class<?> activity) {
-        Intent intent = new Intent(this, activity);
+    private void verListaCompra() {
+        Intent intent = new Intent(this, ListaCompraProductoActivity.class);
         startActivity(intent);
     }
 

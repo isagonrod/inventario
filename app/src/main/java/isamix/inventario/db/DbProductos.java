@@ -34,7 +34,7 @@ public class DbProductos extends DbHelper {
             values.put("tienda", tienda);
             values.put("paraComprar", paraComprar);
 
-            id = db.insert(TABLE_INVENTARIO, null, values);
+            id = db.insert(TABLE_PRODUCTO, null, values);
         } catch (Exception ex) {
             ex.toString();
         }
@@ -51,7 +51,7 @@ public class DbProductos extends DbHelper {
         Producto producto;
         Cursor cursorProductos;
 
-        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " ORDER BY nombre ASC", null);
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " ORDER BY nombre ASC", null);
 
         if (cursorProductos.moveToFirst()) {
             do {
@@ -78,8 +78,8 @@ public class DbProductos extends DbHelper {
         Producto producto;
         Cursor cursorProductos;
 
-        // 48 = false | 49 = true
-        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " WHERE cantidad = '0' OR paraComprar = 49 ORDER BY nombre ASC", null);
+        // 0 = false | 1 = true
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " WHERE cantidad = '0' OR paraComprar = 1 ORDER BY nombre ASC", null);
 
         if (cursorProductos.moveToFirst()) {
             do {
@@ -105,7 +105,7 @@ public class DbProductos extends DbHelper {
         Producto producto = null;
         Cursor cursorProducto;
 
-        cursorProducto = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " WHERE id = " + id + " LIMIT 1", null);
+        cursorProducto = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " WHERE id = " + id + " LIMIT 1", null);
 
         if (cursorProducto.moveToFirst()) {
             producto = new Producto();
@@ -126,7 +126,7 @@ public class DbProductos extends DbHelper {
         DbHelper dbHelper = new DbHelper(context);
 
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
-            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET " +
+            db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET " +
                     "nombre = '" + nombre + "', " +
                     "cantidad = '" + cantidad + "', " +
                     "precio = '" + precio + "', " +
@@ -147,7 +147,7 @@ public class DbProductos extends DbHelper {
         DbHelper dbHelper = new DbHelper(context);
 
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
-            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET cantidad = '" + cantidad + "', paraComprar = 48 WHERE id = '" + id + "'");
+            db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET cantidad = '" + cantidad + "', paraComprar = 0 WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();
@@ -165,7 +165,7 @@ public class DbProductos extends DbHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            db.execSQL("DELETE FROM " + TABLE_INVENTARIO + " WHERE id = '" + id + "'");
+            db.execSQL("DELETE FROM " + TABLE_PRODUCTO + " WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();

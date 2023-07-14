@@ -84,11 +84,11 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
                 int itemColor = view.getBackground() != null ? ((ColorDrawable) view.getBackground()).getColor() : 0xFFFFFFFF;
                 if (itemColor == Color.WHITE) {
                     itemView.setBackgroundColor(Color.YELLOW);
-                    listaProductos.get(getAdapterPosition()).setParaComprar(49);
+                    listaProductos.get(getAdapterPosition()).setParaComprar(1);
                     listaProductos.get(getAdapterPosition()).setCantidad(String.valueOf(txtCantidad.getText()));
                 } else {
                     itemView.setBackgroundColor(Color.WHITE);
-                    listaProductos.get(getAdapterPosition()).setParaComprar(48);
+                    listaProductos.get(getAdapterPosition()).setParaComprar(0);
                 }
             });
         }

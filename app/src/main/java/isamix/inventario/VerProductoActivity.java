@@ -26,7 +26,7 @@ public class VerProductoActivity extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtNombre);
         txtCantidad = findViewById(R.id.txtCantidad);
         txtPrecio = findViewById(R.id.txtPrecio);
-        txtTienda = findViewById(R.id.txtTienda);
+        txtTienda = findViewById(R.id.spinnerTienda);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnGuardar.setVisibility(View.INVISIBLE);

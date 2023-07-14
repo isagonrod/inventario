@@ -24,7 +24,7 @@
             android:textSize="30sp"
             android:text="@string/lista_productos"
             android:clickable="true"
-            android:onClick="listar"/>
+            android:onClick="listar" />
 
         <Button
             android:id="@+id/listaTextil"
@@ -35,7 +35,8 @@
             android:background="@color/orange"
             android:textSize="30sp"
             android:text="@string/lista_textil"
-            android:clickable="true" />
+            android:clickable="true"
+            android:onClick="listar" />
 
         <Button
             android:id="@+id/listaMuebles"
@@ -46,7 +47,8 @@
             android:background="@color/yellow"
             android:textSize="30sp"
             android:text="@string/lista_libros"
-            android:clickable="true" />
+            android:clickable="true"
+            android:onClick="listar" />
 
     </LinearLayout>
 

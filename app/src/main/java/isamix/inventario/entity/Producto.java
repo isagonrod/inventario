@@ -65,7 +65,7 @@ public class Producto {
 
     // getter/setter de COMPRAR
 
-    public int isParaComprar() {
+    public int getParaComprar() {
         return paraComprar;
     }
 

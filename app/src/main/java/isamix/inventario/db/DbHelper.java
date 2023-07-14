@@ -7,9 +7,10 @@ import android.support.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "inventario.db";
-    public static final String TABLE_INVENTARIO = "t_inventario";
+    public static final String TABLE_PRODUCTO = "t_producto";
+    public static final String TABLE_TIENDA = "t_tienda";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -18,18 +19,44 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE " + TABLE_INVENTARIO + "(" +
+        db.execSQL("CREATE TABLE " + TABLE_TIENDA + "(" +
+                "id INTEGER PRIMARY KEY NOT NULL, " +
+                "nombre TEXT NOT NULL)");
+
+        llevarTablaTienda(db);
+
+        db.execSQL("CREATE TABLE " + TABLE_PRODUCTO + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre TEXT NOT NULL, " +
                 "cantidad TEXT NOT NULL, " +
                 "precio TEXT, " +
-                "tienda TEXT, " +
-                "paraComprar INTEGER)");
+                "tienda INTEGER, " +
+                "paraComprar INTEGER," +
+                "FOREIGN KEY(tienda) REFERENCES "+ TABLE_TIENDA +"(id)" +
+                ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE " + TABLE_INVENTARIO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIENDA);
         onCreate(db);
+    }
+
+    private void llevarTablaTienda(SQLiteDatabase db) {
+        db.execSQL("INSERT INTO " + TABLE_TIENDA + " (id, nombre) VALUES " +
+                "(1, 'Carrefour')," +
+                "(2, 'Mercadona')," +
+                "(3, 'Lidl')," +
+                "(4, 'M.A.S.')," +
+                "(5, 'Bazar Chino')," +
+                "(6, 'Media Markt')," +
+                "(7, 'PcComponentes')," +
+                "(8, 'Amazon')," +
+                "(9, 'El Corte Inglés')," +
+                "(10, 'Ikea')," +
+                "(11, 'Zacatrus')," +
+                "(12, 'Juguettos')," +
+                "(13, 'Fnac')");
     }
 }

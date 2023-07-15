@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import isamix.inventario.db.DbProductos;
 import isamix.inventario.db.DbTienda;
@@ -22,8 +23,7 @@ import isamix.inventario.entity.Tienda;
 
 public class NuevoProductoActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtCantidad, txtPrecio;
-    TextView txtTienda;
+    EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
     Spinner spinnerTienda;
     Button btnGuardar, favEditar, favEliminar;
     String shop;
@@ -38,8 +38,9 @@ public class NuevoProductoActivity extends AppCompatActivity {
         txtCantidad = findViewById(R.id.txtCantidad);
         txtPrecio = findViewById(R.id.txtPrecio);
         txtTienda = findViewById(R.id.txtTienda);
-        txtTienda.setVisibility(View.INVISIBLE);
+
         spinnerTienda = findViewById(R.id.spinnerTienda);
+
         btnGuardar = findViewById(R.id.btnGuardar);
         favEditar = findViewById(R.id.fabEditar);
         favEditar.setVisibility(View.INVISIBLE);
@@ -59,21 +60,27 @@ public class NuevoProductoActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                shop = "Otra";
+                shop = "-";
             }
         });
 
         btnGuardar.setOnClickListener(v -> {
             DbProductos dbProductos = new DbProductos(NuevoProductoActivity.this);
-            long id = dbProductos.insertarProducto(
+            DbTienda dbTienda = new DbTienda(NuevoProductoActivity.this);
+
+            // TODO: Arreglar que se guarde la tienda pero sin que se repita
+
+            long idTienda = dbTienda.insertarTienda(txtTienda.getText().toString());
+
+            long idProducto = dbProductos.insertarProducto(
                     txtNombre.getText().toString(),
                     txtCantidad.getText().toString(),
                     txtPrecio.getText().toString(),
-                    shop,
+                    txtTienda.getText().toString(),
                     0
             );
 
-            if (id > 0) {
+            if (idProducto > 0) {
                 Toast.makeText(NuevoProductoActivity.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();
                 limpiar();
             } else {
@@ -86,6 +93,7 @@ public class NuevoProductoActivity extends AppCompatActivity {
         txtNombre.setText("");
         txtCantidad.setText("");
         txtPrecio.setText("");
+        txtTienda.setText("");
     }
 
     private List<Tienda> llenarTiendas() {

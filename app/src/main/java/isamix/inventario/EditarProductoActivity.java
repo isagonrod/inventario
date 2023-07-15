@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import isamix.inventario.db.DbProductos;
 import isamix.inventario.db.DbTienda;
@@ -24,8 +25,7 @@ import isamix.inventario.entity.Tienda;
 
 public class EditarProductoActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtCantidad, txtPrecio;
-    TextView txtTienda;
+    EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
     Spinner spinnerTienda;
     Button btnGuardar, fabEditar, fabEliminar;
     Producto producto;
@@ -43,8 +43,9 @@ public class EditarProductoActivity extends AppCompatActivity {
         txtCantidad = findViewById(R.id.txtCantidad);
         txtPrecio = findViewById(R.id.txtPrecio);
         txtTienda = findViewById(R.id.txtTienda);
-        txtTienda.setVisibility(View.VISIBLE);
+
         spinnerTienda = findViewById(R.id.spinnerTienda);
+        spinnerTienda.setVisibility(View.VISIBLE);
 
         btnGuardar = findViewById(R.id.btnGuardar);
 
@@ -71,6 +72,7 @@ public class EditarProductoActivity extends AppCompatActivity {
         }
 
         final DbProductos dbProductos = new DbProductos(EditarProductoActivity.this);
+        DbTienda dbTienda = new DbTienda(EditarProductoActivity.this);
         producto = dbProductos.verProducto(id);
 
         if (producto != null) {
@@ -86,10 +88,12 @@ public class EditarProductoActivity extends AppCompatActivity {
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-                    shop = "Otra";
+                    shop = "-";
                 }
             });
         }
+
+        // TODO: Arreglar que se guarde la tienda si no existe en el desplegable
 
         btnGuardar.setOnClickListener(v -> {
             if (!txtNombre.getText().toString().equals("") && !txtCantidad.getText().toString().equals("")) {
@@ -100,7 +104,7 @@ public class EditarProductoActivity extends AppCompatActivity {
                         shop,
                         0);
                 if (correcto) {
-                    Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO | Tienda: " + shop, Toast.LENGTH_LONG).show();
                     verRegistro();
                 } else {
                     Toast.makeText(EditarProductoActivity.this, "ERROR AL MODIFICAR PRODUCTO", Toast.LENGTH_LONG).show();

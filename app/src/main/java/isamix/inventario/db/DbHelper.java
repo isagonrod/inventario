@@ -23,8 +23,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre TEXT NOT NULL)");
 
-        db.execSQL("INSERT INTO " + TABLE_TIENDA + " VALUES (0, '-')");
-
         db.execSQL("CREATE TABLE " + TABLE_PRODUCTO + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre TEXT NOT NULL, " +

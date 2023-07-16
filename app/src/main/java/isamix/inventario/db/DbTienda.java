@@ -48,10 +48,8 @@ public class DbTienda extends DbHelper {
         long id = 0;
 
         try {
-
             ContentValues value = new ContentValues();
             value.put("nombre", nombre);
-
             id = db.insert(TABLE_TIENDA, null, value);
         } catch (Exception ex) {
             ex.toString();
@@ -62,11 +60,11 @@ public class DbTienda extends DbHelper {
 
     public boolean editarTienda(int id, String nombre) {
         boolean correcto;
-        DbHelper dbHelper = new DbHelper(context);
+
         ContentValues contentValues = new ContentValues();
         contentValues.put("nombre", nombre);
 
-        try(SQLiteDatabase db = dbHelper.getWritableDatabase()) {
+        try {
             db.update(TABLE_TIENDA, contentValues, "id = " + id, null);
             correcto = true;
         } catch (Exception ex) {
@@ -76,10 +74,7 @@ public class DbTienda extends DbHelper {
         return correcto;
     }
 
-    public String getTienda(String nombre) {
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
+    public Tienda getTienda(String nombre) {
         Tienda tienda = null;
         Cursor cursorTienda;
 
@@ -92,7 +87,6 @@ public class DbTienda extends DbHelper {
         }
         cursorTienda.close();
 
-        assert tienda != null;
-        return tienda.getNombre();
+        return tienda;
     }
 }

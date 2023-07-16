@@ -54,7 +54,12 @@ public class NuevoProductoActivity extends AppCompatActivity {
             DbProductos dbProductos = new DbProductos(NuevoProductoActivity.this);
             DbTienda dbTienda = new DbTienda(NuevoProductoActivity.this);
 
-            long idTienda = dbTienda.insertarTienda(txtTienda.getText().toString());
+            Tienda shop = dbTienda.getTienda(txtTienda.getText().toString());
+            if (shop == null) {
+                dbTienda.insertarTienda(txtTienda.getText().toString());
+            } else {
+                dbTienda.editarTienda(shop.getId(), shop.getNombre());
+            }
 
             long idProducto = dbProductos.insertarProducto(
                     txtNombre.getText().toString(),
@@ -64,7 +69,7 @@ public class NuevoProductoActivity extends AppCompatActivity {
                     0
             );
 
-            if (idProducto > 0 && idTienda > 0) {
+            if (idProducto > 0) {
                 Toast.makeText(NuevoProductoActivity.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();
                 limpiar();
             } else {

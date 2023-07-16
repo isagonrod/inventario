@@ -88,12 +88,13 @@ public class EditarProductoActivity extends AppCompatActivity {
                         txtTienda.getText().toString(),
                         0);
 
-                /*
-                 * TODO: Método para guardar la tienda si no existe en la base de datos
-                if (dbTienda.getTienda(txtTienda.getText().toString()) == null) {
+                Tienda shop = dbTienda.getTienda(txtTienda.getText().toString());
+                if (shop == null) {
                     dbTienda.insertarTienda(txtTienda.getText().toString());
+                } else {
+                    dbTienda.editarTienda(shop.getId(), shop.getNombre());
                 }
-                 */
+
                 if (correcto) {
                     Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
                     verRegistro();

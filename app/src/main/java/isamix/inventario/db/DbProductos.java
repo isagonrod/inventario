@@ -13,10 +13,14 @@ import isamix.inventario.entity.Producto;
 public class DbProductos extends DbHelper {
 
     Context context;
+    DbHelper dbHelper;
+    SQLiteDatabase db;
 
     public DbProductos(@Nullable Context context) {
         super(context);
         this.context = context;
+        this.dbHelper = new DbHelper(this.context);
+        this.db = dbHelper.getWritableDatabase();
     }
 
     public long insertarProducto(String nombre, String cantidad, String precio, String tienda, int paraComprar) {
@@ -24,9 +28,6 @@ public class DbProductos extends DbHelper {
         long id = 0;
 
         try {
-            DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-
             ContentValues values = new ContentValues();
             values.put("nombre", nombre);
             values.put("cantidad", cantidad);
@@ -43,9 +44,6 @@ public class DbProductos extends DbHelper {
     }
 
     public ArrayList<Producto> mostrarProductos() {
-
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ArrayList<Producto> listaProductos = new ArrayList<>();
         Producto producto;
@@ -70,9 +68,6 @@ public class DbProductos extends DbHelper {
     }
 
     public ArrayList<Producto> mostrarProductosParaComprar() {
-
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ArrayList<Producto> listaProductos = new ArrayList<>();
         Producto producto;
@@ -99,9 +94,6 @@ public class DbProductos extends DbHelper {
 
     public Producto verProducto(int id) {
 
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         Producto producto = null;
         Cursor cursorProducto;
 
@@ -123,8 +115,6 @@ public class DbProductos extends DbHelper {
 
         boolean correcto;
 
-        DbHelper dbHelper = new DbHelper(context);
-
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET " +
                     "nombre = '" + nombre + "', " +
@@ -144,7 +134,6 @@ public class DbProductos extends DbHelper {
 
     public boolean finCompra(int id, String cantidad) {
         boolean correcto;
-        DbHelper dbHelper = new DbHelper(context);
 
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET cantidad = '" + cantidad + "', paraComprar = 0 WHERE id = '" + id + "'");
@@ -160,9 +149,6 @@ public class DbProductos extends DbHelper {
     public boolean eliminarProducto(int id) {
 
         boolean correcto;
-
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
             db.execSQL("DELETE FROM " + TABLE_PRODUCTO + " WHERE id = '" + id + "'");

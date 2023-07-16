@@ -2,21 +2,16 @@ package isamix.inventario;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import isamix.inventario.db.DbProductos;
 import isamix.inventario.db.DbTienda;
@@ -25,13 +20,15 @@ import isamix.inventario.entity.Tienda;
 
 public class EditarProductoActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
-    Spinner spinnerTienda;
+    EditText txtNombre, txtCantidad, txtPrecio;
+    AutoCompleteTextView txtTienda;
     Button btnGuardar, fabEditar, fabEliminar;
     Producto producto;
-    String shop;
     int id = 0;
     boolean correcto = false;
+    DbProductos dbProductos;
+    DbTienda dbTienda;
+    List<Tienda> tiendas;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,9 +41,6 @@ public class EditarProductoActivity extends AppCompatActivity {
         txtPrecio = findViewById(R.id.txtPrecio);
         txtTienda = findViewById(R.id.txtTienda);
 
-        spinnerTienda = findViewById(R.id.spinnerTienda);
-        spinnerTienda.setVisibility(View.VISIBLE);
-
         btnGuardar = findViewById(R.id.btnGuardar);
 
         fabEditar = findViewById(R.id.fabEditar);
@@ -55,10 +49,13 @@ public class EditarProductoActivity extends AppCompatActivity {
         fabEliminar = findViewById(R.id.fabEliminar);
         fabEliminar.setVisibility(View.INVISIBLE);
 
-        List<Tienda> tiendas = llenarTiendas();
+        dbProductos = new DbProductos(EditarProductoActivity.this);
+        dbTienda = new DbTienda(EditarProductoActivity.this);
+        tiendas = dbTienda.mostrarTiendas();
+
         ArrayAdapter<Tienda> arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, tiendas);
-        spinnerTienda.setAdapter(arrayAdapter);
+        txtTienda.setAdapter(arrayAdapter);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -80,31 +77,25 @@ public class EditarProductoActivity extends AppCompatActivity {
             txtCantidad.setText(producto.getCantidad());
             txtPrecio.setText(producto.getPrecio());
             txtTienda.setText(producto.getTienda());
-            spinnerTienda.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    shop = ((Tienda) parent.getSelectedItem()).getNombre();
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    shop = "-";
-                }
-            });
         }
 
-        // TODO: Arreglar que se guarde la tienda si no existe en el desplegable
-
         btnGuardar.setOnClickListener(v -> {
-            if (!txtNombre.getText().toString().equals("") && !txtCantidad.getText().toString().equals("")) {
+            if (!txtNombre.getText().toString().equals("") && !txtCantidad.getText().toString().equals("") && !txtTienda.getText().toString().equals("")) {
                 correcto = dbProductos.editarProducto(
                         id, txtNombre.getText().toString(),
                         txtCantidad.getText().toString(),
                         txtPrecio.getText().toString(),
-                        shop,
+                        txtTienda.getText().toString(),
                         0);
+
+                /*
+                 * TODO: Método para guardar la tienda si no existe en la base de datos
+                if (dbTienda.getTienda(txtTienda.getText().toString()) == null) {
+                    dbTienda.insertarTienda(txtTienda.getText().toString());
+                }
+                 */
                 if (correcto) {
-                    Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO | Tienda: " + shop, Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
                     verRegistro();
                 } else {
                     Toast.makeText(EditarProductoActivity.this, "ERROR AL MODIFICAR PRODUCTO", Toast.LENGTH_LONG).show();
@@ -119,23 +110,5 @@ public class EditarProductoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, VerProductoActivity.class);
         intent.putExtra("ID", id);
         startActivity(intent);
-    }
-
-    private List<Tienda> llenarTiendas() {
-        List<Tienda> listaTiendas = new ArrayList<>();
-        DbTienda dbTienda = new DbTienda(this);
-        Cursor cursor = dbTienda.mostrarTiendas();
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    Tienda tienda = new Tienda();
-                    tienda.setId(cursor.getInt(0));
-                    tienda.setNombre(cursor.getString(1));
-                    listaTiendas.add(tienda);
-                } while (cursor.moveToNext());
-            }
-        }
-        dbTienda.close();
-        return listaTiendas;
     }
 }

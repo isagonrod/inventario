@@ -1,21 +1,16 @@
 package isamix.inventario;
 
 import android.annotation.SuppressLint;
-import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import isamix.inventario.db.DbProductos;
 import isamix.inventario.db.DbTienda;
@@ -23,10 +18,12 @@ import isamix.inventario.entity.Tienda;
 
 public class NuevoProductoActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtCantidad, txtPrecio, txtTienda;
-    Spinner spinnerTienda;
+    EditText txtNombre, txtCantidad, txtPrecio;
+    AutoCompleteTextView txtTienda;
     Button btnGuardar, favEditar, favEliminar;
-    String shop;
+    DbProductos dbProductos;
+    DbTienda dbTienda;
+    List<Tienda> tiendas;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -39,36 +36,23 @@ public class NuevoProductoActivity extends AppCompatActivity {
         txtPrecio = findViewById(R.id.txtPrecio);
         txtTienda = findViewById(R.id.txtTienda);
 
-        spinnerTienda = findViewById(R.id.spinnerTienda);
-
         btnGuardar = findViewById(R.id.btnGuardar);
         favEditar = findViewById(R.id.fabEditar);
         favEditar.setVisibility(View.INVISIBLE);
         favEliminar = findViewById(R.id.fabEliminar);
         favEliminar.setVisibility(View.INVISIBLE);
 
-        List<Tienda> tiendas = llenarTiendas();
+        dbProductos = new DbProductos(NuevoProductoActivity.this);
+        dbTienda = new DbTienda(NuevoProductoActivity.this);
+        tiendas = dbTienda.mostrarTiendas();
+
         ArrayAdapter<Tienda> arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, tiendas);
-        spinnerTienda.setAdapter(arrayAdapter);
-
-        spinnerTienda.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                shop = ((Tienda) parent.getSelectedItem()).getNombre();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                shop = "-";
-            }
-        });
+        txtTienda.setAdapter(arrayAdapter);
 
         btnGuardar.setOnClickListener(v -> {
             DbProductos dbProductos = new DbProductos(NuevoProductoActivity.this);
             DbTienda dbTienda = new DbTienda(NuevoProductoActivity.this);
-
-            // TODO: Arreglar que se guarde la tienda pero sin que se repita
 
             long idTienda = dbTienda.insertarTienda(txtTienda.getText().toString());
 
@@ -80,7 +64,7 @@ public class NuevoProductoActivity extends AppCompatActivity {
                     0
             );
 
-            if (idProducto > 0) {
+            if (idProducto > 0 && idTienda > 0) {
                 Toast.makeText(NuevoProductoActivity.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();
                 limpiar();
             } else {
@@ -94,23 +78,5 @@ public class NuevoProductoActivity extends AppCompatActivity {
         txtCantidad.setText("");
         txtPrecio.setText("");
         txtTienda.setText("");
-    }
-
-    private List<Tienda> llenarTiendas() {
-        List<Tienda> listaTiendas = new ArrayList<>();
-        DbTienda dbTienda = new DbTienda(this);
-        Cursor cursor = dbTienda.mostrarTiendas();
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    Tienda tienda = new Tienda();
-                    tienda.setId(cursor.getInt(0));
-                    tienda.setNombre(cursor.getString(1));
-                    listaTiendas.add(tienda);
-                } while (cursor.moveToNext());
-            }
-        }
-        dbTienda.close();
-        return listaTiendas;
     }
 }

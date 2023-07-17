@@ -20,10 +20,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE " + TABLE_TIENDA + "(" +
-                "id INTEGER PRIMARY KEY NOT NULL, " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre TEXT NOT NULL)");
-
-        llevarTablaTienda(db);
 
         db.execSQL("CREATE TABLE " + TABLE_PRODUCTO + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -41,22 +39,5 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIENDA);
         onCreate(db);
-    }
-
-    private void llevarTablaTienda(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO " + TABLE_TIENDA + " (id, nombre) VALUES " +
-                "(1, 'Carrefour')," +
-                "(2, 'Mercadona')," +
-                "(3, 'Lidl')," +
-                "(4, 'M.A.S.')," +
-                "(5, 'Bazar Chino')," +
-                "(6, 'Media Markt')," +
-                "(7, 'PcComponentes')," +
-                "(8, 'Amazon')," +
-                "(9, 'El Corte Inglés')," +
-                "(10, 'Ikea')," +
-                "(11, 'Zacatrus')," +
-                "(12, 'Juguettos')," +
-                "(13, 'Fnac')");
     }
 }

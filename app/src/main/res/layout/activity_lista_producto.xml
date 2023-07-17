@@ -33,8 +33,8 @@
 
         <Button
             android:id="@+id/fabNuevo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:background="@drawable/add"
@@ -42,8 +42,8 @@
 
         <Button
             android:id="@+id/fabListaCompra"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:background="@drawable/basket"
@@ -51,8 +51,8 @@
 
         <Button
             android:id="@+id/fabEliminar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:background="@drawable/delete"

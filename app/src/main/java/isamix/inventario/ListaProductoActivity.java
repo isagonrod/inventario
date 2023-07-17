@@ -45,7 +45,7 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
 
         DbProductos dbProductos = new DbProductos(ListaProductoActivity.this);
 
-        listaArrayProductos = dbProductos.mostrarProductos();
+        listaArrayProductos = dbProductos.mostrarProductosPorCategoria(getCategoria());
 
         adapter = new ListaProductoAdapter(listaArrayProductos);
         listaProductos.setAdapter(adapter);
@@ -126,5 +126,11 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
     private void verListaCompra() {
         Intent intent = new Intent(this, ListaCompraProductoActivity.class);
         startActivity(intent);
+    }
+
+    private String getCategoria() {
+        Bundle extras = getIntent().getExtras();
+        String cat = extras.getString("categoria");
+        return cat;
     }
 }

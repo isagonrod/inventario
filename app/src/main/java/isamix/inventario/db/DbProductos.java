@@ -59,7 +59,33 @@ public class DbProductos extends DbHelper {
                 producto.setCantidad(cursorProductos.getString(2));
                 producto.setPrecio(cursorProductos.getString(3));
                 producto.setTienda(cursorProductos.getString(4));
-                producto.setParaComprar(cursorProductos.getInt(5));
+                producto.setCategoria(cursorProductos.getString(5));
+                producto.setParaComprar(cursorProductos.getInt(6));
+                listaProductos.add(producto);
+            } while (cursorProductos.moveToNext());
+        }
+        cursorProductos.close();
+        return listaProductos;
+    }
+
+    public ArrayList<Producto> mostrarProductosPorCategoria(String categoria) {
+
+        ArrayList<Producto> listaProductos = new ArrayList<>();
+        Producto producto;
+        Cursor cursorProductos;
+
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "' ORDER BY nombre ASC", null);
+
+        if (cursorProductos.moveToFirst()) {
+            do {
+                producto = new Producto();
+                producto.setId(cursorProductos.getInt(0));
+                producto.setNombre(cursorProductos.getString(1));
+                producto.setCantidad(cursorProductos.getString(2));
+                producto.setPrecio(cursorProductos.getString(3));
+                producto.setTienda(cursorProductos.getString(4));
+                producto.setCategoria(cursorProductos.getString(5));
+                producto.setParaComprar(cursorProductos.getInt(6));
                 listaProductos.add(producto);
             } while (cursorProductos.moveToNext());
         }
@@ -84,7 +110,8 @@ public class DbProductos extends DbHelper {
                 producto.setCantidad(cursorProductos.getString(2));
                 producto.setPrecio(cursorProductos.getString(3));
                 producto.setTienda(cursorProductos.getString(4));
-                producto.setParaComprar(cursorProductos.getInt(5));
+                producto.setCategoria(cursorProductos.getString(5));
+                producto.setParaComprar(cursorProductos.getInt(6));
                 listaProductos.add(producto);
             } while (cursorProductos.moveToNext());
         }
@@ -106,6 +133,7 @@ public class DbProductos extends DbHelper {
             producto.setCantidad(cursorProducto.getString(2));
             producto.setPrecio(cursorProducto.getString(3));
             producto.setTienda(cursorProducto.getString(4));
+            producto.setCategoria(cursorProducto.getString(5));
         }
         cursorProducto.close();
         return producto;

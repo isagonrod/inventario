@@ -23,7 +23,7 @@ public class DbProductos extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarProducto(String nombre, String cantidad, String precio, String tienda, int paraComprar) {
+    public long insertarProducto(String nombre, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
 
         long id = 0;
 
@@ -33,6 +33,7 @@ public class DbProductos extends DbHelper {
             values.put("cantidad", cantidad);
             values.put("precio", precio);
             values.put("tienda", tienda);
+            values.put("categoria", categoria);
             values.put("paraComprar", paraComprar);
 
             id = db.insert(TABLE_PRODUCTO, null, values);

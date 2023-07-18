@@ -10,6 +10,7 @@
     <string name="hint_imagen">URL de la imagen:</string>
     <string name="btn_guardar">Guardar producto</string>
     <string name="menu_lista_compra">Lista de la compra</string>
+    <string name="menu_lista_productos">Lista de productos</string>
     <string name="moneda">€</string>
     <string name="lista_productos">PRODUCTOS</string>
     <string name="lista_libros">LIBROS</string>
@@ -19,5 +20,4 @@
     <string name="hint_para_comprar">¿Es para comprar?</string>
     <string name="terminar_compra">Terminar compra</string>
     <string name="btn_nueva_categoria">Crear nueva categoría</string>
-    <string name="url_icono">URL del Icono:</string>
 </resources>

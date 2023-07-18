@@ -37,7 +37,6 @@ public class DbCategoria extends DbHelper {
                 categoria = new Categoria();
                 categoria.setId(cursorCategoria.getInt(0));
                 categoria.setNombre(cursorCategoria.getString(1));
-                categoria.setIcono(cursorCategoria.getInt(2));
                 listaCategorias.add(categoria);
             } while (cursorCategoria.moveToNext());
         }
@@ -59,12 +58,11 @@ public class DbCategoria extends DbHelper {
         return id;
     }
 
-    public boolean editarCategoria(int id, String nombre, int icono) {
+    public boolean editarCategoria(int id, String nombre) {
         boolean correcto;
 
         ContentValues values = new ContentValues();
         values.put("nombre", nombre);
-        values.put("icono", icono);
 
         try {
             db.update(TABLE_CATEGORIA, values, "id = " + id, null);
@@ -87,7 +85,6 @@ public class DbCategoria extends DbHelper {
             categoria = new Categoria();
             categoria.setId(cursorCategoria.getInt(0));
             categoria.setNombre(cursorCategoria.getString(1));
-            categoria.setIcono(cursorCategoria.getInt(2));
         }
 
         cursorCategoria.close();
@@ -104,7 +101,6 @@ public class DbCategoria extends DbHelper {
             categoria = new Categoria();
             categoria.setId(cursor.getInt(0));
             categoria.setNombre(cursor.getString(1));
-            categoria.setIcono(cursor.getInt(2));
         }
 
         cursor.close();

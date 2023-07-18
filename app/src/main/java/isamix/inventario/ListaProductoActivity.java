@@ -45,7 +45,7 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
 
         DbProductos dbProductos = new DbProductos(ListaProductoActivity.this);
 
-        listaArrayProductos = dbProductos.mostrarProductosPorCategoria(getCategoria());
+        listaArrayProductos = dbProductos.mostrarProductos();
 
         adapter = new ListaProductoAdapter(listaArrayProductos);
         listaProductos.setAdapter(adapter);

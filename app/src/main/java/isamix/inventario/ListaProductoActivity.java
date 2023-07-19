@@ -112,20 +112,26 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_principal, menu);
+        inflater.inflate(R.menu.menu_principal_reducido, menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menuListaCompra) {
-            verListaCompra();
-            return true;
+
+        switch (item.getItemId()) {
+            case R.id.menuListaCompra:
+                verLista(ListaCompraProductoActivity.class);
+                return true;
+            case R.id.menuGestionProductos:
+                verLista(ListaProductoActivity.class);
+                return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    private void verListaCompra() {
-        Intent intent = new Intent(this, ListaCompraProductoActivity.class);
+    private void verLista(Class activity) {
+        Intent intent = new Intent(this, activity);
         startActivity(intent);
     }
 }

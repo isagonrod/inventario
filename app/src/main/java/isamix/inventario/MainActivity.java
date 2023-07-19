@@ -5,22 +5,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import isamix.inventario.adapter.ListaCategoriaAdapter;
@@ -62,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 dbCategoria.editarCategoria(category.getId(), category.getNombre());
             }
+
+            arrayListCategorias = dbCategoria.mostrarCategorias();
+            adapter = new ListaCategoriaAdapter(arrayListCategorias);
+            listaCategorias.setAdapter(adapter);
         });
 
         AlertDialog dialog = builder.create();
@@ -82,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuListaCompra:
                 verLista(ListaCompraProductoActivity.class);
                 return true;
-            case R.id.menuListaProductos:
+            case R.id.menuGestionProductos:
                 verLista(ListaProductoActivity.class);
                 return true;
             case R.id.menuNuevaCategoria:

@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lista_compra"
+        android:text="@string/menu_lista_compra"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"

@@ -138,7 +138,7 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
             case R.id.menuListaCompra:
                 verLista(ListaCompraProductoActivity.class);
                 return true;
-            case R.id.menuListaProductos:
+            case R.id.menuGestionProductos:
                 verLista(ListaProductoActivity.class);
                 return true;
             case R.id.menuNuevaCategoria:

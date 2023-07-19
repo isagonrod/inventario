@@ -3,6 +3,7 @@ package isamix.inventario.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ public class ListaCategoriaAdapter extends RecyclerView.Adapter<ListaCategoriaAd
     List<Categoria> listaOriginal;
 
     public ListaCategoriaAdapter(List<Categoria> listaCategorias) {
-        this.listaCategorias = listaCategorias;
+        this.listaCategorias = new ArrayList<>(listaCategorias);
         listaOriginal = new ArrayList<>();
         listaOriginal.addAll(listaCategorias);
     }
@@ -37,7 +38,7 @@ public class ListaCategoriaAdapter extends RecyclerView.Adapter<ListaCategoriaAd
     @Override
     public CategoriaViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         @SuppressLint("InflateParams")
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.lista_item_categoria, null, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.lista_item_categoria, null, true);
         return new CategoriaViewHolder(view);
     }
 
@@ -51,12 +52,6 @@ public class ListaCategoriaAdapter extends RecyclerView.Adapter<ListaCategoriaAd
         return listaCategorias.size();
     }
 
-    public void deleteItem(int position) {
-        listaCategorias.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, listaCategorias.size());
-    }
-
     public class CategoriaViewHolder extends RecyclerView.ViewHolder {
 
         TextView viewCategoria;
@@ -65,11 +60,11 @@ public class ListaCategoriaAdapter extends RecyclerView.Adapter<ListaCategoriaAd
         public CategoriaViewHolder(@NonNull View itemView) {
             super(itemView);
             viewCategoria = itemView.findViewById(R.id.viewCategoria);
+
             itemView.setOnClickListener(view -> {
-                Context context = view.getContext();
-                Intent intent = new Intent(context, ListaProductoPorCategoriasActivity.class);
+                Intent intent = new Intent(view.getContext(), ListaProductoPorCategoriasActivity.class);
                 intent.putExtra("CATEGORIA", listaCategorias.get(getAdapterPosition()).getNombre());
-                context.startActivity(intent);
+                view.getContext().startActivity(intent);
             });
         }
     }

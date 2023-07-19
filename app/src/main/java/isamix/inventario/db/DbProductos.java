@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import isamix.inventario.entity.Producto;
 
@@ -69,13 +70,14 @@ public class DbProductos extends DbHelper {
         return listaProductos;
     }
 
-    public ArrayList<Producto> mostrarProductosPorCategoria(String categoria) {
+    public List<Producto> mostrarProductosPorCategoria(String categoria) {
 
-        ArrayList<Producto> listaProductos = new ArrayList<>();
+        List<Producto> listaProductos = new ArrayList<>();
         Producto producto;
         Cursor cursorProductos;
 
-        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "' ORDER BY nombre ASC", null);
+        String select = "SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "'";
+        cursorProductos = db.rawQuery(select, null);
 
         if (cursorProductos.moveToFirst()) {
             do {
@@ -140,7 +142,7 @@ public class DbProductos extends DbHelper {
         return producto;
     }
 
-    public boolean editarProducto(int id, String nombre, String cantidad, String precio, String tienda, int paraComprar) {
+    public boolean editarProducto(int id, String nombre, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
 
         boolean correcto;
 

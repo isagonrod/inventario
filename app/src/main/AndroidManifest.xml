@@ -15,6 +15,14 @@
         android:theme="@style/Theme.Inventario"
         tools:targetApi="31" >
         <activity
+            android:name=".ListaProductoPorCategoriasActivity"
+            android:exported="false"
+            android:parentActivityName=".ListaProductoActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ListaProductoActivity" />
+        </activity>
+        <activity
             android:name=".ListaCompraProductoActivity"
             android:exported="false"
             android:parentActivityName=".ListaProductoActivity" >

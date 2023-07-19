@@ -63,6 +63,9 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
         DbProductos dbProductos = new DbProductos(ListaProductoPorCategoriasActivity.this);
         arrayProductos = dbProductos.mostrarProductosPorCategoria(category);
 
+        adapter = new ListaProductoAdapter(arrayProductos);
+        listaProductos.setAdapter(adapter);
+
         // Pinta la línea divisoria entre elementos de la lista
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
                 this, new LinearLayoutManager(this).getOrientation());

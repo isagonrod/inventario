@@ -22,10 +22,10 @@ import isamix.inventario.entity.Producto;
 
 public class ListaProductoAdapter extends RecyclerView.Adapter<ListaProductoAdapter.ProductoViewHolder> {
 
-    ArrayList<Producto> listaProductos;
-    ArrayList<Producto> listaOriginal;
+    List<Producto> listaProductos;
+    List<Producto> listaOriginal;
 
-    public ListaProductoAdapter(ArrayList<Producto> listaProductos) {
+    public ListaProductoAdapter(List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
         listaOriginal = new ArrayList<>();
         listaOriginal.addAll(listaProductos);

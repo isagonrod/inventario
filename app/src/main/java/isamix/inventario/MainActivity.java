@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listaCategorias = findViewById(R.id.listaCategorias);
-        listaCategorias.setLayoutManager(new LinearLayoutManager(this));
+        listaCategorias.setLayoutManager(new GridLayoutManager(this, 2));
 
         DbCategoria dbCategoria = new DbCategoria(MainActivity.this);
         arrayListCategorias = dbCategoria.mostrarCategorias();

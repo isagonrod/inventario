@@ -4,7 +4,8 @@ public class Categoria {
 
     private int id;
     private String nombre;
-    private int icono;
+
+    // getter y setter de ID
 
     public int getId() {
         return id;
@@ -14,6 +15,8 @@ public class Categoria {
         this.id = id;
     }
 
+    // getter y setter de NOMBRE
+
     public String getNombre() {
         return nombre;
     }
@@ -22,15 +25,9 @@ public class Categoria {
         this.nombre = nombre;
     }
 
-    public int getIcono() {
-        return icono;
-    }
-
-    public void setIcono(int icono) {
-        this.icono = icono;
-    }
+    // To String
 
     public String toString() {
-        return this.icono + " " + this.nombre;
+        return this.nombre;
     }
 }

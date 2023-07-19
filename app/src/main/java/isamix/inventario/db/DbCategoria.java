@@ -91,16 +91,15 @@ public class DbCategoria extends DbHelper {
         return categoria;
     }
 
-    public boolean eliminarCategoria(int id) {
+    public boolean eliminarCategoria(String nombreCategoria) {
         boolean correcto;
         try {
-            db.execSQL("DELETE FROM " + TABLE_CATEGORIA + " WHERE id = '" + id + "'");
+            db.execSQL("DELETE FROM " + TABLE_CATEGORIA + " WHERE nombre = '" + nombreCategoria + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();
             correcto = false;
         }
-        db.close();
         return correcto;
     }
 }

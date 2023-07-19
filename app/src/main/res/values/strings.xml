@@ -17,8 +17,10 @@
     <string name="menu_lista_compra">Lista de la Compra</string>
     <string name="menu_lista_productos">Gestión de Productos</string>
     <string name="menu_nueva_categoria">Añadir nueva categoría</string>
+    <string name="menu_eliminar_categoria">Eliminar categoría</string>
 
     <string name="moneda">€</string>
     <string name="separator">|</string>
+    <string name="alert_question_delete">¿Qué categoría quieres eliminar?</string>
 
 </resources>

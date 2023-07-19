@@ -158,7 +158,7 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
         AlertDialog.Builder builder = new AlertDialog.Builder(ListaProductoPorCategoriasActivity.this);
         builder.setTitle("NUEVA CATEGORÍA");
 
-        final View customCategoriaAlert = getLayoutInflater().inflate(R.layout.custom_categoria_alert, null);
+        final View customCategoriaAlert = getLayoutInflater().inflate(R.layout.custom_nueva_categoria_alert, null);
         builder.setView(customCategoriaAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
             DbCategoria dbCategoria = new DbCategoria(ListaProductoPorCategoriasActivity.this);

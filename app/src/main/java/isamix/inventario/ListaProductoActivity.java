@@ -66,7 +66,7 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
                 int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : 0xFFFFFFFF;
+                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.CYAN) {
                     dbProductos.eliminarProducto(this.listaArrayProductos.get(i).getId());
                     adapter.eliminarItem(i);

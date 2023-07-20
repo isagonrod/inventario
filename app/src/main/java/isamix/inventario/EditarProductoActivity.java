@@ -101,10 +101,18 @@ public class EditarProductoActivity extends AppCompatActivity {
                         0);
 
                 Tienda shop = dbTienda.getTienda(txtTienda.getText().toString());
+                Categoria category = dbCategoria.getCategoriaPorNombre(txtCategoria.getText().toString());
+
                 if (shop == null) {
                     dbTienda.insertarTienda(txtTienda.getText().toString());
                 } else {
                     dbTienda.editarTienda(shop.getId(), shop.getNombre());
+                }
+
+                if (category == null) {
+                    dbCategoria.insertarCategoria(txtCategoria.getText().toString());
+                } else {
+                    dbCategoria.editarCategoria(category.getId(), category.getNombre());
                 }
 
                 if (correcto) {

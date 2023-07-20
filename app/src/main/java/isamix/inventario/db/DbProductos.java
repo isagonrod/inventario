@@ -76,7 +76,7 @@ public class DbProductos extends DbHelper {
         Producto producto;
         Cursor cursorProductos;
 
-        String select = "SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "'";
+        String select = "SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "' ORDER BY nombre ASC";
         cursorProductos = db.rawQuery(select, null);
 
         if (cursorProductos.moveToFirst()) {
@@ -152,6 +152,7 @@ public class DbProductos extends DbHelper {
                     "cantidad = '" + cantidad + "', " +
                     "precio = '" + precio + "', " +
                     "tienda = '" + tienda + "', " +
+                    "categoria = '" + categoria + "', " +
                     "paraComprar = " + paraComprar +
                     " WHERE id = '" + id + "'");
             correcto = true;

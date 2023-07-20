@@ -3,6 +3,8 @@ package isamix.inventario.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,15 +17,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
-import isamix.inventario.VerActivity;
+import isamix.inventario.VerProductoActivity;
 import isamix.inventario.entity.Producto;
 
-public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAdapter.ProductoViewHolder> {
+public class ListaProductoAdapter extends RecyclerView.Adapter<ListaProductoAdapter.ProductoViewHolder> {
 
-    ArrayList<Producto> listaProductos;
-    ArrayList<Producto> listaOriginal;
+    List<Producto> listaProductos;
+    List<Producto> listaOriginal;
 
-    public ListaProductosAdapter(ArrayList<Producto> listaProductos) {
+    public ListaProductoAdapter(List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
         listaOriginal = new ArrayList<>();
         listaOriginal.addAll(listaProductos);
@@ -60,6 +62,12 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
         notifyDataSetChanged();
     }
 
+    public void eliminarItem(int position) {
+        listaProductos.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, listaProductos.size());
+    }
+
     @Override
     public int getItemCount() {
         return listaProductos.size();
@@ -79,9 +87,22 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
 
             itemView.setOnClickListener(view -> {
                 Context context = view.getContext();
-                Intent intent = new Intent(context, VerActivity.class);
+                Intent intent = new Intent(context, VerProductoActivity.class);
                 intent.putExtra("ID", listaProductos.get(getAdapterPosition()).getId());
                 context.startActivity(intent);
+            });
+
+            itemView.setOnLongClickListener(v -> {
+                //TODO: Falta poner que se deseleccione todo si se hace click en otro sitio
+                int itemColor = v.getBackground() != null ?
+                        ((ColorDrawable) v.getBackground()).getColor() : 0xFFFFFFFF;
+                if (itemColor == Color.WHITE) {
+                    itemView.setBackgroundColor(Color.CYAN);
+                } else {
+                    itemView.setBackgroundColor(Color.WHITE);
+                }
+
+                return true;
             });
         }
     }

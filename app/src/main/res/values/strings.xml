@@ -1,11 +1,25 @@
 <resources>
     <string name="app_name">Inventario</string>
+
     <string name="hint_nombre">Nombre:</string>
     <string name="hint_cantidad">Cantidad:</string>
-    <string name="hint_precio">Precio:</string>
+    <string name="hint_cantidad_lista">Cant.:</string>
+    <string name="hint_precio">Precio por unidad:</string>
+    <string name="hint_precio_lista">Precio/unidad:</string>
     <string name="hint_tienda">Tienda:</string>
+    <string name="hint_categoria">Categoría:</string>
     <string name="hint_imagen">URL de la imagen:</string>
+    <string name="hint_para_comprar">¿Es para comprar?</string>
+
     <string name="btn_guardar">Guardar producto</string>
-    <string name="menu_nuevo">Nuevo producto</string>
-    <string name="moneda"> €</string>
+    <string name="terminar_compra">Terminar compra</string>
+
+    <string name="menu_lista_compra">Lista de la Compra</string>
+    <string name="menu_lista_productos">Gestión de Productos</string>
+    <string name="menu_nueva_categoria">Añadir nueva categoría</string>
+
+    <string name="moneda">€</string>
+    <string name="separator">|</string>
+    <string name="alert_question_delete">¿Qué categoría quieres eliminar?</string>
+
 </resources>

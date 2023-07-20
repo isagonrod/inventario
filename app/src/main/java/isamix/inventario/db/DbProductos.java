@@ -7,33 +7,37 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import isamix.inventario.entity.Producto;
 
 public class DbProductos extends DbHelper {
 
     Context context;
+    DbHelper dbHelper;
+    SQLiteDatabase db;
 
     public DbProductos(@Nullable Context context) {
         super(context);
         this.context = context;
+        this.dbHelper = new DbHelper(this.context);
+        this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarProducto(String nombre, String cantidad, String precio, String tienda) {
+    public long insertarProducto(String nombre, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
 
         long id = 0;
 
         try {
-            DbHelper dbHelper = new DbHelper(context);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-
             ContentValues values = new ContentValues();
             values.put("nombre", nombre);
             values.put("cantidad", cantidad);
             values.put("precio", precio);
             values.put("tienda", tienda);
+            values.put("categoria", categoria);
+            values.put("paraComprar", paraComprar);
 
-            id = db.insert(TABLE_INVENTARIO, null, values);
+            id = db.insert(TABLE_PRODUCTO, null, values);
         } catch (Exception ex) {
             ex.toString();
         }
@@ -43,14 +47,11 @@ public class DbProductos extends DbHelper {
 
     public ArrayList<Producto> mostrarProductos() {
 
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         ArrayList<Producto> listaProductos = new ArrayList<>();
         Producto producto;
         Cursor cursorProductos;
 
-        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " ORDER BY nombre ASC", null);
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " ORDER BY nombre ASC", null);
 
         if (cursorProductos.moveToFirst()) {
             do {
@@ -60,6 +61,60 @@ public class DbProductos extends DbHelper {
                 producto.setCantidad(cursorProductos.getString(2));
                 producto.setPrecio(cursorProductos.getString(3));
                 producto.setTienda(cursorProductos.getString(4));
+                producto.setCategoria(cursorProductos.getString(5));
+                producto.setParaComprar(cursorProductos.getInt(6));
+                listaProductos.add(producto);
+            } while (cursorProductos.moveToNext());
+        }
+        cursorProductos.close();
+        return listaProductos;
+    }
+
+    public List<Producto> mostrarProductosPorCategoria(String categoria) {
+
+        List<Producto> listaProductos = new ArrayList<>();
+        Producto producto;
+        Cursor cursorProductos;
+
+        String select = "SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "'";
+        cursorProductos = db.rawQuery(select, null);
+
+        if (cursorProductos.moveToFirst()) {
+            do {
+                producto = new Producto();
+                producto.setId(cursorProductos.getInt(0));
+                producto.setNombre(cursorProductos.getString(1));
+                producto.setCantidad(cursorProductos.getString(2));
+                producto.setPrecio(cursorProductos.getString(3));
+                producto.setTienda(cursorProductos.getString(4));
+                producto.setCategoria(cursorProductos.getString(5));
+                producto.setParaComprar(cursorProductos.getInt(6));
+                listaProductos.add(producto);
+            } while (cursorProductos.moveToNext());
+        }
+        cursorProductos.close();
+        return listaProductos;
+    }
+
+    public ArrayList<Producto> mostrarProductosParaComprar() {
+
+        ArrayList<Producto> listaProductos = new ArrayList<>();
+        Producto producto;
+        Cursor cursorProductos;
+
+        // 0 = false | 1 = true
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " WHERE cantidad = '0' OR paraComprar = 1 ORDER BY nombre ASC", null);
+
+        if (cursorProductos.moveToFirst()) {
+            do {
+                producto = new Producto();
+                producto.setId(cursorProductos.getInt(0));
+                producto.setNombre(cursorProductos.getString(1));
+                producto.setCantidad(cursorProductos.getString(2));
+                producto.setPrecio(cursorProductos.getString(3));
+                producto.setTienda(cursorProductos.getString(4));
+                producto.setCategoria(cursorProductos.getString(5));
+                producto.setParaComprar(cursorProductos.getInt(6));
                 listaProductos.add(producto);
             } while (cursorProductos.moveToNext());
         }
@@ -69,13 +124,10 @@ public class DbProductos extends DbHelper {
 
     public Producto verProducto(int id) {
 
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         Producto producto = null;
         Cursor cursorProducto;
 
-        cursorProducto = db.rawQuery("SELECT * FROM " + TABLE_INVENTARIO + " WHERE id = " + id + " LIMIT 1", null);
+        cursorProducto = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " WHERE id = " + id + " LIMIT 1", null);
 
         if (cursorProducto.moveToFirst()) {
             producto = new Producto();
@@ -84,28 +136,42 @@ public class DbProductos extends DbHelper {
             producto.setCantidad(cursorProducto.getString(2));
             producto.setPrecio(cursorProducto.getString(3));
             producto.setTienda(cursorProducto.getString(4));
+            producto.setCategoria(cursorProducto.getString(5));
         }
         cursorProducto.close();
         return producto;
     }
 
-    public boolean editarProducto(int id, String nombre, String cantidad, String precio, String tienda) {
+    public boolean editarProducto(int id, String nombre, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
 
         boolean correcto;
 
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        try {
-            db.execSQL("UPDATE " + TABLE_INVENTARIO + " SET " + "nombre = '" + nombre + "', " +
-                    "cantidad = '"+ cantidad +"', " + "precio = '" + precio + "', " +
-                    "tienda = '" + tienda + "' " + " WHERE id = '" + id + "'");
+        try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
+            db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET " +
+                    "nombre = '" + nombre + "', " +
+                    "cantidad = '" + cantidad + "', " +
+                    "precio = '" + precio + "', " +
+                    "tienda = '" + tienda + "', " +
+                    "paraComprar = " + paraComprar +
+                    " WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();
             correcto = false;
-        } finally {
-            db.close();
+        }
+
+        return correcto;
+    }
+
+    public boolean finCompra(int id, String cantidad) {
+        boolean correcto;
+
+        try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
+            db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET cantidad = '" + cantidad + "', paraComprar = 0 WHERE id = '" + id + "'");
+            correcto = true;
+        } catch (Exception ex) {
+            ex.toString();
+            correcto = false;
         }
 
         return correcto;
@@ -115,18 +181,15 @@ public class DbProductos extends DbHelper {
 
         boolean correcto;
 
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         try {
-            db.execSQL("DELETE FROM " + TABLE_INVENTARIO + " WHERE id = '" + id + "'");
+            db.execSQL("DELETE FROM " + TABLE_PRODUCTO + " WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();
             correcto = false;
-        } finally {
-            db.close();
         }
+
+        db.close();
 
         return correcto;
     }

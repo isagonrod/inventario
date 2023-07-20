@@ -91,6 +91,22 @@ public class DbCategoria extends DbHelper {
         return categoria;
     }
 
+    public Categoria getCategoriaPorId(int id) {
+        Categoria categoria = null;
+        Cursor cursorCategoria;
+
+        cursorCategoria = db.rawQuery("SELECT * FROM " + TABLE_CATEGORIA + " WHERE id = '" + id + "'", null);
+
+        if (cursorCategoria.moveToFirst()) {
+            categoria = new Categoria();
+            categoria.setId(cursorCategoria.getInt(0));
+            categoria.setNombre(cursorCategoria.getString(1));
+        }
+
+        cursorCategoria.close();
+        return categoria;
+    }
+
     public boolean eliminarCategoria(String nombreCategoria) {
         boolean correcto;
         try {
@@ -101,5 +117,9 @@ public class DbCategoria extends DbHelper {
             correcto = false;
         }
         return correcto;
+    }
+
+    public void eliminarCategoria(int idCategoria) {
+        db.execSQL("DELETE FROM " + TABLE_CATEGORIA + " WHERE id = '" + idCategoria + "'");
     }
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import isamix.inventario.ListaProductoPorCategoriasActivity;
 import isamix.inventario.MainActivity;
 import isamix.inventario.R;
 import isamix.inventario.db.DbCategoria;
+import isamix.inventario.db.DbProductos;
 import isamix.inventario.entity.Categoria;
 
 public class ListaCategoriaAdapter extends RecyclerView.Adapter<ListaCategoriaAdapter.CategoriaViewHolder> {
@@ -65,6 +67,33 @@ public class ListaCategoriaAdapter extends RecyclerView.Adapter<ListaCategoriaAd
                 Intent intent = new Intent(view.getContext(), ListaProductoPorCategoriasActivity.class);
                 intent.putExtra("CATEGORIA", listaCategorias.get(getAdapterPosition()).getNombre());
                 view.getContext().startActivity(intent);
+            });
+
+            itemView.setOnLongClickListener(view -> {
+                DbCategoria dbCategoria = new DbCategoria(view.getContext());
+                DbProductos dbProductos = new DbProductos(view.getContext());
+                Categoria category = dbCategoria.getCategoriaPorId(listaCategorias.get(getAdapterPosition()).getId());
+
+                if (category != null) {
+                    if (dbProductos.mostrarProductosPorCategoria(listaCategorias.get(getAdapterPosition()).getNombre()).isEmpty()) {
+                        dbCategoria.eliminarCategoria(category.getId());
+                        listaCategorias.remove(listaCategorias.get(getAdapterPosition()));
+                        notifyItemRemoved(getAdapterPosition());
+                        notifyItemRangeChanged(getAdapterPosition(), listaCategorias.size());
+                        Toast.makeText(view.getContext(),
+                                "Categoría vacía borrada con éxito",
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(view.getContext(),
+                                "No se ha podido eliminar la categoría porque tiene productos asociados",
+                                Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(view.getContext(),
+                            "No se ha podido eliminar la categoría porque no existe en la base de datos",
+                            Toast.LENGTH_LONG).show();
+                }
+                return false;
             });
         }
     }

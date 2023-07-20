@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,48 +10,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listaCategorias"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="3">
-
-        <Button
-            android:id="@+id/listaProductos"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_margin="30dp"
-            android:background="@color/pink"
-            android:textSize="30sp"
-            android:text="@string/lista_productos"
-            android:clickable="true"
-            android:onClick="listar" />
-
-        <Button
-            android:id="@+id/listaTextil"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_margin="30dp"
-            android:background="@color/orange"
-            android:textSize="30sp"
-            android:text="@string/lista_textil"
-            android:clickable="true"
-            android:onClick="listar" />
-
-        <Button
-            android:id="@+id/listaMuebles"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_margin="30dp"
-            android:background="@color/yellow"
-            android:textSize="30sp"
-            android:text="@string/lista_libros"
-            android:clickable="true"
-            android:onClick="listar" />
-
-    </LinearLayout>
+        tools:listitem="@layout/lista_item_categoria" />
 
 </LinearLayout>

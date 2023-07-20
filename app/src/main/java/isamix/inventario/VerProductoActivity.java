@@ -13,7 +13,7 @@ import isamix.inventario.entity.Producto;
 
 public class VerProductoActivity extends AppCompatActivity {
 
-    TextView txtNombre, txtCantidad, txtPrecio, txtTienda;
+    TextView txtNombre, txtCantidad, txtPrecio, txtTienda, txtCategoria;
     Button btnGuardar, fabEditar, fabEliminar;
     Producto producto;
     int id = 0;
@@ -26,7 +26,8 @@ public class VerProductoActivity extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtNombre);
         txtCantidad = findViewById(R.id.txtCantidad);
         txtPrecio = findViewById(R.id.txtPrecio);
-        txtTienda = findViewById(R.id.spinnerTienda);
+        txtTienda = findViewById(R.id.txtTienda);
+        txtCategoria = findViewById(R.id.txtCategoria);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnGuardar.setVisibility(View.INVISIBLE);
@@ -54,6 +55,7 @@ public class VerProductoActivity extends AppCompatActivity {
             txtCantidad.setText(producto.getCantidad());
             txtPrecio.setText(producto.getPrecio());
             txtTienda.setText(producto.getTienda());
+            txtCategoria.setText(producto.getCategoria());
 
             btnGuardar.setVisibility(View.INVISIBLE);
 

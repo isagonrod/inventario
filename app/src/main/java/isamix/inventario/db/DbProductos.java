@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import isamix.inventario.entity.Producto;
 
@@ -23,7 +24,7 @@ public class DbProductos extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarProducto(String nombre, String cantidad, String precio, String tienda, int paraComprar) {
+    public long insertarProducto(String nombre, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
 
         long id = 0;
 
@@ -33,6 +34,7 @@ public class DbProductos extends DbHelper {
             values.put("cantidad", cantidad);
             values.put("precio", precio);
             values.put("tienda", tienda);
+            values.put("categoria", categoria);
             values.put("paraComprar", paraComprar);
 
             id = db.insert(TABLE_PRODUCTO, null, values);
@@ -59,7 +61,34 @@ public class DbProductos extends DbHelper {
                 producto.setCantidad(cursorProductos.getString(2));
                 producto.setPrecio(cursorProductos.getString(3));
                 producto.setTienda(cursorProductos.getString(4));
-                producto.setParaComprar(cursorProductos.getInt(5));
+                producto.setCategoria(cursorProductos.getString(5));
+                producto.setParaComprar(cursorProductos.getInt(6));
+                listaProductos.add(producto);
+            } while (cursorProductos.moveToNext());
+        }
+        cursorProductos.close();
+        return listaProductos;
+    }
+
+    public List<Producto> mostrarProductosPorCategoria(String categoria) {
+
+        List<Producto> listaProductos = new ArrayList<>();
+        Producto producto;
+        Cursor cursorProductos;
+
+        String select = "SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "'";
+        cursorProductos = db.rawQuery(select, null);
+
+        if (cursorProductos.moveToFirst()) {
+            do {
+                producto = new Producto();
+                producto.setId(cursorProductos.getInt(0));
+                producto.setNombre(cursorProductos.getString(1));
+                producto.setCantidad(cursorProductos.getString(2));
+                producto.setPrecio(cursorProductos.getString(3));
+                producto.setTienda(cursorProductos.getString(4));
+                producto.setCategoria(cursorProductos.getString(5));
+                producto.setParaComprar(cursorProductos.getInt(6));
                 listaProductos.add(producto);
             } while (cursorProductos.moveToNext());
         }
@@ -84,7 +113,8 @@ public class DbProductos extends DbHelper {
                 producto.setCantidad(cursorProductos.getString(2));
                 producto.setPrecio(cursorProductos.getString(3));
                 producto.setTienda(cursorProductos.getString(4));
-                producto.setParaComprar(cursorProductos.getInt(5));
+                producto.setCategoria(cursorProductos.getString(5));
+                producto.setParaComprar(cursorProductos.getInt(6));
                 listaProductos.add(producto);
             } while (cursorProductos.moveToNext());
         }
@@ -106,12 +136,13 @@ public class DbProductos extends DbHelper {
             producto.setCantidad(cursorProducto.getString(2));
             producto.setPrecio(cursorProducto.getString(3));
             producto.setTienda(cursorProducto.getString(4));
+            producto.setCategoria(cursorProducto.getString(5));
         }
         cursorProducto.close();
         return producto;
     }
 
-    public boolean editarProducto(int id, String nombre, String cantidad, String precio, String tienda, int paraComprar) {
+    public boolean editarProducto(int id, String nombre, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
 
         boolean correcto;
 

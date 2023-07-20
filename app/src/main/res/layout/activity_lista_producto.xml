@@ -9,7 +9,8 @@
     tools:context=".ListaProductoActivity">
 
     <TextView
-        android:text="@string/lista_productos"
+        android:id="@+id/title_category"
+        android:text="@string/menu_lista_productos"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/pink"

@@ -13,22 +13,26 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import isamix.inventario.db.DbCategoria;
 import isamix.inventario.db.DbProductos;
 import isamix.inventario.db.DbTienda;
+import isamix.inventario.entity.Categoria;
 import isamix.inventario.entity.Producto;
 import isamix.inventario.entity.Tienda;
 
 public class EditarProductoActivity extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio;
-    AutoCompleteTextView txtTienda;
+    AutoCompleteTextView txtTienda, txtCategoria;
     Button btnGuardar, fabEditar, fabEliminar;
     Producto producto;
     int id = 0;
     boolean correcto = false;
     DbProductos dbProductos;
     DbTienda dbTienda;
+    DbCategoria dbCategoria;
     List<Tienda> tiendas;
+    List<Categoria> categorias;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,6 +44,7 @@ public class EditarProductoActivity extends AppCompatActivity {
         txtCantidad = findViewById(R.id.txtCantidad);
         txtPrecio = findViewById(R.id.txtPrecio);
         txtTienda = findViewById(R.id.txtTienda);
+        txtCategoria = findViewById(R.id.txtCategoria);
 
         btnGuardar = findViewById(R.id.btnGuardar);
 
@@ -51,11 +56,17 @@ public class EditarProductoActivity extends AppCompatActivity {
 
         dbProductos = new DbProductos(EditarProductoActivity.this);
         dbTienda = new DbTienda(EditarProductoActivity.this);
+        dbCategoria = new DbCategoria(EditarProductoActivity.this);
         tiendas = dbTienda.mostrarTiendas();
+        categorias = dbCategoria.mostrarCategorias();
 
-        ArrayAdapter<Tienda> arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
+        ArrayAdapter<Tienda> arrayAdapterTienda = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, tiendas);
-        txtTienda.setAdapter(arrayAdapter);
+        txtTienda.setAdapter(arrayAdapterTienda);
+
+        ArrayAdapter<Categoria> arrayAdapterCategoria = new ArrayAdapter<>(getApplicationContext(),
+                android.support.design.R.layout.support_simple_spinner_dropdown_item, categorias);
+        txtCategoria.setAdapter(arrayAdapterCategoria);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -86,6 +97,7 @@ public class EditarProductoActivity extends AppCompatActivity {
                         txtCantidad.getText().toString(),
                         txtPrecio.getText().toString(),
                         txtTienda.getText().toString(),
+                        txtCategoria.getText().toString(),
                         0);
 
                 Tienda shop = dbTienda.getTienda(txtTienda.getText().toString());

@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import isamix.inventario.adapter.ListaProductoAdapter;
 import isamix.inventario.db.DbProductos;
@@ -79,7 +80,7 @@ public class ListaProductoActivity extends AppCompatActivity implements SearchVi
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
                 int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : 0xFFFFFFFF;
+                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.CYAN) {
                     listaArrayProductos.get(i).setParaComprar(0);
                     dbProductos.editarProducto(

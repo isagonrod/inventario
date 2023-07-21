@@ -59,11 +59,13 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
         btnTerminarCompra.setOnClickListener(v -> {
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
-                int itemColor = listItem.getBackground() != null ? ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
+                int itemColor = listItem.getBackground() != null ?
+                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.YELLOW) {
                     dbProductos.finCompra(this.listaCompra.get(i).getId(), this.listaCompra.get(i).getCantidad());
-                    listaProductos.removeView(listItem);
                     adapter.eliminarItem(i);
+                    i--;
+                    listaProductos.removeView(listItem);
                 }
             }
         });

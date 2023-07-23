@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,22 +87,21 @@ public class ListaProductoAdapter extends RecyclerView.Adapter<ListaProductoAdap
             viewTienda = itemView.findViewById(R.id.viewTienda);
 
             itemView.setOnClickListener(view -> {
-                Context context = view.getContext();
-                Intent intent = new Intent(context, VerProductoActivity.class);
-                intent.putExtra("ID", listaProductos.get(getAdapterPosition()).getId());
-                context.startActivity(intent);
-            });
+                int itemColor = itemView.getBackground() != null ?
+                        ((ColorDrawable) itemView.getBackground()).getColor() : Color.WHITE;
 
-            itemView.setOnLongClickListener(v -> {
-                //TODO: Falta poner que se deseleccione todo si se hace click en otro sitio
-                int itemColor = v.getBackground() != null ?
-                        ((ColorDrawable) v.getBackground()).getColor() : 0xFFFFFFFF;
                 if (itemColor == Color.WHITE) {
                     itemView.setBackgroundColor(Color.CYAN);
                 } else {
                     itemView.setBackgroundColor(Color.WHITE);
                 }
+            });
 
+            itemView.setOnLongClickListener(v -> {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, VerProductoActivity.class);
+                intent.putExtra("ID", listaProductos.get(getAdapterPosition()).getId());
+                context.startActivity(intent);
                 return true;
             });
         }

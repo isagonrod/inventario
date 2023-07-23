@@ -40,7 +40,7 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
     Bundle extra;
     String category;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "ResourceType"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +82,7 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
                 int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : 0xFFFFFFFF;
+                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.CYAN) {
                     dbProductos.eliminarProducto(this.arrayProductos.get(i).getId());
                     adapter.eliminarItem(i);
@@ -95,7 +95,7 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
                 int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : 0xFFFFFFFF;
+                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.CYAN) {
                     arrayProductos.get(i).setParaComprar(0);
                     dbProductos.editarProducto(

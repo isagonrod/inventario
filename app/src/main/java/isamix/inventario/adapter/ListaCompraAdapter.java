@@ -39,7 +39,6 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
     public void onBindViewHolder(@NonNull CompraViewHolder holder, int position) {
         holder.txtCantidad.setText(listaProductos.get(position).getCantidad());
         holder.txtNombre.setText(listaProductos.get(position).getNombre());
-        holder.txtPrecio.setText(listaProductos.get(position).getPrecio());
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -72,13 +71,12 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
     public class CompraViewHolder extends RecyclerView.ViewHolder {
 
         EditText txtCantidad;
-        TextView txtNombre, txtPrecio;
+        TextView txtNombre;
 
         public CompraViewHolder(@NonNull View itemView) {
             super(itemView);
             txtCantidad = itemView.findViewById(R.id.txtCantidad);
             txtNombre = itemView.findViewById(R.id.txtNombre);
-            txtPrecio = itemView.findViewById(R.id.txtPrecio);
 
             itemView.setOnClickListener(view -> {
                 int itemColor = view.getBackground() != null ? ((ColorDrawable) view.getBackground()).getColor() : 0xFFFFFFFF;

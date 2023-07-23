@@ -4,7 +4,16 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorAccent">@color/orange</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Inventario.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Inventario.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Inventario.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

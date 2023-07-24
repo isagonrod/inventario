@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:versionCode="0"
-    android:versionName="0.3">
+    android:versionName="0.2"
+    package="isamix.inventario">
 
     <application
         android:allowBackup="true"
@@ -16,9 +18,7 @@
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Inventario.NoActionBar">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +29,64 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+<!--        <activity-->
+<!--            android:name=".ListaCategoriaActivity"-->
+<!--            android:exported="false"-->
+<!--            android:parentActivityName=".MainActivity">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.PARENT_ACTIVITY"-->
+<!--                android:value=".MainActivity" />-->
+<!--        </activity>-->
+        <activity
+            android:name=".crud.ListaProductoPorCategoria"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaProducto" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaProducto" />
+        </activity>
+        <activity
+            android:name=".crud.ListaCompra"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaProducto" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaProducto" />
+        </activity>
+        <activity
+            android:name=".crud.ListaProducto"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".crud.EditarProducto"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaProducto" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaProducto" />
+        </activity>
+        <activity
+            android:name=".crud.VerProducto"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaProducto" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaProducto" />
+        </activity>
+        <activity
+            android:name=".crud.NuevoProducto"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaProducto" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaProducto" />
+        </activity>
+
     </application>
 
 </manifest>

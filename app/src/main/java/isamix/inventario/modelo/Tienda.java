@@ -1,12 +1,9 @@
-package isamix.inventario.model;
+package isamix.inventario.modelo;
 
-public class Categoria {
+public class Tienda {
+
     private int id;
     private String nombre;
-    private int icono;
-
-    public Categoria() {
-    }
 
     public int getId() {
         return id;
@@ -22,14 +19,6 @@ public class Categoria {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getIcono() {
-        return icono;
-    }
-
-    public void setIcono(int icono) {
-        this.icono = icono;
     }
 
     public String toString() {

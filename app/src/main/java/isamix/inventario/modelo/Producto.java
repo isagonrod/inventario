@@ -1,18 +1,17 @@
-package isamix.inventario.model;
+package isamix.inventario.modelo;
 
 public class Producto {
+
     private int id;
     private String nombre;
-    private int cantidad;
-    private double precio;
+    private String cantidad;
+    private String precio;
     private String tienda;
     private String categoria;
-    private boolean paraComprar;
-    private boolean seleccionado;
+    private int paraComprar;
 
     public Producto() {
-        this.paraComprar = false;
-        this.seleccionado = false;
+        this.paraComprar = 0;
     }
 
     public int getId() {
@@ -31,19 +30,19 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getCantidad() {
+    public String getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 
@@ -63,19 +62,11 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public boolean isParaComprar() {
+    public int getParaComprar() {
         return paraComprar;
     }
 
-    public void setParaComprar(boolean paraComprar) {
+    public void setParaComprar(int paraComprar) {
         this.paraComprar = paraComprar;
-    }
-
-    public boolean isSeleccionado() {
-        return seleccionado;
-    }
-
-    public void setSeleccionado(boolean seleccionado) {
-        this.seleccionado = seleccionado;
     }
 }

@@ -1,11 +1,11 @@
-package isamix.inventario.model;
+package isamix.inventario.modelo;
 
-public class Tienda {
+public class Categoria {
+
     private int id;
     private String nombre;
 
-    public Tienda() {
-    }
+    // getter y setter de ID
 
     public int getId() {
         return id;

@@ -48,6 +48,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
         holder.viewCantidad.setText(listaProductos.get(position).getCantidad());
         holder.viewPrecio.setText(listaProductos.get(position).getPrecio());
         holder.viewTienda.setText(listaProductos.get(position).getTienda());
+        holder.viewCategoria.setText(listaProductos.get(position).getCategoria());
     }
 
     @SuppressLint("NotifyDataSetChanged")

@@ -2,8 +2,6 @@ package isamix.inventario.crud;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,7 +32,7 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
     RecyclerView listaProductos;
     List<Producto> arrayProductos;
     ProductoAdapter adapter;
-    Button addProduct, addListProduct, deleteProduct;
+    Button btnAddProduct;
     TextView title;
 
     Intent intent;
@@ -55,9 +53,7 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
         title.setText(category);
 
         txtBuscar = findViewById(R.id.txtBuscar);
-        addProduct = findViewById(R.id.fabNuevo);
-        addListProduct = findViewById(R.id.fabListaCompra);
-        deleteProduct = findViewById(R.id.fabEliminar);
+        btnAddProduct = findViewById(R.id.btnAddProduct);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
@@ -74,42 +70,9 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
 
         txtBuscar.setOnQueryTextListener(this);
 
-        addProduct.setOnClickListener(v -> {
+        btnAddProduct.setOnClickListener(v -> {
             Intent intent = new Intent(ListaProductoPorCategoria.this, NuevoProducto.class);
             startActivity(intent);
-        });
-
-        deleteProduct.setOnClickListener(v -> {
-            for (int i = 0; i < listaProductos.getChildCount(); i++) {
-                View listItem = listaProductos.getChildAt(i);
-                int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
-                if (itemColor == Color.CYAN) {
-                    dbProducto.eliminarProducto(this.arrayProductos.get(i).getId());
-                    adapter.eliminarItem(i);
-                    listaProductos.removeView(listItem);
-                }
-            }
-        });
-
-        addListProduct.setOnClickListener(v -> {
-            for (int i = 0; i < listaProductos.getChildCount(); i++) {
-                View listItem = listaProductos.getChildAt(i);
-                int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
-                if (itemColor == Color.CYAN) {
-                    arrayProductos.get(i).setParaComprar(0);
-                    dbProducto.editarProducto(
-                            this.arrayProductos.get(i).getId(),
-                            this.arrayProductos.get(i).getNombre(),
-                            this.arrayProductos.get(i).getCantidad(),
-                            this.arrayProductos.get(i).getPrecio(),
-                            this.arrayProductos.get(i).getTienda(),
-                            this.arrayProductos.get(i).getCategoria(),
-                            1);
-                    listItem.setBackgroundColor(Color.WHITE);
-                }
-            }
         });
 
     }

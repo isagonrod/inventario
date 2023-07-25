@@ -2,8 +2,6 @@ package isamix.inventario.crud;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 
@@ -29,7 +26,7 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
     RecyclerView listaProductos;
     ArrayList<Producto> listaArrayProductos;
     ProductoAdapter adapter;
-    Button addProduct, addListProduct, deleteProduct;
+    Button btnAddProduct;
 
     @SuppressLint("ResourceType")
     @Override
@@ -38,9 +35,7 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
         setContentView(R.layout.lista_producto);
 
         txtBuscar = findViewById(R.id.txtBuscar);
-        addProduct = findViewById(R.id.fabNuevo);
-        addListProduct = findViewById(R.id.fabListaCompra);
-        deleteProduct = findViewById(R.id.fabEliminar);
+        btnAddProduct = findViewById(R.id.btnAddProduct);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
@@ -58,42 +53,9 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
 
         txtBuscar.setOnQueryTextListener(this);
 
-        addProduct.setOnClickListener(v -> {
+        btnAddProduct.setOnClickListener(v -> {
             Intent intent = new Intent(ListaProducto.this, NuevoProducto.class);
             startActivity(intent);
-        });
-
-        deleteProduct.setOnClickListener(v -> {
-            for (int i = 0; i < listaProductos.getChildCount(); i++) {
-                View listItem = listaProductos.getChildAt(i);
-                int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
-                if (itemColor == Color.CYAN) {
-                    dbProducto.eliminarProducto(this.listaArrayProductos.get(i).getId());
-                    adapter.eliminarItem(i);
-                    listaProductos.removeView(listItem);
-                }
-            }
-        });
-
-        addListProduct.setOnClickListener(v -> {
-            for (int i = 0; i < listaProductos.getChildCount(); i++) {
-                View listItem = listaProductos.getChildAt(i);
-                int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
-                if (itemColor == Color.CYAN) {
-                    listaArrayProductos.get(i).setParaComprar(0);
-                    dbProducto.editarProducto(
-                            this.listaArrayProductos.get(i).getId(),
-                            this.listaArrayProductos.get(i).getNombre(),
-                            this.listaArrayProductos.get(i).getCantidad(),
-                            this.listaArrayProductos.get(i).getPrecio(),
-                            this.listaArrayProductos.get(i).getTienda(),
-                            this.listaArrayProductos.get(i).getCategoria(),
-                            1);
-                    listItem.setBackgroundColor(Color.WHITE);
-                }
-            }
         });
 
     }

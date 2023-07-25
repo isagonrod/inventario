@@ -38,6 +38,8 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
     public void onBindViewHolder(@NonNull CompraViewHolder holder, int position) {
         holder.txtCantidad.setText(listaProductos.get(position).getCantidad());
         holder.txtNombre.setText(listaProductos.get(position).getNombre());
+        holder.txtTienda.setText(listaProductos.get(position).getTienda());
+        holder.txtCategoria.setText(listaProductos.get(position).getCategoria());
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -70,15 +72,17 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
     public class CompraViewHolder extends RecyclerView.ViewHolder {
 
         EditText txtCantidad;
-        TextView txtNombre;
+        TextView txtNombre, txtTienda, txtCategoria;
 
         public CompraViewHolder(@NonNull View itemView) {
             super(itemView);
             txtCantidad = itemView.findViewById(R.id.txtCantidad);
             txtNombre = itemView.findViewById(R.id.txtNombre);
+            txtTienda = itemView.findViewById(R.id.txtTienda);
+            txtCategoria = itemView.findViewById(R.id.txtCategoria);
 
             itemView.setOnClickListener(view -> {
-                int itemColor = view.getBackground() != null ? ((ColorDrawable) view.getBackground()).getColor() : 0xFFFFFFFF;
+                int itemColor = view.getBackground() != null ? ((ColorDrawable) view.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.WHITE) {
                     itemView.setBackgroundColor(Color.YELLOW);
                     listaProductos.get(getAdapterPosition()).setParaComprar(1);

@@ -10,22 +10,54 @@
         android:id="@+id/itemListaCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/txtCantidad"
-            android:textSize="14sp"
-            android:inputType="number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/txtNombre"
-            android:textSize="14sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/txtCantidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+
+            <TextView
+                android:id="@+id/txtTienda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/tienda_border" />
+
+            <TextView
+                android:id="@+id/txtCategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:background="@drawable/categoria_border" />
+        </LinearLayout>
+
+
 
     </LinearLayout>
 </RelativeLayout>

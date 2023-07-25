@@ -1,4 +1,4 @@
-package isamix.inventario;
+package isamix.inventario.crud;
 
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
@@ -12,18 +12,19 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import isamix.inventario.R;
 import isamix.inventario.db.DbCategoria;
-import isamix.inventario.db.DbProductos;
+import isamix.inventario.db.DbProducto;
 import isamix.inventario.db.DbTienda;
-import isamix.inventario.entity.Categoria;
-import isamix.inventario.entity.Tienda;
+import isamix.inventario.modelo.Categoria;
+import isamix.inventario.modelo.Tienda;
 
-public class NuevoProductoActivity extends AppCompatActivity {
+public class NuevoProducto extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio;
     AutoCompleteTextView txtTienda, txtCategoria;
     Button btnGuardar, favEditar, favEliminar;
-    DbProductos dbProductos;
+    DbProducto dbProducto;
     DbTienda dbTienda;
     DbCategoria dbCategoria;
     List<Tienda> tiendas;
@@ -33,13 +34,13 @@ public class NuevoProductoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nuevo_producto);
+        setContentView(R.layout.nuevo_producto);
 
-        txtNombre = findViewById(R.id.txtNombre);
-        txtCantidad = findViewById(R.id.txtCantidad);
-        txtPrecio = findViewById(R.id.txtPrecio);
-        txtTienda = findViewById(R.id.txtTienda);
-        txtCategoria = findViewById(R.id.txtCategoria);
+        txtNombre = findViewById(R.id.nombre);
+        txtCantidad = findViewById(R.id.cantidad);
+        txtPrecio = findViewById(R.id.precio);
+        txtTienda = findViewById(R.id.tienda);
+        txtCategoria = findViewById(R.id.categoria);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         favEditar = findViewById(R.id.fabEditar);
@@ -47,9 +48,9 @@ public class NuevoProductoActivity extends AppCompatActivity {
         favEliminar = findViewById(R.id.fabEliminar);
         favEliminar.setVisibility(View.INVISIBLE);
 
-        dbProductos = new DbProductos(NuevoProductoActivity.this);
-        dbTienda = new DbTienda(NuevoProductoActivity.this);
-        dbCategoria = new DbCategoria(NuevoProductoActivity.this);
+        dbProducto = new DbProducto(NuevoProducto.this);
+        dbTienda = new DbTienda(NuevoProducto.this);
+        dbCategoria = new DbCategoria(NuevoProducto.this);
         tiendas = dbTienda.mostrarTiendas();
         categorias = dbCategoria.mostrarCategorias();
 
@@ -77,7 +78,7 @@ public class NuevoProductoActivity extends AppCompatActivity {
                 dbCategoria.editarCategoria(category.getId(), category.getNombre());
             }
 
-            long idProducto = dbProductos.insertarProducto(
+            long idProducto = dbProducto.insertarProducto(
                     txtNombre.getText().toString(),
                     txtCantidad.getText().toString(),
                     txtPrecio.getText().toString(),
@@ -87,10 +88,10 @@ public class NuevoProductoActivity extends AppCompatActivity {
             );
 
             if (idProducto > 0) {
-                Toast.makeText(NuevoProductoActivity.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();
+                Toast.makeText(NuevoProducto.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();
                 limpiar();
             } else {
-                Toast.makeText(NuevoProductoActivity.this, "ERROR AL GUARDAR PRODUCTO", Toast.LENGTH_LONG).show();
+                Toast.makeText(NuevoProducto.this, "ERROR AL GUARDAR PRODUCTO", Toast.LENGTH_LONG).show();
             }
         });
     }

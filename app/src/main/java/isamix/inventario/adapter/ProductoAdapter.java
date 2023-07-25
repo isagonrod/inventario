@@ -1,15 +1,18 @@
 package isamix.inventario.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,15 +21,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
-import isamix.inventario.VerProductoActivity;
-import isamix.inventario.entity.Producto;
+import isamix.inventario.crud.EditarProducto;
+import isamix.inventario.crud.VerProducto;
+import isamix.inventario.db.DbProducto;
+import isamix.inventario.modelo.Producto;
 
-public class ListaProductoAdapter extends RecyclerView.Adapter<ListaProductoAdapter.ProductoViewHolder> {
-
-    List<Producto> listaProductos;
+public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder> {List<Producto> listaProductos;
     List<Producto> listaOriginal;
 
-    public ListaProductoAdapter(List<Producto> listaProductos) {
+    public ProductoAdapter(List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
         listaOriginal = new ArrayList<>();
         listaOriginal.addAll(listaProductos);
@@ -35,7 +38,7 @@ public class ListaProductoAdapter extends RecyclerView.Adapter<ListaProductoAdap
     @NonNull
     @Override
     public ProductoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.lista_item_producto, null, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_producto, null, false);
         return new ProductoViewHolder(view);
     }
 
@@ -76,7 +79,9 @@ public class ListaProductoAdapter extends RecyclerView.Adapter<ListaProductoAdap
 
     public class ProductoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewCantidad, viewPrecio, viewTienda;
+        TextView viewNombre, viewCantidad, viewPrecio, viewTienda, viewCategoria;
+        Button btnCompra, btnEditar, btnEliminar;
+        DbProducto dbProducto;
 
         public ProductoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,24 +90,45 @@ public class ListaProductoAdapter extends RecyclerView.Adapter<ListaProductoAdap
             viewCantidad = itemView.findViewById(R.id.viewCantidad);
             viewPrecio = itemView.findViewById(R.id.viewPrecio);
             viewTienda = itemView.findViewById(R.id.viewTienda);
+            viewCategoria = itemView.findViewById(R.id.viewCategoria);
+
+            btnCompra = itemView.findViewById(R.id.basketButton);
+            btnEditar = itemView.findViewById(R.id.editButton);
+            btnEliminar = itemView.findViewById(R.id.deleteButton);
 
             itemView.setOnClickListener(view -> {
-                int itemColor = itemView.getBackground() != null ?
-                        ((ColorDrawable) itemView.getBackground()).getColor() : Color.WHITE;
-
-                if (itemColor == Color.WHITE) {
-                    itemView.setBackgroundColor(Color.CYAN);
-                } else {
-                    itemView.setBackgroundColor(Color.WHITE);
-                }
-            });
-
-            itemView.setOnLongClickListener(v -> {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, VerProductoActivity.class);
+                Context context = view.getContext();
+                Intent intent = new Intent(context, VerProducto.class);
                 intent.putExtra("ID", listaProductos.get(getAdapterPosition()).getId());
                 context.startActivity(intent);
-                return true;
+            });
+
+            btnCompra.setOnClickListener(view -> {
+                dbProducto = new DbProducto(btnCompra.getContext());
+                dbProducto.editarProducto(
+                        listaProductos.get(getAdapterPosition()).getId(),
+                        listaProductos.get(getAdapterPosition()).getNombre(),
+                        listaProductos.get(getAdapterPosition()).getCantidad(),
+                        listaProductos.get(getAdapterPosition()).getPrecio(),
+                        listaProductos.get(getAdapterPosition()).getTienda(),
+                        listaProductos.get(getAdapterPosition()).getCategoria(),
+                        1
+                );
+                Toast.makeText(btnCompra.getContext(),
+                        listaProductos.get(getAdapterPosition()).getNombre() + "\nañadido a Lista de la Compra",
+                        Toast.LENGTH_LONG).show();
+            });
+
+            btnEditar.setOnClickListener(view -> {
+                Intent intent = new Intent(btnEditar.getContext(), EditarProducto.class);
+                intent.putExtra("ID", listaProductos.get(getAdapterPosition()).getId());
+                ContextCompat.startActivity(btnEditar.getContext(), intent, null);
+            });
+
+            btnEliminar.setOnClickListener(view -> {
+                dbProducto = new DbProducto(btnEliminar.getContext());
+                dbProducto.eliminarProducto(listaProductos.get(getAdapterPosition()).getId());
+                eliminarItem(getAdapterPosition());
             });
         }
     }

@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import isamix.inventario.entity.Tienda;
+import isamix.inventario.modelo.Tienda;
 
 public class DbTienda extends DbHelper {
 

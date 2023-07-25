@@ -1,4 +1,4 @@
-package isamix.inventario.entity;
+package isamix.inventario.modelo;
 
 public class Tienda {
 

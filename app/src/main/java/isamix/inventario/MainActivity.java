@@ -11,19 +11,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.List;
 
-import isamix.inventario.adapter.ListaCategoriaAdapter;
+import isamix.inventario.adapter.CategoriaAdapter;
+import isamix.inventario.crud.ListaCompra;
+import isamix.inventario.crud.ListaProducto;
 import isamix.inventario.db.DbCategoria;
-import isamix.inventario.db.DbProductos;
-import isamix.inventario.entity.Categoria;
+import isamix.inventario.modelo.Categoria;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView listaCategorias;
     List<Categoria> arrayListCategorias;
-    ListaCategoriaAdapter adapter;
+    CategoriaAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         DbCategoria dbCategoria = new DbCategoria(MainActivity.this);
         arrayListCategorias = dbCategoria.mostrarCategorias();
-        adapter = new ListaCategoriaAdapter(arrayListCategorias);
+        adapter = new CategoriaAdapter(arrayListCategorias);
         listaCategorias.setAdapter(adapter);
     }
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("NUEVA CATEGORÍA");
 
-        final View customCategoriaAlert = getLayoutInflater().inflate(R.layout.custom_nueva_categoria_alert, null);
+        final View customCategoriaAlert = getLayoutInflater().inflate(R.layout.custom_nueva_categoria, null);
         builder.setView(customCategoriaAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
             DbCategoria dbCategoria = new DbCategoria(MainActivity.this);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             arrayListCategorias = dbCategoria.mostrarCategorias();
-            adapter = new ListaCategoriaAdapter(arrayListCategorias);
+            adapter = new CategoriaAdapter(arrayListCategorias);
             listaCategorias.setAdapter(adapter);
         });
 
@@ -78,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.menuListaCompra:
-                verLista(ListaCompraProductoActivity.class);
+                verLista(ListaCompra.class);
                 return true;
             case R.id.menuGestionProductos:
-                verLista(ListaProductoActivity.class);
+                verLista(ListaProducto.class);
                 return true;
             case R.id.menuNuevaCategoria:
                 crearNuevaCategoria();

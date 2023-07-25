@@ -1,4 +1,4 @@
-package isamix.inventario;
+package isamix.inventario.crud;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,14 +13,15 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import isamix.inventario.R;
 import isamix.inventario.db.DbCategoria;
-import isamix.inventario.db.DbProductos;
+import isamix.inventario.db.DbProducto;
 import isamix.inventario.db.DbTienda;
-import isamix.inventario.entity.Categoria;
-import isamix.inventario.entity.Producto;
-import isamix.inventario.entity.Tienda;
+import isamix.inventario.modelo.Categoria;
+import isamix.inventario.modelo.Producto;
+import isamix.inventario.modelo.Tienda;
 
-public class EditarProductoActivity extends AppCompatActivity {
+public class EditarProducto extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio;
     AutoCompleteTextView txtTienda, txtCategoria;
@@ -28,7 +29,7 @@ public class EditarProductoActivity extends AppCompatActivity {
     Producto producto;
     int id = 0;
     boolean correcto = false;
-    DbProductos dbProductos;
+    DbProducto dbProducto;
     DbTienda dbTienda;
     DbCategoria dbCategoria;
     List<Tienda> tiendas;
@@ -38,13 +39,13 @@ public class EditarProductoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nuevo_producto);
+        setContentView(R.layout.nuevo_producto);
 
-        txtNombre = findViewById(R.id.txtNombre);
-        txtCantidad = findViewById(R.id.txtCantidad);
-        txtPrecio = findViewById(R.id.txtPrecio);
-        txtTienda = findViewById(R.id.txtTienda);
-        txtCategoria = findViewById(R.id.txtCategoria);
+        txtNombre = findViewById(R.id.nombre);
+        txtCantidad = findViewById(R.id.cantidad);
+        txtPrecio = findViewById(R.id.precio);
+        txtTienda = findViewById(R.id.tienda);
+        txtCategoria = findViewById(R.id.categoria);
 
         btnGuardar = findViewById(R.id.btnGuardar);
 
@@ -54,9 +55,9 @@ public class EditarProductoActivity extends AppCompatActivity {
         fabEliminar = findViewById(R.id.fabEliminar);
         fabEliminar.setVisibility(View.INVISIBLE);
 
-        dbProductos = new DbProductos(EditarProductoActivity.this);
-        dbTienda = new DbTienda(EditarProductoActivity.this);
-        dbCategoria = new DbCategoria(EditarProductoActivity.this);
+        dbProducto = new DbProducto(EditarProducto.this);
+        dbTienda = new DbTienda(EditarProducto.this);
+        dbCategoria = new DbCategoria(EditarProducto.this);
         tiendas = dbTienda.mostrarTiendas();
         categorias = dbCategoria.mostrarCategorias();
 
@@ -79,8 +80,8 @@ public class EditarProductoActivity extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        final DbProductos dbProductos = new DbProductos(EditarProductoActivity.this);
-        DbTienda dbTienda = new DbTienda(EditarProductoActivity.this);
+        final DbProducto dbProductos = new DbProducto(EditarProducto.this);
+        DbTienda dbTienda = new DbTienda(EditarProducto.this);
         producto = dbProductos.verProducto(id);
 
         if (producto != null) {
@@ -88,6 +89,7 @@ public class EditarProductoActivity extends AppCompatActivity {
             txtCantidad.setText(producto.getCantidad());
             txtPrecio.setText(producto.getPrecio());
             txtTienda.setText(producto.getTienda());
+            txtCategoria.setText(producto.getCategoria());
         }
 
         btnGuardar.setOnClickListener(v -> {
@@ -116,20 +118,13 @@ public class EditarProductoActivity extends AppCompatActivity {
                 }
 
                 if (correcto) {
-                    Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
-                    verRegistro();
+                    Toast.makeText(EditarProducto.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(EditarProductoActivity.this, "ERROR AL MODIFICAR PRODUCTO", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarProducto.this, "ERROR AL MODIFICAR PRODUCTO", Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(EditarProductoActivity.this, "DEBE RELLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditarProducto.this, "DEBE RELLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private void verRegistro() {
-        Intent intent = new Intent(this, VerProductoActivity.class);
-        intent.putExtra("ID", id);
-        startActivity(intent);
     }
 }

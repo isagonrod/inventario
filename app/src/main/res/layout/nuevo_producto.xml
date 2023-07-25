@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".NuevoProductoActivity">
+    tools:context=".crud.NuevoProducto">
 
     <TextView
         android:id="@+id/viewNombre"
@@ -16,7 +16,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/txtNombre"
+        android:id="@+id/nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -33,7 +33,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/txtCantidad"
+        android:id="@+id/cantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number|numberDecimal"
@@ -55,7 +55,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/txtPrecio"
+            android:id="@+id/precio"
             android:layout_weight="3.8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <AutoCompleteTextView
-        android:id="@+id/txtTienda"
+        android:id="@+id/tienda"
         android:labelFor="@+id/viewTienda"
         android:textSize="24sp"
         android:inputType="text"
@@ -101,7 +101,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <AutoCompleteTextView
-        android:id="@+id/txtCategoria"
+        android:id="@+id/categoria"
         android:labelFor="@+id/viewCategoria"
         android:textSize="24sp"
         android:inputType="text"

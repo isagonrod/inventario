@@ -1,4 +1,4 @@
-package isamix.inventario.entity;
+package isamix.inventario.modelo;
 
 public class Categoria {
 
@@ -15,8 +15,6 @@ public class Categoria {
         this.id = id;
     }
 
-    // getter y setter de NOMBRE
-
     public String getNombre() {
         return nombre;
     }
@@ -24,8 +22,6 @@ public class Categoria {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    // To String
 
     public String toString() {
         return this.nombre;

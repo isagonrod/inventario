@@ -9,15 +9,15 @@ import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import isamix.inventario.entity.Producto;
+import isamix.inventario.modelo.Producto;
 
-public class DbProductos extends DbHelper {
+public class DbProducto extends DbHelper {
 
     Context context;
     DbHelper dbHelper;
     SQLiteDatabase db;
 
-    public DbProductos(@Nullable Context context) {
+    public DbProducto(@Nullable Context context) {
         super(context);
         this.context = context;
         this.dbHelper = new DbHelper(this.context);

@@ -14,6 +14,6 @@
         android:id="@+id/listaCategorias"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/lista_item_categoria" />
+        tools:listitem="@layout/item_categoria" />
 
 </LinearLayout>

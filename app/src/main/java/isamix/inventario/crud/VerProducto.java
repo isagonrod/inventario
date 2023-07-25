@@ -1,4 +1,4 @@
-package isamix.inventario;
+package isamix.inventario.crud;
 
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -8,10 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import isamix.inventario.db.DbProductos;
-import isamix.inventario.entity.Producto;
+import isamix.inventario.R;
+import isamix.inventario.db.DbProducto;
+import isamix.inventario.modelo.Producto;
 
-public class VerProductoActivity extends AppCompatActivity {
+public class VerProducto extends AppCompatActivity {
 
     TextView txtNombre, txtCantidad, txtPrecio, txtTienda, txtCategoria;
     Button btnGuardar, fabEditar, fabEliminar;
@@ -21,7 +22,7 @@ public class VerProductoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ver_producto);
+        setContentView(R.layout.ver_producto);
 
         txtNombre = findViewById(R.id.txtNombre);
         txtCantidad = findViewById(R.id.txtCantidad);
@@ -46,8 +47,8 @@ public class VerProductoActivity extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        final DbProductos dbProductos = new DbProductos(VerProductoActivity.this);
-        producto = dbProductos.verProducto(id);
+        final DbProducto dbProducto = new DbProducto(VerProducto.this);
+        producto = dbProducto.verProducto(id);
 
         if (producto != null) {
 
@@ -62,16 +63,16 @@ public class VerProductoActivity extends AppCompatActivity {
         }
 
         fabEditar.setOnClickListener(v -> {
-            Intent intent = new Intent(VerProductoActivity.this, EditarProductoActivity.class);
+            Intent intent = new Intent(VerProducto.this, EditarProducto.class);
             intent.putExtra("ID", id);
             startActivity(intent);
         });
 
         fabEliminar.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(VerProductoActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(VerProducto.this);
             builder.setMessage("¿Desea eliminar este producto?")
                     .setPositiveButton("SÍ", (dialog, which) -> {
-                        if (dbProductos.eliminarProducto(id)) {
+                        if (dbProducto.eliminarProducto(id)) {
                             lista();
                         }
                     })
@@ -83,7 +84,7 @@ public class VerProductoActivity extends AppCompatActivity {
     }
 
     private void lista() {
-        Intent intent = new Intent(this, ListaProductoActivity.class);
+        Intent intent = new Intent(this, ListaProducto.class);
         startActivity(intent);
     }
 }

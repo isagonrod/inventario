@@ -1,29 +1,27 @@
-package isamix.inventario;
+package isamix.inventario.crud;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import isamix.inventario.adapter.ListaCompraAdapter;
-import isamix.inventario.adapter.ListaProductoAdapter;
-import isamix.inventario.db.DbProductos;
-import isamix.inventario.entity.Producto;
+import isamix.inventario.R;
+import isamix.inventario.adapter.CompraAdapter;
+import isamix.inventario.db.DbProducto;
+import isamix.inventario.modelo.Producto;
 
-public class ListaCompraProductoActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListaCompra extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     RecyclerView listaProductos;
     ArrayList<Producto> listaCompra;
-    ListaCompraAdapter adapter;
+    CompraAdapter adapter;
     SearchView txtCompra;
     Button btnTerminarCompra;
     int id = 0;
@@ -31,16 +29,16 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_compra_producto);
+        setContentView(R.layout.lista_compra);
 
         txtCompra = findViewById(R.id.txtCompra);
         btnTerminarCompra = findViewById(R.id.btnTerminarCompra);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
-        DbProductos dbProductos = new DbProductos(ListaCompraProductoActivity.this);
-        listaCompra = dbProductos.mostrarProductosParaComprar();
-        adapter = new ListaCompraAdapter(listaCompra);
+        DbProducto dbProducto = new DbProducto(ListaCompra.this);
+        listaCompra = dbProducto.mostrarProductosParaComprar();
+        adapter = new CompraAdapter(listaCompra);
         listaProductos.setAdapter(adapter);
 
         txtCompra.setOnQueryTextListener(this);
@@ -62,7 +60,7 @@ public class ListaCompraProductoActivity extends AppCompatActivity implements Se
                 int itemColor = listItem.getBackground() != null ?
                         ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.YELLOW) {
-                    dbProductos.finCompra(this.listaCompra.get(i).getId(), this.listaCompra.get(i).getCantidad());
+                    dbProducto.finCompra(this.listaCompra.get(i).getId(), this.listaCompra.get(i).getCantidad());
                     adapter.eliminarItem(i);
                     i--;
                     listaProductos.removeView(listItem);

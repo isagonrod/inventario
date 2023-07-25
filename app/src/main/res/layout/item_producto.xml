@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -17,8 +19,7 @@
             android:layout_height="match_parent"
             android:layout_weight=".1"
             android:padding="2dp"
-            app:srcCompat="@drawable/cesta"
-            tools:srcCompat="@drawable/cesta" />
+            android:src="@drawable/cesta"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:layout_marginTop="2dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -49,7 +50,6 @@
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     android:weightSum="2">
-
                     <TextView
                         android:text="@string/hint_cantidad_lista"
                         android:layout_width="wrap_content"
@@ -57,14 +57,12 @@
                         android:textColor="@color/dark_grey"
                         android:layout_marginEnd="2dp"
                         android:textSize="14sp" />
-
                     <TextView
                         android:id="@+id/viewCantidad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/dark_grey"
                         android:textSize="16sp" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -73,7 +71,6 @@
                     android:orientation="horizontal"
                     android:weightSum="3"
                     android:layout_weight="2">
-
                     <TextView
                         android:text="@string/hint_precio_lista"
                         android:layout_width="wrap_content"
@@ -81,14 +78,12 @@
                         android:textColor="@color/dark_grey"
                         android:layout_marginEnd="2dp"
                         android:textSize="14sp" />
-
                     <TextView
                         android:id="@+id/viewPrecio"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textColor="@color/dark_grey"
                         android:textSize="16sp" />
-
                     <TextView
                         android:text="@string/moneda"
                         android:layout_width="wrap_content"
@@ -96,9 +91,22 @@
                         android:textSize="16sp"
                         android:layout_marginStart="2dp"
                         android:textColor="@color/dark_grey"/>
-
                 </LinearLayout>
+            </LinearLayout>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:text="@string/hint_tienda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_grey"
+                    android:layout_marginEnd="2dp"
+                    android:textSize="14sp" />
                 <TextView
                     android:id="@+id/viewTienda"
                     android:layout_width="0dp"
@@ -106,10 +114,53 @@
                     android:layout_weight="1"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
-                    android:textAlignment="textEnd"/>
+                    android:textAlignment="textStart"/>
 
+                <TextView
+                    android:text="@string/hint_categoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_grey"
+                    android:layout_marginEnd="2dp"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/viewCategoria"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp"
+                    android:textAlignment="textStart"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginTop="2dp">
+
+                <Button
+                    android:id="@+id/basketButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/carrito"/>
+
+                <Button
+                    android:id="@+id/editButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/edit"/>
+
+                <Button
+                    android:id="@+id/deleteButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/delete"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

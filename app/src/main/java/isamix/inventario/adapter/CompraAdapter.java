@@ -16,14 +16,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
-import isamix.inventario.entity.Producto;
+import isamix.inventario.modelo.Producto;
 
-public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.CompraViewHolder> {
-
+public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraViewHolder> {
     ArrayList<Producto> listaProductos;
     ArrayList<Producto> listaOriginal;
 
-    public ListaCompraAdapter(ArrayList<Producto> listaProductos) {
+    public CompraAdapter(ArrayList<Producto> listaProductos) {
         this.listaProductos = listaProductos;
         listaOriginal = new ArrayList<>(listaProductos);
     }
@@ -31,7 +30,7 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
     @NonNull
     @Override
     public CompraViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.lista_item_compra, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_compra, viewGroup, false);
         return new CompraViewHolder(view);
     }
 

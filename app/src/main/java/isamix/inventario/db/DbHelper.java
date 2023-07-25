@@ -26,8 +26,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABLE_CATEGORIA + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "nombre TEXT NOT NULL, " +
-                "icono TEXT)");
+                "nombre TEXT NOT NULL)");
 
         db.execSQL("CREATE TABLE " + TABLE_PRODUCTO + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +

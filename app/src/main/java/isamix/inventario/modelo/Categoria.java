@@ -5,8 +5,6 @@ public class Categoria {
     private int id;
     private String nombre;
 
-    // getter y setter de ID
-
     public int getId() {
         return id;
     }

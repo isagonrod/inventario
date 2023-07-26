@@ -164,6 +164,18 @@ public class DbProducto extends DbHelper {
         return correcto;
     }
 
+    public boolean editarCantidad(int id, String cantidad) {
+        boolean correcto;
+        try {
+            db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET cantidad = '" + cantidad + "' WHERE id = '" + id + "'");
+            correcto = true;
+        } catch (Exception ex) {
+            ex.toString();
+            correcto = false;
+        }
+        return correcto;
+    }
+
     public boolean finCompra(int id, String cantidad) {
         boolean correcto;
 

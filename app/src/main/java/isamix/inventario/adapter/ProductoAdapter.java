@@ -90,8 +90,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
             viewNombre = itemView.findViewById(R.id.viewNombre);
             viewCantidad = itemView.findViewById(R.id.viewCantidad);
             viewPrecio = itemView.findViewById(R.id.viewPrecio);
-//            viewTienda = itemView.findViewById(R.id.viewTienda);
-//            viewCategoria = itemView.findViewById(R.id.viewCategoria);
 
             btnCompra = itemView.findViewById(R.id.basketButton);
             btnEditar = itemView.findViewById(R.id.editButton);
@@ -102,6 +100,20 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
                 Intent intent = new Intent(context, VerProducto.class);
                 intent.putExtra("ID", listaProductos.get(getAdapterPosition()).getId());
                 context.startActivity(intent);
+            });
+
+            itemView.setOnLongClickListener(view -> {
+                String cantidadNueva;
+                int cantidad = Integer.parseInt(listaProductos.get(getAdapterPosition()).getCantidad());
+                int result = cantidad - 1;
+                if (result >= 0) {
+                    cantidadNueva = String.valueOf(result);
+                } else {
+                    cantidadNueva = "0";
+                }
+                viewCantidad.setText(cantidadNueva);
+                dbProducto = new DbProducto(itemView.getContext());
+                return dbProducto.editarCantidad(listaProductos.get(getAdapterPosition()).getId(), viewCantidad.getText().toString());
             });
 
             btnCompra.setOnClickListener(view -> {

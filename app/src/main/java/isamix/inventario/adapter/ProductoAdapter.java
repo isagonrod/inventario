@@ -47,8 +47,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
         holder.viewNombre.setText(listaProductos.get(position).getNombre());
         holder.viewCantidad.setText(listaProductos.get(position).getCantidad());
         holder.viewPrecio.setText(listaProductos.get(position).getPrecio());
-        holder.viewTienda.setText(listaProductos.get(position).getTienda());
-        holder.viewCategoria.setText(listaProductos.get(position).getCategoria());
+//        holder.viewTienda.setText(listaProductos.get(position).getTienda());
+//        holder.viewCategoria.setText(listaProductos.get(position).getCategoria());
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -80,7 +80,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
 
     public class ProductoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewCantidad, viewPrecio, viewTienda, viewCategoria;
+        TextView viewNombre, viewCantidad, viewPrecio;
         Button btnCompra, btnEditar, btnEliminar;
         DbProducto dbProducto;
 
@@ -90,8 +90,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
             viewNombre = itemView.findViewById(R.id.viewNombre);
             viewCantidad = itemView.findViewById(R.id.viewCantidad);
             viewPrecio = itemView.findViewById(R.id.viewPrecio);
-            viewTienda = itemView.findViewById(R.id.viewTienda);
-            viewCategoria = itemView.findViewById(R.id.viewCategoria);
+//            viewTienda = itemView.findViewById(R.id.viewTienda);
+//            viewCategoria = itemView.findViewById(R.id.viewCategoria);
 
             btnCompra = itemView.findViewById(R.id.basketButton);
             btnEditar = itemView.findViewById(R.id.editButton);

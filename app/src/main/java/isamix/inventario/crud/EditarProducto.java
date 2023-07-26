@@ -119,6 +119,7 @@ public class EditarProducto extends AppCompatActivity {
 
                 if (correcto) {
                     Toast.makeText(EditarProducto.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
+                    recargarVista();
                 } else {
                     Toast.makeText(EditarProducto.this, "ERROR AL MODIFICAR PRODUCTO", Toast.LENGTH_LONG).show();
                 }
@@ -126,5 +127,12 @@ public class EditarProducto extends AppCompatActivity {
                 Toast.makeText(EditarProducto.this, "DEBE RELLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void recargarVista() {
+        Intent intent = new Intent(this, VerProducto.class);
+        intent.putExtra("ID", id);
+        intent.putExtra("categoria", txtCategoria.getText().toString());
+        startActivity(intent);
     }
 }

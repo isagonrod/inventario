@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -40,6 +41,10 @@ public class ListaCompra extends AppCompatActivity implements SearchView.OnQuery
         listaCompra = dbProducto.mostrarProductosParaComprar();
         adapter = new CompraAdapter(listaCompra);
         listaProductos.setAdapter(adapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
+                this, new LinearLayoutManager(this).getOrientation());
+        listaProductos.addItemDecoration(dividerItemDecoration);
 
         txtCompra.setOnQueryTextListener(this);
 

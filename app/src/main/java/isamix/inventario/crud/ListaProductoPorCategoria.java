@@ -54,6 +54,7 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
 
         txtBuscar = findViewById(R.id.txtBuscar);
         btnAddProduct = findViewById(R.id.btnAddProduct);
+        btnAddProduct.setVisibility(View.GONE);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
@@ -69,12 +70,6 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
         listaProductos.addItemDecoration(dividerItemDecoration);
 
         txtBuscar.setOnQueryTextListener(this);
-
-        btnAddProduct.setOnClickListener(v -> {
-            Intent intent = new Intent(ListaProductoPorCategoria.this, NuevoProducto.class);
-            startActivity(intent);
-        });
-
     }
 
     @Override

@@ -33,7 +33,6 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
 
 
@@ -54,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="2dp"
-                    android:text="@string/hint_cantidad_lista"
+                    android:text="@string/hint_cantidad"
                     android:textColor="@color/dark_grey"
                     android:textSize="14sp" />
 
@@ -101,55 +100,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="2dp"
-                android:text="@string/hint_tienda"
-                android:textColor="@color/dark_grey"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/viewTienda"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textAlignment="textStart"
-                android:textColor="@color/dark_grey"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="2dp"
-                android:text="@string/hint_categoria"
-                android:textColor="@color/dark_grey"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/viewCategoria"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textAlignment="textStart"
-                android:textColor="@color/dark_grey"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="end"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/basketButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="5dp"
                 android:background="@drawable/carrito"
                 android:clickable="true"
@@ -157,8 +115,8 @@
 
             <Button
                 android:id="@+id/editButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="5dp"
                 android:background="@drawable/edit"
                 android:clickable="true"
@@ -166,8 +124,8 @@
 
             <Button
                 android:id="@+id/deleteButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="5dp"
                 android:background="@drawable/delete"
                 android:clickable="true"

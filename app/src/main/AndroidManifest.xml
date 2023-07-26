@@ -42,10 +42,10 @@
         <activity
             android:name=".crud.ListaCompra"
             android:exported="false"
-            android:parentActivityName=".crud.ListaProducto" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".crud.ListaProducto" />
+                android:value=".MainActivity" />
         </activity>
 
         <activity
@@ -60,26 +60,26 @@
         <activity
             android:name=".crud.EditarProducto"
             android:exported="false"
-            android:parentActivityName=".crud.ListaProducto" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".crud.ListaProducto" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".crud.VerProducto"
             android:exported="false"
-            android:parentActivityName=".crud.ListaProducto" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".crud.ListaProducto" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".crud.NuevoProducto"
             android:exported="false"
-            android:parentActivityName=".crud.ListaProducto" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".crud.ListaProducto" />
+                android:value=".MainActivity" />
         </activity>
 
     </application>

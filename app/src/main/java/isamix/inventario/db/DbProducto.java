@@ -58,7 +58,7 @@ public class DbProducto extends DbHelper {
                 producto = new Producto();
                 producto.setId(cursorProductos.getInt(0));
                 producto.setNombre(cursorProductos.getString(1));
-                producto.setCantidad(cursorProductos.getString(2));
+                producto.setCantidad(cursorProductos.getInt(2));
                 producto.setPrecio(cursorProductos.getString(3));
                 producto.setTienda(cursorProductos.getString(4));
                 producto.setCategoria(cursorProductos.getString(5));
@@ -84,7 +84,7 @@ public class DbProducto extends DbHelper {
                 producto = new Producto();
                 producto.setId(cursorProductos.getInt(0));
                 producto.setNombre(cursorProductos.getString(1));
-                producto.setCantidad(cursorProductos.getString(2));
+                producto.setCantidad(cursorProductos.getInt(2));
                 producto.setPrecio(cursorProductos.getString(3));
                 producto.setTienda(cursorProductos.getString(4));
                 producto.setCategoria(cursorProductos.getString(5));
@@ -110,7 +110,7 @@ public class DbProducto extends DbHelper {
                 producto = new Producto();
                 producto.setId(cursorProductos.getInt(0));
                 producto.setNombre(cursorProductos.getString(1));
-                producto.setCantidad(cursorProductos.getString(2));
+                producto.setCantidad(cursorProductos.getInt(2));
                 producto.setPrecio(cursorProductos.getString(3));
                 producto.setTienda(cursorProductos.getString(4));
                 producto.setCategoria(cursorProductos.getString(5));
@@ -133,7 +133,7 @@ public class DbProducto extends DbHelper {
             producto = new Producto();
             producto.setId(cursorProducto.getInt(0));
             producto.setNombre(cursorProducto.getString(1));
-            producto.setCantidad(cursorProducto.getString(2));
+            producto.setCantidad(cursorProducto.getInt(2));
             producto.setPrecio(cursorProducto.getString(3));
             producto.setTienda(cursorProducto.getString(4));
             producto.setCategoria(cursorProducto.getString(5));
@@ -142,7 +142,7 @@ public class DbProducto extends DbHelper {
         return producto;
     }
 
-    public boolean editarProducto(int id, String nombre, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
+    public boolean editarProducto(int id, String nombre, int cantidad, String precio, String tienda, String categoria, int paraComprar) {
 
         boolean correcto;
 
@@ -164,11 +164,11 @@ public class DbProducto extends DbHelper {
         return correcto;
     }
 
-    public void editarCantidad(int id, String cantidad) {
+    public void editarCantidad(int id, int cantidad) {
         db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET cantidad = '" + cantidad + "' WHERE id = '" + id + "'");
     }
 
-    public boolean finCompra(int id, String cantidad) {
+    public boolean finCompra(int id, int cantidad) {
         boolean correcto;
 
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {

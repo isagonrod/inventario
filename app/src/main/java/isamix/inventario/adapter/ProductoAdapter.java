@@ -45,10 +45,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
     @Override
     public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
         holder.viewNombre.setText(listaProductos.get(position).getNombre());
-        holder.viewCantidad.setText(listaProductos.get(position).getCantidad());
+        holder.viewCantidad.setText(String.valueOf(listaProductos.get(position).getCantidad()));
         holder.viewPrecio.setText(listaProductos.get(position).getPrecio());
-//        holder.viewTienda.setText(listaProductos.get(position).getTienda());
-//        holder.viewCategoria.setText(listaProductos.get(position).getCategoria());
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -97,7 +95,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
 
             itemView.setOnClickListener(view -> {
                 String cantidadNueva;
-                int cantidad = Integer.parseInt(listaProductos.get(getAdapterPosition()).getCantidad());
+                int cantidad = listaProductos.get(getAdapterPosition()).getCantidad();
                 int result = cantidad - 1;
                 if (result >= 0) {
                     cantidadNueva = String.valueOf(result);
@@ -106,7 +104,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
                     viewCantidad.setText("0");
                 }
                 dbProducto = new DbProducto(itemView.getContext());
-                dbProducto.editarCantidad(listaProductos.get(getAdapterPosition()).getId(), viewCantidad.getText().toString());
+                dbProducto.editarCantidad(listaProductos.get(getAdapterPosition()).getId(), result);
             });
 
             itemView.setOnLongClickListener(view -> {

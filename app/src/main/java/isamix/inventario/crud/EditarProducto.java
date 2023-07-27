@@ -86,7 +86,7 @@ public class EditarProducto extends AppCompatActivity {
 
         if (producto != null) {
             txtNombre.setText(producto.getNombre());
-            txtCantidad.setText(producto.getCantidad());
+            txtCantidad.setText(String.valueOf(producto.getCantidad()));
             txtPrecio.setText(producto.getPrecio());
             txtTienda.setText(producto.getTienda());
             txtCategoria.setText(producto.getCategoria());
@@ -96,7 +96,7 @@ public class EditarProducto extends AppCompatActivity {
             if (!txtNombre.getText().toString().equals("") && !txtCantidad.getText().toString().equals("") && !txtTienda.getText().toString().equals("")) {
                 correcto = dbProductos.editarProducto(
                         id, txtNombre.getText().toString(),
-                        txtCantidad.getText().toString(),
+                        Integer.parseInt(txtCantidad.getText().toString()),
                         txtPrecio.getText().toString(),
                         txtTienda.getText().toString(),
                         txtCategoria.getText().toString(),

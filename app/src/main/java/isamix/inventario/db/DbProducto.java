@@ -51,7 +51,7 @@ public class DbProducto extends DbHelper {
         Producto producto;
         Cursor cursorProductos;
 
-        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " ORDER BY nombre ASC", null);
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " ORDER BY cantidad, nombre ASC", null);
 
         if (cursorProductos.moveToFirst()) {
             do {
@@ -76,7 +76,7 @@ public class DbProducto extends DbHelper {
         Producto producto;
         Cursor cursorProductos;
 
-        String select = "SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "' ORDER BY nombre ASC";
+        String select = "SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "' ORDER BY cantidad, nombre ASC";
         cursorProductos = db.rawQuery(select, null);
 
         if (cursorProductos.moveToFirst()) {
@@ -164,16 +164,8 @@ public class DbProducto extends DbHelper {
         return correcto;
     }
 
-    public boolean editarCantidad(int id, String cantidad) {
-        boolean correcto;
-        try {
-            db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET cantidad = '" + cantidad + "' WHERE id = '" + id + "'");
-            correcto = true;
-        } catch (Exception ex) {
-            ex.toString();
-            correcto = false;
-        }
-        return correcto;
+    public void editarCantidad(int id, String cantidad) {
+        db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET cantidad = '" + cantidad + "' WHERE id = '" + id + "'");
     }
 
     public boolean finCompra(int id, String cantidad) {

@@ -31,7 +31,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_PRODUCTO + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre TEXT NOT NULL, " +
-                "cantidad TEXT NOT NULL, " +
+                "cantidad INTEGER NOT NULL, " +
                 "precio TEXT, " +
                 "tienda INTEGER, " +
                 "categoria INTEGER, " +

@@ -63,31 +63,32 @@ public class NuevoProducto extends AppCompatActivity {
         txtCategoria.setAdapter(arrayAdapterCategoria);
 
         btnGuardar.setOnClickListener(v -> {
+            if (!txtNombre.getText().toString().isEmpty()
+                    && !txtTienda.getText().toString().isEmpty()
+                    && !txtCategoria.getText().toString().isEmpty()) {
 
-            Tienda shop = dbTienda.getTienda(txtTienda.getText().toString());
-            if (shop == null) {
-                dbTienda.insertarTienda(txtTienda.getText().toString());
-            } else {
-                dbTienda.editarTienda(shop.getId(), shop.getNombre());
-            }
+                Tienda shop = dbTienda.getTienda(txtTienda.getText().toString());
+                if (shop == null) {
+                    dbTienda.insertarTienda(txtTienda.getText().toString());
+                } else {
+                    dbTienda.editarTienda(shop.getId(), shop.getNombre());
+                }
 
-            Categoria category = dbCategoria.getCategoriaPorNombre(txtCategoria.getText().toString());
-            if (category == null) {
-                dbCategoria.insertarCategoria(txtCategoria.getText().toString());
-            } else {
-                dbCategoria.editarCategoria(category.getId(), category.getNombre());
-            }
+                Categoria category = dbCategoria.getCategoriaPorNombre(txtCategoria.getText().toString());
+                if (category == null) {
+                    dbCategoria.insertarCategoria(txtCategoria.getText().toString());
+                } else {
+                    dbCategoria.editarCategoria(category.getId(), category.getNombre());
+                }
 
-            long idProducto = dbProducto.insertarProducto(
-                    txtNombre.getText().toString(),
-                    txtCantidad.getText().toString(),
-                    txtPrecio.getText().toString(),
-                    txtTienda.getText().toString(),
-                    txtCategoria.getText().toString(),
-                    0
-            );
+                dbProducto.insertarProducto(
+                        txtNombre.getText().toString(),
+                        txtCantidad.getText().toString(),
+                        txtPrecio.getText().toString(),
+                        txtTienda.getText().toString(),
+                        txtCategoria.getText().toString(),
+                        0);
 
-            if (idProducto > 0) {
                 Toast.makeText(NuevoProducto.this, "PRODUCTO GUARDADO", Toast.LENGTH_LONG).show();
                 limpiar();
             } else {

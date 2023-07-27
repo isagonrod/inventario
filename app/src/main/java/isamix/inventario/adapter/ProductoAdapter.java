@@ -46,7 +46,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
     public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
         holder.viewNombre.setText(listaProductos.get(position).getNombre());
         holder.viewCantidad.setText(String.valueOf(listaProductos.get(position).getCantidad()));
-        holder.viewPrecio.setText(listaProductos.get(position).getPrecio());
+        holder.viewPrecio.setText(String.format("%.2f", listaProductos.get(position).getPrecio()));
     }
 
     @SuppressLint("NotifyDataSetChanged")

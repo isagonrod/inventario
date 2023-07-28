@@ -11,6 +11,14 @@
         android:title="@string/menu_lista_productos" />
 
     <item
-        android:id="@+id/menuNuevaCategoria"
-        android:title="@string/menu_nueva_categoria" />
+        android:id="@+id/menuGestionLibros"
+        android:title="@string/menu_lista_libros" />
+
+    <item
+        android:id="@+id/menuGestionJuegos"
+        android:title="@string/menu_lista_juegos" />
+
+    <item
+        android:id="@+id/menuGestionMultimedia"
+        android:title="@string/menu_lista_multimedia" />
 </menu>

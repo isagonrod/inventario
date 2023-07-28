@@ -98,11 +98,14 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
                 verLista(ListaCompra.class);
                 return true;
             case R.id.menuGestionProductos:
-                verLista(ListaProducto.class);
+                verLista(ListaCategoria.class);
                 return true;
-            case R.id.menuNuevaCategoria:
-                crearNuevaCategoria();
-                return true;
+//            case R.id.menuGestionLibros:
+//                return true;
+//            case R.id.menuGestionJuegos:
+//                return true;
+//            case R.id.menuGestionMultimedia:
+//                return true;
         }
 
         return super.onOptionsItemSelected(item);

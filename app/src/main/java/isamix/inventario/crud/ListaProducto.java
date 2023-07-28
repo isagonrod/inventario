@@ -75,7 +75,7 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_principal_reducido, menu);
+        inflater.inflate(R.menu.menu_principal, menu);
         return true;
     }
 
@@ -86,8 +86,14 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
                 verLista(ListaCompra.class);
                 return true;
             case R.id.menuGestionProductos:
-                verLista(ListaProducto.class);
+                verLista(ListaCategoria.class);
                 return true;
+//            case R.id.menuGestionLibros:
+//                return true;
+//            case R.id.menuGestionJuegos:
+//                return true;
+//            case R.id.menuGestionMultimedia:
+//                return true;
         }
 
         return super.onOptionsItemSelected(item);

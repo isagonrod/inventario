@@ -2,6 +2,7 @@ package isamix.inventario.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,7 +27,8 @@ import isamix.inventario.crud.VerProducto;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Producto;
 
-public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder> {List<Producto> listaProductos;
+public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder> {
+    List<Producto> listaProductos;
     List<Producto> listaOriginal;
 
     public ProductoAdapter(List<Producto> listaProductos) {
@@ -94,17 +96,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
             btnEliminar = itemView.findViewById(R.id.deleteButton);
 
             itemView.setOnClickListener(view -> {
-                String cantidadNueva;
-                int cantidad = listaProductos.get(getAdapterPosition()).getCantidad();
-                int result = cantidad - 1;
-                if (result >= 0) {
-                    cantidadNueva = String.valueOf(result);
-                    viewCantidad.setText(cantidadNueva);
-                } else {
-                    viewCantidad.setText("0");
-                }
-                dbProducto = new DbProducto(itemView.getContext());
-                dbProducto.editarCantidad(listaProductos.get(getAdapterPosition()).getId(), result);
+                disminuirCantidad();
             });
 
             itemView.setOnLongClickListener(view -> {
@@ -142,6 +134,22 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
                 dbProducto.eliminarProducto(listaProductos.get(getAdapterPosition()).getId());
                 eliminarItem(getAdapterPosition());
             });
+        }
+
+        public void disminuirCantidad() {
+            String cantidadNueva;
+            int cantidad = listaProductos.get(getAdapterPosition()).getCantidad();
+            int result = cantidad - 1;
+            if (result >= 0) {
+                cantidadNueva = String.valueOf(result);
+                viewCantidad.setText(cantidadNueva);
+            } else if (result < 0) {
+                result = 0;
+                cantidadNueva = String.valueOf(result);
+                viewCantidad.setText(cantidadNueva);
+            }
+            dbProducto = new DbProducto(itemView.getContext());
+            dbProducto.editarCantidad(listaProductos.get(getAdapterPosition()).getId(), result);
         }
     }
 }

@@ -14,7 +14,7 @@
         android:id="@+id/gestionCompra"
         android:clickable="true"
         android:text="@string/menu_lista_compra"
-        android:background="@color/purple_500"
+        android:background="@color/green"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:padding="10dp"

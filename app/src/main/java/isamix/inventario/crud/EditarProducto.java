@@ -38,7 +38,7 @@ public class EditarProducto extends AppCompatActivity {
     List<Tienda> tiendas;
     List<Categoria> categorias;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

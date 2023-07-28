@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
     RecyclerView listaProductos;
     ArrayList<Producto> listaArrayProductos;
     ProductoAdapter adapter;
-    Button btnAddProduct;
 
     @SuppressLint("ResourceType")
     @Override
@@ -35,7 +33,6 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
         setContentView(R.layout.lista_producto);
 
         txtBuscar = findViewById(R.id.txtBuscar);
-        btnAddProduct = findViewById(R.id.btnAddProduct);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
@@ -52,11 +49,6 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
         listaProductos.addItemDecoration(dividerItemDecoration);
 
         txtBuscar.setOnQueryTextListener(this);
-
-        btnAddProduct.setOnClickListener(v -> {
-            Intent intent = new Intent(ListaProducto.this, NuevoProducto.class);
-            startActivity(intent);
-        });
 
     }
 

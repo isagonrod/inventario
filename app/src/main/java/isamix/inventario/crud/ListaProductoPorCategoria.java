@@ -32,7 +32,6 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
     RecyclerView listaProductos;
     List<Producto> arrayProductos;
     ProductoAdapter adapter;
-    Button btnAddProduct;
     TextView title;
 
     Intent intent;
@@ -53,8 +52,6 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
         title.setText(category);
 
         txtBuscar = findViewById(R.id.txtBuscar);
-        btnAddProduct = findViewById(R.id.btnAddProduct);
-        btnAddProduct.setVisibility(View.GONE);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 

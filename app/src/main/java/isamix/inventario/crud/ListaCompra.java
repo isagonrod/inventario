@@ -98,8 +98,10 @@ public class ListaCompra extends AppCompatActivity implements SearchView.OnQuery
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
+            case R.id.menuFuncionamiento:
+                verLista(FuncionamientoApp.class);
+                return true;
             case R.id.menuListaCompra:
                 verLista(ListaCompra.class);
                 return true;

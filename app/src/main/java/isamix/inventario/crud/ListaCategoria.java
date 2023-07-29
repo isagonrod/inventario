@@ -87,8 +87,10 @@ public class ListaCategoria extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
+            case R.id.menuFuncionamiento:
+                verLista(FuncionamientoApp.class);
+                return true;
             case R.id.menuListaCompra:
                 verLista(ListaCompra.class);
                 return true;

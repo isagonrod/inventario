@@ -16,6 +16,7 @@ import android.widget.EditText;
 import java.util.List;
 
 import isamix.inventario.adapter.CategoriaAdapter;
+import isamix.inventario.crud.FuncionamientoApp;
 import isamix.inventario.crud.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.ListaProducto;
@@ -52,8 +53,10 @@ public class MainActivity extends AppCompatActivity {
 
     // Método para cambiar de actividad según se seleccione una opción u otra en el menú
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
+            case R.id.menuFuncionamiento:
+                verLista(FuncionamientoApp.class);
+                return true;
             case R.id.menuListaCompra:
                 verLista(ListaCompra.class);
                 return true;

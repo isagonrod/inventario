@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/menuFuncionamiento"
+        android:title="@string/funcionamiento"/>
+
+    <item
         android:id="@+id/menuListaCompra"
         android:title="@string/menu_lista_compra" />
 

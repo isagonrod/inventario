@@ -100,7 +100,7 @@ public class EditarProducto extends AppCompatActivity {
                 correcto = dbProductos.editarProducto(
                         id, txtNombre.getText().toString(),
                         Integer.parseInt(txtCantidad.getText().toString()),
-                        Double.parseDouble(txtPrecio.getText().toString()),
+                        Double.parseDouble(txtPrecio.getText().toString().replace(",", ".")),
                         txtTienda.getText().toString(),
                         txtCategoria.getText().toString(),
                         0);

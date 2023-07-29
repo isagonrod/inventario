@@ -16,14 +16,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
-import isamix.inventario.entity.Producto;
+import isamix.inventario.modelo.Producto;
 
-public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.CompraViewHolder> {
-
+public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraViewHolder> {
     ArrayList<Producto> listaProductos;
     ArrayList<Producto> listaOriginal;
 
-    public ListaCompraAdapter(ArrayList<Producto> listaProductos) {
+    public CompraAdapter(ArrayList<Producto> listaProductos) {
         this.listaProductos = listaProductos;
         listaOriginal = new ArrayList<>(listaProductos);
     }
@@ -31,14 +30,16 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
     @NonNull
     @Override
     public CompraViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.lista_item_compra, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_compra, viewGroup, false);
         return new CompraViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CompraViewHolder holder, int position) {
-        holder.txtCantidad.setText(listaProductos.get(position).getCantidad());
+        //holder.txtCantidad.setText(String.valueOf(listaProductos.get(position).getCantidad()));
         holder.txtNombre.setText(listaProductos.get(position).getNombre());
+        holder.txtTienda.setText(listaProductos.get(position).getTienda());
+        holder.txtCategoria.setText(listaProductos.get(position).getCategoria());
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -71,19 +72,21 @@ public class ListaCompraAdapter extends RecyclerView.Adapter<ListaCompraAdapter.
     public class CompraViewHolder extends RecyclerView.ViewHolder {
 
         EditText txtCantidad;
-        TextView txtNombre;
+        TextView txtNombre, txtTienda, txtCategoria;
 
         public CompraViewHolder(@NonNull View itemView) {
             super(itemView);
             txtCantidad = itemView.findViewById(R.id.txtCantidad);
             txtNombre = itemView.findViewById(R.id.txtNombre);
+            txtTienda = itemView.findViewById(R.id.txtTienda);
+            txtCategoria = itemView.findViewById(R.id.txtCategoria);
 
             itemView.setOnClickListener(view -> {
-                int itemColor = view.getBackground() != null ? ((ColorDrawable) view.getBackground()).getColor() : 0xFFFFFFFF;
+                int itemColor = view.getBackground() != null ? ((ColorDrawable) view.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.WHITE) {
                     itemView.setBackgroundColor(Color.YELLOW);
                     listaProductos.get(getAdapterPosition()).setParaComprar(1);
-                    listaProductos.get(getAdapterPosition()).setCantidad(String.valueOf(txtCantidad.getText()));
+                    listaProductos.get(getAdapterPosition()).setCantidad(Integer.parseInt(String.valueOf(txtCantidad.getText())));
                 } else {
                     itemView.setBackgroundColor(Color.WHITE);
                     listaProductos.get(getAdapterPosition()).setParaComprar(0);

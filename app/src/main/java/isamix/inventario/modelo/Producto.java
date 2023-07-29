@@ -1,11 +1,11 @@
-package isamix.inventario.entity;
+package isamix.inventario.modelo;
 
 public class Producto {
 
     private int id;
     private String nombre;
-    private String cantidad;
-    private String precio;
+    private int cantidad;
+    private double precio;
     private String tienda;
     private String categoria;
     private int paraComprar;
@@ -13,8 +13,6 @@ public class Producto {
     public Producto() {
         this.paraComprar = 0;
     }
-
-    // getter/setter de ID
 
     public int getId() {
         return id;
@@ -24,8 +22,6 @@ public class Producto {
         this.id = id;
     }
 
-    // getter/setter de NOMBRE
-
     public String getNombre() {
         return nombre;
     }
@@ -34,27 +30,21 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    // getter/setter de CANTIDAD
-
-    public String getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
-    // getter/setter de PRECIO
-
-    public String getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(String precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
-
-    // getter/setter de TIENDA
 
     public String getTienda() {
         return tienda;
@@ -64,8 +54,6 @@ public class Producto {
         this.tienda = tienda;
     }
 
-    // getter / setter de CATEGORIA
-
     public String getCategoria() {
         return categoria;
     }
@@ -73,8 +61,6 @@ public class Producto {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
-    // getter/setter de COMPRAR
 
     public int getParaComprar() {
         return paraComprar;

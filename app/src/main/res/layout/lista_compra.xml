@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".ListaProductoActivity">
+    tools:context=".crud.ListaProducto">
 
     <TextView
         android:layout_width="match_parent"
@@ -37,6 +37,6 @@
         android:id="@+id/listaProductos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/lista_item_compra" />
+        tools:listitem="@layout/item_compra" />
 
 </LinearLayout>

@@ -4,74 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".NuevoProductoActivity">
+    tools:context=".crud.NuevoProducto"
+    android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/viewNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_nombre"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:text="@string/hint_nombre" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:labelFor="@+id/viewNombre"
-        android:textSize="24sp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/viewCantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_cantidad"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:text="@string/hint_cantidad" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtCantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number|numberDecimal"
-        android:labelFor="@+id/viewCantidad"
+        android:textColor="@color/black"
         android:textSize="24sp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/viewPrecio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_precio"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:text="@string/hint_precio" />
 
     <LinearLayout
-        android:weightSum="4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/txtPrecio"
-            android:layout_weight="3.8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number|numberDecimal"
-            android:labelFor="@+id/viewPrecio"
-            android:textSize="24sp"
-            tools:ignore="SpeakableTextPresentCheck" />
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
         <TextView
-            android:id="@+id/moneda"
+            android:id="@+id/txtPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight=".2"
-            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
             android:text="@string/moneda"
-            android:textSize="24sp"/>
+            android:layout_marginStart="2dp"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
@@ -79,71 +69,63 @@
         android:id="@+id/viewTienda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_tienda"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:text="@string/hint_tienda" />
 
-    <AutoCompleteTextView
+    <TextView
         android:id="@+id/txtTienda"
-        android:labelFor="@+id/viewTienda"
-        android:textSize="24sp"
-        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:completionThreshold="1"
-        android:autoSizeTextType="uniform"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/viewCategoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_categoria"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:text="@string/hint_categoria" />
 
-    <AutoCompleteTextView
+    <TextView
         android:id="@+id/txtCategoria"
-        android:labelFor="@+id/viewCategoria"
-        android:textSize="24sp"
-        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:completionThreshold="1"
-        android:autoSizeTextType="uniform"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginBottom="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center" >
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:columnCount="3">
 
         <Button
             android:id="@+id/btnGuardar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/save"
-            android:clickable="true"
+            android:layout_gravity="center"
             tools:ignore="SpeakableTextPresentCheck"/>
 
         <Button
             android:id="@+id/fabEditar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@drawable/edit"
+            android:layout_gravity="center"
             android:clickable="true"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"/>
 
         <Button
             android:id="@+id/fabEliminar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@drawable/delete"
+            android:layout_gravity="center"
             android:clickable="true"
             tools:ignore="SpeakableTextPresentCheck"/>
 

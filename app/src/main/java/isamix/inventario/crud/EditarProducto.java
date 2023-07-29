@@ -1,9 +1,12 @@
-package isamix.inventario;
+package isamix.inventario.crud;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -13,14 +16,15 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import isamix.inventario.R;
 import isamix.inventario.db.DbCategoria;
-import isamix.inventario.db.DbProductos;
+import isamix.inventario.db.DbProducto;
 import isamix.inventario.db.DbTienda;
-import isamix.inventario.entity.Categoria;
-import isamix.inventario.entity.Producto;
-import isamix.inventario.entity.Tienda;
+import isamix.inventario.modelo.Categoria;
+import isamix.inventario.modelo.Producto;
+import isamix.inventario.modelo.Tienda;
 
-public class EditarProductoActivity extends AppCompatActivity {
+public class EditarProducto extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio;
     AutoCompleteTextView txtTienda, txtCategoria;
@@ -28,23 +32,23 @@ public class EditarProductoActivity extends AppCompatActivity {
     Producto producto;
     int id = 0;
     boolean correcto = false;
-    DbProductos dbProductos;
+    DbProducto dbProducto;
     DbTienda dbTienda;
     DbCategoria dbCategoria;
     List<Tienda> tiendas;
     List<Categoria> categorias;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nuevo_producto);
+        setContentView(R.layout.nuevo_producto);
 
-        txtNombre = findViewById(R.id.txtNombre);
-        txtCantidad = findViewById(R.id.txtCantidad);
-        txtPrecio = findViewById(R.id.txtPrecio);
-        txtTienda = findViewById(R.id.txtTienda);
-        txtCategoria = findViewById(R.id.txtCategoria);
+        txtNombre = findViewById(R.id.nombre);
+        txtCantidad = findViewById(R.id.cantidad);
+        txtPrecio = findViewById(R.id.precio);
+        txtTienda = findViewById(R.id.tienda);
+        txtCategoria = findViewById(R.id.categoria);
 
         btnGuardar = findViewById(R.id.btnGuardar);
 
@@ -54,9 +58,9 @@ public class EditarProductoActivity extends AppCompatActivity {
         fabEliminar = findViewById(R.id.fabEliminar);
         fabEliminar.setVisibility(View.INVISIBLE);
 
-        dbProductos = new DbProductos(EditarProductoActivity.this);
-        dbTienda = new DbTienda(EditarProductoActivity.this);
-        dbCategoria = new DbCategoria(EditarProductoActivity.this);
+        dbProducto = new DbProducto(EditarProducto.this);
+        dbTienda = new DbTienda(EditarProducto.this);
+        dbCategoria = new DbCategoria(EditarProducto.this);
         tiendas = dbTienda.mostrarTiendas();
         categorias = dbCategoria.mostrarCategorias();
 
@@ -79,23 +83,24 @@ public class EditarProductoActivity extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        final DbProductos dbProductos = new DbProductos(EditarProductoActivity.this);
-        DbTienda dbTienda = new DbTienda(EditarProductoActivity.this);
+        final DbProducto dbProductos = new DbProducto(EditarProducto.this);
+        DbTienda dbTienda = new DbTienda(EditarProducto.this);
         producto = dbProductos.verProducto(id);
 
         if (producto != null) {
             txtNombre.setText(producto.getNombre());
-            txtCantidad.setText(producto.getCantidad());
-            txtPrecio.setText(producto.getPrecio());
+            txtCantidad.setText(String.valueOf(producto.getCantidad()));
+            txtPrecio.setText(String.format("%.2f", producto.getPrecio()));
             txtTienda.setText(producto.getTienda());
+            txtCategoria.setText(producto.getCategoria());
         }
 
         btnGuardar.setOnClickListener(v -> {
             if (!txtNombre.getText().toString().equals("") && !txtCantidad.getText().toString().equals("") && !txtTienda.getText().toString().equals("")) {
                 correcto = dbProductos.editarProducto(
                         id, txtNombre.getText().toString(),
-                        txtCantidad.getText().toString(),
-                        txtPrecio.getText().toString(),
+                        Integer.parseInt(txtCantidad.getText().toString()),
+                        Double.parseDouble(txtPrecio.getText().toString().replace(",", ".")),
                         txtTienda.getText().toString(),
                         txtCategoria.getText().toString(),
                         0);
@@ -116,20 +121,56 @@ public class EditarProductoActivity extends AppCompatActivity {
                 }
 
                 if (correcto) {
-                    Toast.makeText(EditarProductoActivity.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
-                    verRegistro();
+                    Toast.makeText(EditarProducto.this, "PRODUCTO MODIFICADO", Toast.LENGTH_LONG).show();
+                    recargarVista();
                 } else {
-                    Toast.makeText(EditarProductoActivity.this, "ERROR AL MODIFICAR PRODUCTO", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarProducto.this, "ERROR AL MODIFICAR PRODUCTO", Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(EditarProductoActivity.this, "DEBE RELLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditarProducto.this, "DEBE RELLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void verRegistro() {
-        Intent intent = new Intent(this, VerProductoActivity.class);
+    private void recargarVista() {
+        Intent intent = new Intent(this, VerProducto.class);
         intent.putExtra("ID", id);
+        intent.putExtra("categoria", txtCategoria.getText().toString());
+        startActivity(intent);
+    }
+
+    /* *** *** *** MENÚ PRINCIPAL *** *** *** */
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_principal, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuFuncionamiento:
+                verLista(FuncionamientoApp.class);
+                return true;
+            case R.id.menuListaCompra:
+                verLista(ListaCompra.class);
+                return true;
+            case R.id.menuGestionProductos:
+                verLista(ListaCategoria.class);
+                return true;
+//            case R.id.menuGestionLibros:
+//                return true;
+//            case R.id.menuGestionJuegos:
+//                return true;
+//            case R.id.menuGestionMultimedia:
+//                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void verLista(Class activity) {
+        Intent intent = new Intent(this, activity);
         startActivity(intent);
     }
 }

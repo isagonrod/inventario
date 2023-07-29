@@ -1,9 +1,7 @@
-package isamix.inventario;
+package isamix.inventario.crud;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,19 +19,19 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import isamix.inventario.adapter.ListaProductoAdapter;
+import isamix.inventario.R;
+import isamix.inventario.adapter.ProductoAdapter;
 import isamix.inventario.db.DbCategoria;
-import isamix.inventario.db.DbProductos;
-import isamix.inventario.entity.Categoria;
-import isamix.inventario.entity.Producto;
+import isamix.inventario.db.DbProducto;
+import isamix.inventario.modelo.Categoria;
+import isamix.inventario.modelo.Producto;
 
-public class ListaProductoPorCategoriasActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListaProductoPorCategoria extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     SearchView txtBuscar;
     RecyclerView listaProductos;
     List<Producto> arrayProductos;
-    ListaProductoAdapter adapter;
-    Button addProduct, addListProduct, deleteProduct;
+    ProductoAdapter adapter;
     TextView title;
 
     Intent intent;
@@ -44,7 +42,7 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_producto);
+        setContentView(R.layout.lista_producto);
 
         intent = this.getIntent();
         extra = intent.getExtras();
@@ -54,16 +52,13 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
         title.setText(category);
 
         txtBuscar = findViewById(R.id.txtBuscar);
-        addProduct = findViewById(R.id.fabNuevo);
-        addListProduct = findViewById(R.id.fabListaCompra);
-        deleteProduct = findViewById(R.id.fabEliminar);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
-        DbProductos dbProductos = new DbProductos(ListaProductoPorCategoriasActivity.this);
-        arrayProductos = dbProductos.mostrarProductosPorCategoria(category);
+        DbProducto dbProducto = new DbProducto(ListaProductoPorCategoria.this);
+        arrayProductos = dbProducto.mostrarProductosPorCategoria(category);
 
-        adapter = new ListaProductoAdapter(arrayProductos);
+        adapter = new ProductoAdapter(arrayProductos);
         listaProductos.setAdapter(adapter);
 
         // Pinta la línea divisoria entre elementos de la lista
@@ -72,45 +67,6 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
         listaProductos.addItemDecoration(dividerItemDecoration);
 
         txtBuscar.setOnQueryTextListener(this);
-
-        addProduct.setOnClickListener(v -> {
-            Intent intent = new Intent(ListaProductoPorCategoriasActivity.this, NuevoProductoActivity.class);
-            startActivity(intent);
-        });
-
-        deleteProduct.setOnClickListener(v -> {
-            for (int i = 0; i < listaProductos.getChildCount(); i++) {
-                View listItem = listaProductos.getChildAt(i);
-                int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
-                if (itemColor == Color.CYAN) {
-                    dbProductos.eliminarProducto(this.arrayProductos.get(i).getId());
-                    adapter.eliminarItem(i);
-                    listaProductos.removeView(listItem);
-                }
-            }
-        });
-
-        addListProduct.setOnClickListener(v -> {
-            for (int i = 0; i < listaProductos.getChildCount(); i++) {
-                View listItem = listaProductos.getChildAt(i);
-                int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
-                if (itemColor == Color.CYAN) {
-                    arrayProductos.get(i).setParaComprar(0);
-                    dbProductos.editarProducto(
-                            this.arrayProductos.get(i).getId(),
-                            this.arrayProductos.get(i).getNombre(),
-                            this.arrayProductos.get(i).getCantidad(),
-                            this.arrayProductos.get(i).getPrecio(),
-                            this.arrayProductos.get(i).getTienda(),
-                            this.arrayProductos.get(i).getCategoria(),
-                            1);
-                    listItem.setBackgroundColor(Color.WHITE);
-                }
-            }
-        });
-
     }
 
     @Override
@@ -133,17 +89,22 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
+            case R.id.menuFuncionamiento:
+                verLista(FuncionamientoApp.class);
+                return true;
             case R.id.menuListaCompra:
-                verLista(ListaCompraProductoActivity.class);
+                verLista(ListaCompra.class);
                 return true;
             case R.id.menuGestionProductos:
-                verLista(ListaProductoActivity.class);
+                verLista(ListaCategoria.class);
                 return true;
-            case R.id.menuNuevaCategoria:
-                crearNuevaCategoria();
-                return true;
+//            case R.id.menuGestionLibros:
+//                return true;
+//            case R.id.menuGestionJuegos:
+//                return true;
+//            case R.id.menuGestionMultimedia:
+//                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -155,13 +116,13 @@ public class ListaProductoPorCategoriasActivity extends AppCompatActivity implem
     }
 
     public void crearNuevaCategoria() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ListaProductoPorCategoriasActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ListaProductoPorCategoria.this);
         builder.setTitle("NUEVA CATEGORÍA");
 
-        final View customCategoriaAlert = getLayoutInflater().inflate(R.layout.custom_nueva_categoria_alert, null);
+        final View customCategoriaAlert = getLayoutInflater().inflate(R.layout.custom_nueva_categoria, null);
         builder.setView(customCategoriaAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
-            DbCategoria dbCategoria = new DbCategoria(ListaProductoPorCategoriasActivity.this);
+            DbCategoria dbCategoria = new DbCategoria(ListaProductoPorCategoria.this);
             EditText nombre = customCategoriaAlert.findViewById(R.id.nombreNuevaCategoria);
 
             Categoria category = dbCategoria.getCategoriaPorNombre(nombre.getText().toString());

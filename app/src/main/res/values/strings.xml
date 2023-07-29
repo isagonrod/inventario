@@ -22,6 +22,7 @@
     <string name="menu_lista_libros">Gestión de Libros</string>
     <string name="menu_lista_juegos">Gestión de Juegos</string>
     <string name="menu_lista_multimedia">Gestión Multimedia</string>
+    <string name="funcionamiento">Funcionamiento de la App</string>
 
     <string name="moneda">€</string>
     <string name="separator">|</string>

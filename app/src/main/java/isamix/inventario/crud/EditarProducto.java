@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -35,7 +38,7 @@ public class EditarProducto extends AppCompatActivity {
     List<Tienda> tiendas;
     List<Categoria> categorias;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +90,7 @@ public class EditarProducto extends AppCompatActivity {
         if (producto != null) {
             txtNombre.setText(producto.getNombre());
             txtCantidad.setText(String.valueOf(producto.getCantidad()));
-            txtPrecio.setText(producto.getPrecio());
+            txtPrecio.setText(String.format("%.2f", producto.getPrecio()));
             txtTienda.setText(producto.getTienda());
             txtCategoria.setText(producto.getCategoria());
         }
@@ -97,7 +100,7 @@ public class EditarProducto extends AppCompatActivity {
                 correcto = dbProductos.editarProducto(
                         id, txtNombre.getText().toString(),
                         Integer.parseInt(txtCantidad.getText().toString()),
-                        txtPrecio.getText().toString(),
+                        Double.parseDouble(txtPrecio.getText().toString().replace(",", ".")),
                         txtTienda.getText().toString(),
                         txtCategoria.getText().toString(),
                         0);
@@ -133,6 +136,41 @@ public class EditarProducto extends AppCompatActivity {
         Intent intent = new Intent(this, VerProducto.class);
         intent.putExtra("ID", id);
         intent.putExtra("categoria", txtCategoria.getText().toString());
+        startActivity(intent);
+    }
+
+    /* *** *** *** MENÚ PRINCIPAL *** *** *** */
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_principal, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuFuncionamiento:
+                verLista(FuncionamientoApp.class);
+                return true;
+            case R.id.menuListaCompra:
+                verLista(ListaCompra.class);
+                return true;
+            case R.id.menuGestionProductos:
+                verLista(ListaCategoria.class);
+                return true;
+//            case R.id.menuGestionLibros:
+//                return true;
+//            case R.id.menuGestionJuegos:
+//                return true;
+//            case R.id.menuGestionMultimedia:
+//                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void verLista(Class activity) {
+        Intent intent = new Intent(this, activity);
         startActivity(intent);
     }
 }

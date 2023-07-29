@@ -25,16 +25,6 @@
         android:queryHint="Indica el nombre del producto"
         app:actionViewClass="androix.appcompat.widget.SearchView" />
 
-    <Button
-        android:id="@+id/btnAddProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/btn_new_product"
-        android:backgroundTint="@color/orange"
-        android:textColor="@color/white"
-        android:clickable="true"/>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listaProductos"
         android:layout_width="match_parent"

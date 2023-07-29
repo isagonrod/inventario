@@ -32,7 +32,6 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
     RecyclerView listaProductos;
     List<Producto> arrayProductos;
     ProductoAdapter adapter;
-    Button btnAddProduct;
     TextView title;
 
     Intent intent;
@@ -53,8 +52,6 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
         title.setText(category);
 
         txtBuscar = findViewById(R.id.txtBuscar);
-        btnAddProduct = findViewById(R.id.btnAddProduct);
-        btnAddProduct.setVisibility(View.GONE);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
@@ -92,17 +89,22 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
+            case R.id.menuFuncionamiento:
+                verLista(FuncionamientoApp.class);
+                return true;
             case R.id.menuListaCompra:
                 verLista(ListaCompra.class);
                 return true;
             case R.id.menuGestionProductos:
-                verLista(ListaProducto.class);
+                verLista(ListaCategoria.class);
                 return true;
-            case R.id.menuNuevaCategoria:
-                crearNuevaCategoria();
-                return true;
+//            case R.id.menuGestionLibros:
+//                return true;
+//            case R.id.menuGestionJuegos:
+//                return true;
+//            case R.id.menuGestionMultimedia:
+//                return true;
         }
 
         return super.onOptionsItemSelected(item);

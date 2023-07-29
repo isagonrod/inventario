@@ -1,11 +1,8 @@
 package isamix.inventario.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +23,8 @@ import isamix.inventario.crud.VerProducto;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Producto;
 
-public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder> {List<Producto> listaProductos;
+public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder> {
+    List<Producto> listaProductos;
     List<Producto> listaOriginal;
 
     public ProductoAdapter(List<Producto> listaProductos) {
@@ -46,7 +44,9 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
     public void onBindViewHolder(@NonNull ProductoViewHolder holder, int position) {
         holder.viewNombre.setText(listaProductos.get(position).getNombre());
         holder.viewCantidad.setText(String.valueOf(listaProductos.get(position).getCantidad()));
-        holder.viewPrecio.setText(listaProductos.get(position).getPrecio());
+        holder.viewPrecio.setText(String.format("%.2f", listaProductos.get(position).getPrecio()));
+        holder.viewTienda.setText(listaProductos.get(position).getTienda());
+        holder.viewCategoria.setText(listaProductos.get(position).getCategoria());
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -78,7 +78,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
 
     public class ProductoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewCantidad, viewPrecio;
+        TextView viewNombre, viewCantidad, viewPrecio, viewTienda, viewCategoria;
         Button btnCompra, btnEditar, btnEliminar;
         DbProducto dbProducto;
 
@@ -88,23 +88,15 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
             viewNombre = itemView.findViewById(R.id.viewNombre);
             viewCantidad = itemView.findViewById(R.id.viewCantidad);
             viewPrecio = itemView.findViewById(R.id.viewPrecio);
+            viewTienda = itemView.findViewById(R.id.tienda_pro);
+            viewCategoria = itemView.findViewById(R.id.categoria_pro);
 
             btnCompra = itemView.findViewById(R.id.basketButton);
             btnEditar = itemView.findViewById(R.id.editButton);
             btnEliminar = itemView.findViewById(R.id.deleteButton);
 
             itemView.setOnClickListener(view -> {
-                String cantidadNueva;
-                int cantidad = listaProductos.get(getAdapterPosition()).getCantidad();
-                int result = cantidad - 1;
-                if (result >= 0) {
-                    cantidadNueva = String.valueOf(result);
-                    viewCantidad.setText(cantidadNueva);
-                } else {
-                    viewCantidad.setText("0");
-                }
-                dbProducto = new DbProducto(itemView.getContext());
-                dbProducto.editarCantidad(listaProductos.get(getAdapterPosition()).getId(), result);
+                disminuirCantidad();
             });
 
             itemView.setOnLongClickListener(view -> {
@@ -142,6 +134,22 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
                 dbProducto.eliminarProducto(listaProductos.get(getAdapterPosition()).getId());
                 eliminarItem(getAdapterPosition());
             });
+        }
+
+        public void disminuirCantidad() {
+            String cantidadNueva;
+            int cantidad = listaProductos.get(getAdapterPosition()).getCantidad();
+            int result = cantidad - 1;
+            if (result >= 0) {
+                cantidadNueva = String.valueOf(result);
+                viewCantidad.setText(cantidadNueva);
+            } else if (result < 0) {
+                result = 0;
+                cantidadNueva = String.valueOf(result);
+                viewCantidad.setText(cantidadNueva);
+            }
+            dbProducto = new DbProducto(itemView.getContext());
+            dbProducto.editarCantidad(listaProductos.get(getAdapterPosition()).getId(), result);
         }
     }
 }

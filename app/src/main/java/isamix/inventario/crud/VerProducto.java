@@ -54,7 +54,7 @@ public class VerProducto extends AppCompatActivity {
 
             txtNombre.setText(producto.getNombre());
             txtCantidad.setText(String.valueOf(producto.getCantidad()));
-            txtPrecio.setText(producto.getPrecio());
+            txtPrecio.setText(String.format("%.2f", producto.getPrecio()));
             txtTienda.setText(producto.getTienda());
             txtCategoria.setText(producto.getCategoria());
 

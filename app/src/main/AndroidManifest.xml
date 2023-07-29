@@ -31,12 +31,30 @@
         </activity>
 
         <activity
-            android:name=".crud.ListaProductoPorCategoria"
+            android:name=".crud.FuncionamientoApp"
             android:exported="false"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".crud.ListaCategoria"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".crud.ListaProductoPorCategoria"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaCategoria" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaCategoria" />
         </activity>
 
         <activity
@@ -51,35 +69,35 @@
         <activity
             android:name=".crud.ListaProducto"
             android:exported="false"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".crud.ListaCategoria" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".crud.ListaCategoria" />
         </activity>
 
         <activity
             android:name=".crud.EditarProducto"
             android:exported="false"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".crud.ListaCategoria">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".crud.ListaCategoria" />
         </activity>
         <activity
             android:name=".crud.VerProducto"
             android:exported="false"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".crud.ListaCategoria" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".crud.ListaCategoria" />
         </activity>
         <activity
             android:name=".crud.NuevoProducto"
             android:exported="false"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".crud.ListaCategoria" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".crud.ListaCategoria" />
         </activity>
 
     </application>

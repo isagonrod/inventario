@@ -13,11 +13,16 @@
     <!-- Botones con texto -->
     <string name="terminar_compra">Terminar compra</string>
     <string name="btn_new_product">Agregar nuevo producto</string>
+    <string name="btn_product_list">Ver lista completa de productos</string>
+    <string name="btn_new_category">Añadir nueva categoría</string>
 
     <!-- Menú principal -->
     <string name="menu_lista_compra">Lista de la Compra</string>
     <string name="menu_lista_productos">Gestión de Productos</string>
-    <string name="menu_nueva_categoria">Añadir nueva categoría</string>
+    <string name="menu_lista_libros">Gestión de Libros</string>
+    <string name="menu_lista_juegos">Gestión de Juegos</string>
+    <string name="menu_lista_multimedia">Gestión Multimedia</string>
+    <string name="funcionamiento">Funcionamiento de la App</string>
 
     <string name="moneda">€</string>
     <string name="separator">|</string>

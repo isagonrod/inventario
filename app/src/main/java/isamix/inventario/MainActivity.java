@@ -10,59 +10,37 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.List;
 
 import isamix.inventario.adapter.CategoriaAdapter;
+import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.crud.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.ListaProducto;
 import isamix.inventario.db.DbCategoria;
 import isamix.inventario.modelo.Categoria;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView listaCategorias;
-    List<Categoria> arrayListCategorias;
-    CategoriaAdapter adapter;
+
+    Button gestionCompra, gestionProductos, gestionLibros, gestionJuegos, gestionMultimedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listaCategorias = findViewById(R.id.listaCategorias);
-        listaCategorias.setLayoutManager(new GridLayoutManager(this, 2));
+        gestionCompra = findViewById(R.id.gestionCompra);
+        gestionCompra.setOnClickListener(v -> verLista(ListaCompra.class));
 
-        DbCategoria dbCategoria = new DbCategoria(MainActivity.this);
-        arrayListCategorias = dbCategoria.mostrarCategorias();
-        adapter = new CategoriaAdapter(arrayListCategorias);
-        listaCategorias.setAdapter(adapter);
-    }
+        gestionProductos = findViewById(R.id.gestionProductos);
+        gestionProductos.setOnClickListener(v -> verLista(ListaCategoria.class));
 
-    public void crearNuevaCategoria() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("NUEVA CATEGORÍA");
-
-        final View customCategoriaAlert = getLayoutInflater().inflate(R.layout.custom_nueva_categoria, null);
-        builder.setView(customCategoriaAlert);
-        builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
-            DbCategoria dbCategoria = new DbCategoria(MainActivity.this);
-            EditText nombre = customCategoriaAlert.findViewById(R.id.nombreNuevaCategoria);
-
-            Categoria category = dbCategoria.getCategoriaPorNombre(nombre.getText().toString());
-            if (category == null) {
-                dbCategoria.insertarCategoria(nombre.getText().toString());
-            } else {
-                dbCategoria.editarCategoria(category.getId(), category.getNombre());
-            }
-
-            arrayListCategorias = dbCategoria.mostrarCategorias();
-            adapter = new CategoriaAdapter(arrayListCategorias);
-            listaCategorias.setAdapter(adapter);
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        gestionLibros = findViewById(R.id.gestionLibros);
+        gestionJuegos = findViewById(R.id.gestionJuegos);
+        gestionMultimedia = findViewById(R.id.gestionMultimedia);
     }
 
 
@@ -75,17 +53,22 @@ public class MainActivity extends AppCompatActivity {
 
     // Método para cambiar de actividad según se seleccione una opción u otra en el menú
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
+            case R.id.menuFuncionamiento:
+                verLista(FuncionamientoApp.class);
+                return true;
             case R.id.menuListaCompra:
                 verLista(ListaCompra.class);
                 return true;
             case R.id.menuGestionProductos:
-                verLista(ListaProducto.class);
+                verLista(ListaCategoria.class);
                 return true;
-            case R.id.menuNuevaCategoria:
-                crearNuevaCategoria();
-                return true;
+//            case R.id.menuGestionLibros:
+//                return true;
+//            case R.id.menuGestionJuegos:
+//                return true;
+//            case R.id.menuGestionMultimedia:
+//                return true;
         }
 
         return super.onOptionsItemSelected(item);

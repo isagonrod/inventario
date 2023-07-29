@@ -98,38 +98,72 @@
         </LinearLayout>
 
         <LinearLayout
+            android:weightSum="2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="end"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/basketButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/carrito"
-                android:clickable="true"
-                tools:ignore="SpeakableTextPresentCheck"/>
+            <LinearLayout
+                android:gravity="start"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/editButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/edit"
-                android:clickable="true"
-                tools:ignore="SpeakableTextPresentCheck"/>
+                <TextView
+                    android:id="@+id/tienda_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/tienda_border" />
 
-            <Button
-                android:id="@+id/deleteButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/delete"
-                android:clickable="true"
-                tools:ignore="SpeakableTextPresentCheck"/>
+                <TextView
+                    android:id="@+id/categoria_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/categoria_border" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/basketButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/carrito"
+                    android:clickable="true"
+                    tools:ignore="SpeakableTextPresentCheck"/>
+
+                <Button
+                    android:id="@+id/editButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/edit"
+                    android:clickable="true"
+                    tools:ignore="SpeakableTextPresentCheck"/>
+
+                <Button
+                    android:id="@+id/deleteButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/delete"
+                    android:clickable="true"
+                    tools:ignore="SpeakableTextPresentCheck"/>
+            </LinearLayout>
+
         </LinearLayout>
+
+
     </LinearLayout>
 </RelativeLayout>

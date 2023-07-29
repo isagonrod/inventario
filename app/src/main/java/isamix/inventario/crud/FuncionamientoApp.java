@@ -18,7 +18,9 @@ public class FuncionamientoApp extends AppCompatActivity {
                     "\t\t 3.3. Si se pulsa el botón del carrito, se añadirá a la lista de la compra.\n\n" +
                     "\t\t 3.4. Si se pulsa el botón del lápiz, se abrirá una nueva ventana para poder editar los datos del producto.\n\n" +
                     "\t\t 3.5. Si se pulsa el botón de la papelera, se eliminará el producto.\n\n" +
-            "4. Hay varios tipos de gestión diferentes: de productos (que se pueden incluir en la lista de la compra) por un lado, y de libros, juegos y multimedia (que tienen unos datos específicos por el tipo de productos que son y además no se pueden incluir en la lista de la compra).";
+            "4. Hay varios tipos de gestión diferentes: de productos (que se pueden incluir en la lista de la compra) por un lado, y de libros, juegos y multimedia (que tienen unos datos específicos por el tipo de productos que son y además no se pueden incluir en la lista de la compra).\n\n" +
+            "5. En la vista de la lista de la compra se puede añadir el número de productos comprados y al pulsar sobre el botón de 'Finalizar compra' (estando los producto seleccionados) esa cantidad se sumará a la ya existente.";
+
 
     @SuppressLint("MissingInflatedId")
     @Override

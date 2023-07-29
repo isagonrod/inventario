@@ -36,7 +36,7 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
 
     @Override
     public void onBindViewHolder(@NonNull CompraViewHolder holder, int position) {
-        holder.txtCantidad.setText(String.valueOf(listaProductos.get(position).getCantidad()));
+        //holder.txtCantidad.setText(String.valueOf(listaProductos.get(position).getCantidad()));
         holder.txtNombre.setText(listaProductos.get(position).getNombre());
         holder.txtTienda.setText(listaProductos.get(position).getTienda());
         holder.txtCategoria.setText(listaProductos.get(position).getCategoria());

@@ -69,7 +69,10 @@ public class ListaCompra extends AppCompatActivity implements SearchView.OnQuery
                 int itemColor = listItem.getBackground() != null ?
                         ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
                 if (itemColor == Color.YELLOW) {
-                    dbProducto.finCompra(this.listaCompra.get(i).getId(), this.listaCompra.get(i).getCantidad());
+                    int cantidadComprada = this.listaCompra.get(i).getCantidad();
+                    int cantidadInicial = dbProducto.verProducto(listaCompra.get(i).getId()).getCantidad();
+                    int cantidadTotal = cantidadInicial + cantidadComprada;
+                    dbProducto.finCompra(this.listaCompra.get(i).getId(), cantidadTotal);
                     adapter.eliminarItem(i);
                     i--;
                     listaProductos.removeView(listItem);

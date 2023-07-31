@@ -15,6 +15,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_MARCA = "t_marca";
     public static final String TABLE_LIBRO = "t_libro";
     public static final String TABLE_GENERO = "t_genero";
+    public static final String TABLE_PERSONA = "t_persona";
+    public static final String TABLE_PROFESION = "t_profesion";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,13 +46,23 @@ public class DbHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(tienda) REFERENCES " + TABLE_TIENDA + "(id), " +
                 "FOREIGN KEY(categoria) REFERENCES " + TABLE_CATEGORIA + "(id)" +
                 ")");
+
+        db.execSQL("CREATE TABLE " + TABLE_PROFESION + "(id INTEGER PRIMARY KEY AUTOINCREMENT, prof TEXT NOT NULL)");
+        db.execSQL("INSERT INTO " + TABLE_PROFESION + "(prof) VALUES ('Autor', 'Director', 'Artista', 'Grupo/Banda')");
+
+        db.execSQL("CREATE TABLE " + TABLE_PERSONA + "(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "nombre TEXT, " +
+                "apellido TEXT, " +
+                "profesion TEXT," +
+                "FOREIGN KEY(profesion) REFERENCES " + TABLE_PROFESION + "(id))");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTO);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIENDA);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIA);
-        onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTO);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIENDA);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIA);
+//        onCreate(db);
     }
 }

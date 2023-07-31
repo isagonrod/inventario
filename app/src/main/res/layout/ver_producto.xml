@@ -23,6 +23,20 @@
         android:layout_marginBottom="10dp"/>
 
     <TextView
+        android:id="@+id/viewMarca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_marca" />
+
+    <TextView
+        android:id="@+id/txtMarca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
         android:id="@+id/viewCantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

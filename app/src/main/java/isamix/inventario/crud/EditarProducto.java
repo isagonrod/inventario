@@ -18,16 +18,18 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.db.DbCategoria;
+import isamix.inventario.db.DbMarca;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.db.DbTienda;
 import isamix.inventario.modelo.Categoria;
+import isamix.inventario.modelo.Marca;
 import isamix.inventario.modelo.Producto;
 import isamix.inventario.modelo.Tienda;
 
 public class EditarProducto extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio;
-    AutoCompleteTextView txtTienda, txtCategoria;
+    AutoCompleteTextView txtMarca, txtTienda, txtCategoria;
     Button btnGuardar, fabEditar, fabEliminar;
     Producto producto;
     int id = 0;
@@ -37,6 +39,8 @@ public class EditarProducto extends AppCompatActivity {
     DbCategoria dbCategoria;
     List<Tienda> tiendas;
     List<Categoria> categorias;
+    DbMarca dbMarca;
+    List<Marca> marcas;
 
     @SuppressLint({"MissingInflatedId", "DefaultLocale"})
     @Override
@@ -45,6 +49,7 @@ public class EditarProducto extends AppCompatActivity {
         setContentView(R.layout.nuevo_producto);
 
         txtNombre = findViewById(R.id.nombre);
+        txtMarca = findViewById(R.id.marca);
         txtCantidad = findViewById(R.id.cantidad);
         txtPrecio = findViewById(R.id.precio);
         txtTienda = findViewById(R.id.tienda);
@@ -63,6 +68,8 @@ public class EditarProducto extends AppCompatActivity {
         dbCategoria = new DbCategoria(EditarProducto.this);
         tiendas = dbTienda.mostrarTiendas();
         categorias = dbCategoria.mostrarCategorias();
+        dbMarca = new DbMarca(EditarProducto.this);
+        marcas = dbMarca.mostrarMarcas();
 
         ArrayAdapter<Tienda> arrayAdapterTienda = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, tiendas);
@@ -71,6 +78,10 @@ public class EditarProducto extends AppCompatActivity {
         ArrayAdapter<Categoria> arrayAdapterCategoria = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, categorias);
         txtCategoria.setAdapter(arrayAdapterCategoria);
+
+        ArrayAdapter<Marca> arrayAdapterMarca = new ArrayAdapter<>(getApplicationContext(),
+                android.support.design.R.layout.support_simple_spinner_dropdown_item, marcas);
+        txtMarca.setAdapter(arrayAdapterMarca);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -89,6 +100,7 @@ public class EditarProducto extends AppCompatActivity {
 
         if (producto != null) {
             txtNombre.setText(producto.getNombre());
+            txtMarca.setText(producto.getMarca());
             txtCantidad.setText(String.valueOf(producto.getCantidad()));
             txtPrecio.setText(String.format("%.2f", producto.getPrecio()));
             txtTienda.setText(producto.getTienda());
@@ -99,6 +111,7 @@ public class EditarProducto extends AppCompatActivity {
             if (!txtNombre.getText().toString().equals("") && !txtCantidad.getText().toString().equals("") && !txtTienda.getText().toString().equals("")) {
                 correcto = dbProductos.editarProducto(
                         id, txtNombre.getText().toString(),
+                        txtMarca.getText().toString(),
                         Integer.parseInt(txtCantidad.getText().toString()),
                         Double.parseDouble(txtPrecio.getText().toString().replace(",", ".")),
                         txtTienda.getText().toString(),
@@ -107,6 +120,7 @@ public class EditarProducto extends AppCompatActivity {
 
                 Tienda shop = dbTienda.getTienda(txtTienda.getText().toString());
                 Categoria category = dbCategoria.getCategoriaPorNombre(txtCategoria.getText().toString());
+                Marca brand = dbMarca.getMarca(txtMarca.getText().toString());
 
                 if (shop == null) {
                     dbTienda.insertarTienda(txtTienda.getText().toString());
@@ -118,6 +132,12 @@ public class EditarProducto extends AppCompatActivity {
                     dbCategoria.insertarCategoria(txtCategoria.getText().toString());
                 } else {
                     dbCategoria.editarCategoria(category.getId(), category.getNombre());
+                }
+
+                if (brand == null) {
+                    dbMarca.insertarMarca(txtMarca.getText().toString());
+                } else {
+                    dbMarca.editarMarca(brand.getId(), brand.getNombre());
                 }
 
                 if (correcto) {

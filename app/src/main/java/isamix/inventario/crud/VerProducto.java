@@ -14,7 +14,7 @@ import isamix.inventario.modelo.Producto;
 
 public class VerProducto extends AppCompatActivity {
 
-    TextView txtNombre, txtCantidad, txtPrecio, txtTienda, txtCategoria;
+    TextView txtNombre, txtMarca, txtCantidad, txtPrecio, txtTienda, txtCategoria;
     Button btnGuardar, fabEditar, fabEliminar;
     Producto producto;
     int id = 0;
@@ -25,6 +25,7 @@ public class VerProducto extends AppCompatActivity {
         setContentView(R.layout.ver_producto);
 
         txtNombre = findViewById(R.id.txtNombre);
+        txtMarca = findViewById(R.id.txtMarca);
         txtCantidad = findViewById(R.id.txtCantidad);
         txtPrecio = findViewById(R.id.txtPrecio);
         txtTienda = findViewById(R.id.txtTienda);
@@ -53,6 +54,7 @@ public class VerProducto extends AppCompatActivity {
         if (producto != null) {
 
             txtNombre.setText(producto.getNombre());
+            txtMarca.setText(producto.getMarca());
             txtCantidad.setText(String.valueOf(producto.getCantidad()));
             txtPrecio.setText(String.format("%.2f", producto.getPrecio()));
             txtTienda.setText(producto.getTienda());

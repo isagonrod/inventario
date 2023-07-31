@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Inventario</string>
 
+    <!-- Formulario Producto -->
     <string name="hint_nombre">Nombre:</string>
+    <string name="hint_marca">Marca:</string>
     <string name="hint_cantidad">Cantidad:</string>
     <string name="hint_precio">Precio por unidad:</string>
     <string name="hint_precio_lista">Precio/unidad:</string>

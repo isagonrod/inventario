@@ -24,13 +24,14 @@ public class DbProducto extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarProducto(String nombre, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
+    public long insertarProducto(String nombre, String marca, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
 
         long id = 0;
 
         try {
             ContentValues values = new ContentValues();
             values.put("nombre", nombre);
+            values.put("marca", marca);
             values.put("cantidad", cantidad);
             values.put("precio", precio);
             values.put("tienda", tienda);
@@ -58,11 +59,12 @@ public class DbProducto extends DbHelper {
                 producto = new Producto();
                 producto.setId(cursorProductos.getInt(0));
                 producto.setNombre(cursorProductos.getString(1));
-                producto.setCantidad(cursorProductos.getInt(2));
-                producto.setPrecio(cursorProductos.getDouble(3));
-                producto.setTienda(cursorProductos.getString(4));
-                producto.setCategoria(cursorProductos.getString(5));
-                producto.setParaComprar(cursorProductos.getInt(6));
+                producto.setMarca(cursorProductos.getString(2));
+                producto.setCantidad(cursorProductos.getInt(3));
+                producto.setPrecio(cursorProductos.getDouble(4));
+                producto.setTienda(cursorProductos.getString(5));
+                producto.setCategoria(cursorProductos.getString(6));
+                producto.setParaComprar(cursorProductos.getInt(7));
                 listaProductos.add(producto);
             } while (cursorProductos.moveToNext());
         }
@@ -84,11 +86,12 @@ public class DbProducto extends DbHelper {
                 producto = new Producto();
                 producto.setId(cursorProductos.getInt(0));
                 producto.setNombre(cursorProductos.getString(1));
-                producto.setCantidad(cursorProductos.getInt(2));
-                producto.setPrecio(cursorProductos.getDouble(3));
-                producto.setTienda(cursorProductos.getString(4));
-                producto.setCategoria(cursorProductos.getString(5));
-                producto.setParaComprar(cursorProductos.getInt(6));
+                producto.setMarca(cursorProductos.getString(2));
+                producto.setCantidad(cursorProductos.getInt(3));
+                producto.setPrecio(cursorProductos.getDouble(4));
+                producto.setTienda(cursorProductos.getString(5));
+                producto.setCategoria(cursorProductos.getString(6));
+                producto.setParaComprar(cursorProductos.getInt(7));
                 listaProductos.add(producto);
             } while (cursorProductos.moveToNext());
         }
@@ -109,11 +112,12 @@ public class DbProducto extends DbHelper {
                 producto = new Producto();
                 producto.setId(cursorProductos.getInt(0));
                 producto.setNombre(cursorProductos.getString(1));
-                producto.setCantidad(cursorProductos.getInt(2));
-                producto.setPrecio(cursorProductos.getDouble(3));
-                producto.setTienda(cursorProductos.getString(4));
-                producto.setCategoria(cursorProductos.getString(5));
-                producto.setParaComprar(cursorProductos.getInt(6));
+                producto.setMarca(cursorProductos.getString(2));
+                producto.setCantidad(cursorProductos.getInt(3));
+                producto.setPrecio(cursorProductos.getDouble(4));
+                producto.setTienda(cursorProductos.getString(5));
+                producto.setCategoria(cursorProductos.getString(6));
+                producto.setParaComprar(cursorProductos.getInt(7));
                 listaProductos.add(producto);
             } while (cursorProductos.moveToNext());
         }
@@ -132,22 +136,24 @@ public class DbProducto extends DbHelper {
             producto = new Producto();
             producto.setId(cursorProducto.getInt(0));
             producto.setNombre(cursorProducto.getString(1));
-            producto.setCantidad(cursorProducto.getInt(2));
-            producto.setPrecio(cursorProducto.getDouble(3));
-            producto.setTienda(cursorProducto.getString(4));
-            producto.setCategoria(cursorProducto.getString(5));
+            producto.setMarca(cursorProducto.getString(2));
+            producto.setCantidad(cursorProducto.getInt(3));
+            producto.setPrecio(cursorProducto.getDouble(4));
+            producto.setTienda(cursorProducto.getString(5));
+            producto.setCategoria(cursorProducto.getString(6));
         }
         cursorProducto.close();
         return producto;
     }
 
-    public boolean editarProducto(int id, String nombre, int cantidad, double precio, String tienda, String categoria, int paraComprar) {
+    public boolean editarProducto(int id, String nombre, String marca, int cantidad, double precio, String tienda, String categoria, int paraComprar) {
 
         boolean correcto;
 
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             db.execSQL("UPDATE " + TABLE_PRODUCTO + " SET " +
                     "nombre = '" + nombre + "', " +
+                    "marca = '" + marca + "', " +
                     "cantidad = '" + cantidad + "', " +
                     "precio = '" + precio + "', " +
                     "tienda = '" + tienda + "', " +

@@ -9,6 +9,7 @@ public class Producto {
     private String tienda;
     private String categoria;
     private int paraComprar;
+    private String marca;
 
     public Producto() {
         this.paraComprar = 0;
@@ -68,5 +69,13 @@ public class Producto {
 
     public void setParaComprar(int paraComprar) {
         this.paraComprar = paraComprar;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 }

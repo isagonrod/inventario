@@ -19,6 +19,7 @@ import isamix.inventario.adapter.CategoriaAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
 import isamix.inventario.crud.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
+import isamix.inventario.crud.ListaGenero;
 import isamix.inventario.crud.ListaProducto;
 import isamix.inventario.db.DbCategoria;
 import isamix.inventario.modelo.Categoria;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         gestionProductos.setOnClickListener(v -> verLista(ListaCategoria.class));
 
         gestionLibros = findViewById(R.id.gestionLibros);
+        gestionLibros.setOnClickListener(v -> verLista(ListaGenero.class));
+
         gestionJuegos = findViewById(R.id.gestionJuegos);
         gestionMultimedia = findViewById(R.id.gestionMultimedia);
     }
@@ -63,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuGestionProductos:
                 verLista(ListaCategoria.class);
                 return true;
-//            case R.id.menuGestionLibros:
-//                return true;
+            case R.id.menuGestionLibros:
+                verLista(ListaGenero.class);
+                return true;
 //            case R.id.menuGestionJuegos:
 //                return true;
 //            case R.id.menuGestionMultimedia:

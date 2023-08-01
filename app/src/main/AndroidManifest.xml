@@ -48,6 +48,7 @@
                 android:value=".MainActivity"/>
         </activity>
 
+        <!-- PRODUCTOS -->
         <activity
             android:name=".crud.ListaProductoPorCategoria"
             android:exported="false"
@@ -98,6 +99,50 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".crud.ListaCategoria" />
+        </activity>
+
+        <!-- LIBROS -->
+        <activity
+            android:name=".crud.ListaLibroPorGenero"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaLibro" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaLibro" />
+        </activity>
+
+        <activity
+            android:name=".crud.ListaLibro"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaGenero" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaGenero" />
+        </activity>
+
+        <activity
+            android:name=".crud.EditarLibro"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaGenero">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaGenero" />
+        </activity>
+        <activity
+            android:name=".crud.VerLibro"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaGenero" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaGenero" />
+        </activity>
+        <activity
+            android:name=".crud.NuevoLibro"
+            android:exported="false"
+            android:parentActivityName=".crud.ListaGenero" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.ListaGenero" />
         </activity>
 
     </application>

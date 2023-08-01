@@ -49,9 +49,9 @@ public class NuevoProducto extends AppCompatActivity {
 
         btnGuardar = findViewById(R.id.btnGuardar);
         favEditar = findViewById(R.id.fabEditar);
-        favEditar.setVisibility(View.INVISIBLE);
+        favEditar.setVisibility(View.GONE);
         favEliminar = findViewById(R.id.fabEliminar);
-        favEliminar.setVisibility(View.INVISIBLE);
+        favEliminar.setVisibility(View.GONE);
 
         dbProducto = new DbProducto(NuevoProducto.this);
         dbMarca = new DbMarca(NuevoProducto.this);
@@ -68,6 +68,10 @@ public class NuevoProducto extends AppCompatActivity {
         ArrayAdapter<Categoria> arrayAdapterCategoria = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, categorias);
         txtCategoria.setAdapter(arrayAdapterCategoria);
+
+        ArrayAdapter<Marca> arrayAdapterMarca = new ArrayAdapter<>(getApplicationContext(),
+                android.support.design.R.layout.support_simple_spinner_dropdown_item, marcas);
+        txtMarca.setAdapter(arrayAdapterMarca);
 
         btnGuardar.setOnClickListener(v -> {
             if (!txtNombre.getText().toString().isEmpty()

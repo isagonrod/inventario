@@ -3,8 +3,7 @@ package isamix.inventario.modelo;
 public class Persona {
 
     private int id;
-    private String nombre;
-    private String apellido;
+    private String nombreCompleto;
     private String profesion;
 
     public int getId() {
@@ -15,20 +14,12 @@ public class Persona {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public String getProfesion() {
@@ -40,6 +31,6 @@ public class Persona {
     }
 
     public String toString() {
-        return this.nombre + " " + this.apellido;
+        return this.nombreCompleto;
     }
 }

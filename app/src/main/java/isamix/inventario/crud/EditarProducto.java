@@ -58,10 +58,10 @@ public class EditarProducto extends AppCompatActivity {
         btnGuardar = findViewById(R.id.btnGuardar);
 
         fabEditar = findViewById(R.id.fabEditar);
-        fabEditar.setVisibility(View.INVISIBLE);
+        fabEditar.setVisibility(View.GONE);
 
         fabEliminar = findViewById(R.id.fabEliminar);
-        fabEliminar.setVisibility(View.INVISIBLE);
+        fabEliminar.setVisibility(View.GONE);
 
         dbProducto = new DbProducto(EditarProducto.this);
         dbTienda = new DbTienda(EditarProducto.this);

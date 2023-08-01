@@ -52,8 +52,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABLE_PERSONA + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "nombre TEXT, " +
-                "apellido TEXT, " +
+                "nombreCompleto TEXT, " +
                 "profesion TEXT," +
                 "FOREIGN KEY(profesion) REFERENCES " + TABLE_PROFESION + "(id))");
 

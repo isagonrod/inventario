@@ -58,6 +58,19 @@ public class DbHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(profesion) REFERENCES " + TABLE_PROFESION + "(id))");
 
         db.execSQL("CREATE TABLE " + TABLE_GENERO + "(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL)");
+
+        db.execSQL("CREATE TABLE " + TABLE_LIBRO + "(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "titulo TEXT NOT NULL, " +
+                "autor TEXT NOT NULL, " +
+                "editorial TEXT, " +
+                "genero TEXT, " +
+                "isbn INTEGER, " +
+                "lugarImpresion TEXT, " +
+                "fechaImpresion INTEGER, " +
+                "FOREIGN KEY(autor) REFERENCES " + TABLE_PERSONA + "(id), " +
+                "FOREIGN KEY(editorial) REFERENCES " + TABLE_MARCA + "(id)," +
+                "FOREIGN KEY(genero) REFERENCES " + TABLE_GENERO + "(id))");
     }
 
     @Override

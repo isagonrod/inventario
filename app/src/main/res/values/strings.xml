@@ -13,7 +13,14 @@
     <string name="hint_para_comprar">¿Es para comprar?</string>
 
     <!-- Formulario Libro -->
+    <string name="hint_titulo">Título:</string>
+    <string name="hint_author">Autor:</string>
+    <string name="hint_editorial">Editorial:</string>
     <string name="hint_genero">Género:</string>
+    <string name="hint_isbn">ISBN:</string>
+    <string name="hint_impresion">Impreso en:</string>
+    <string name="hint_impresion_lugar">Lugar de impresión:</string>
+    <string name="hint_impresion_fecha">Año de impresión:</string>
 
     <!-- Botones con texto -->
     <string name="terminar_compra">Terminar compra</string>

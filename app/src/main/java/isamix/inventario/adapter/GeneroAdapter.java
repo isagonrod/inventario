@@ -15,6 +15,7 @@ import java.util.List;
 import isamix.inventario.R;
 import isamix.inventario.crud.ListaLibroPorGenero;
 import isamix.inventario.db.DbGenero;
+import isamix.inventario.db.DbLibro;
 import isamix.inventario.modelo.Genero;
 
 public class GeneroAdapter extends RecyclerView.Adapter<GeneroAdapter.GeneroViewHolder> {

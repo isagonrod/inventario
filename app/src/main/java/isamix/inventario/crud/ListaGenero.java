@@ -59,7 +59,6 @@ public class ListaGenero extends AppCompatActivity {
         builder.setView(customGeneroAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
             DbGenero dbGenero = new DbGenero(this);
-            @SuppressLint("MissingInflatedId")
             EditText nombre = customGeneroAlert.findViewById(R.id.nombreNuevoGenero);
             Genero genre = dbGenero.getGeneroPorNombre(nombre.getText().toString());
             if (genre == null) {

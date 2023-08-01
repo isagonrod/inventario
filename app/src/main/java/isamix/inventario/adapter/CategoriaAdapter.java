@@ -19,7 +19,9 @@ import isamix.inventario.db.DbCategoria;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Categoria;
 
-public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.CategoriaViewHolder> {List<Categoria> listaCategorias;
+public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.CategoriaViewHolder> {
+
+    List<Categoria> listaCategorias;
     List<Categoria> listaOriginal;
 
     public CategoriaAdapter(List<Categoria> listaCategorias) {

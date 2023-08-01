@@ -17,66 +17,63 @@ import android.widget.EditText;
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.CategoriaAdapter;
-import isamix.inventario.db.DbCategoria;
-import isamix.inventario.modelo.Categoria;
+import isamix.inventario.adapter.GeneroAdapter;
+import isamix.inventario.db.DbGenero;
+import isamix.inventario.modelo.Genero;
 
-public class ListaCategoria extends AppCompatActivity {
+public class ListaGenero extends AppCompatActivity {
 
-    RecyclerView listaCategorias;
-    Button btn_newCategory, btn_newProduct, btn_productList;
-    List<Categoria> arrayListCategorias;
-    CategoriaAdapter adapter;
+    RecyclerView listaGeneros;
+    Button btn_newGenre, btn_newBook, btn_bookList;
+    List<Genero> arrayListGeneros;
+    GeneroAdapter adapter;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_categoria);
+        setContentView(R.layout.lista_genero);
 
-        btn_newCategory = findViewById(R.id.addNewCategory);
-        btn_newProduct = findViewById(R.id.addNewProduct);
-        btn_productList = findViewById(R.id.getProductList);
+        btn_newGenre = findViewById(R.id.addNewGenre);
+        btn_newBook = findViewById(R.id.addNewBook);
+        btn_bookList = findViewById(R.id.getBookList);
 
-        listaCategorias = findViewById(R.id.listaCategorias);
-        listaCategorias.setLayoutManager(new GridLayoutManager(this, 2));
+        listaGeneros = findViewById(R.id.listaGeneros);
+        listaGeneros.setLayoutManager(new GridLayoutManager(this, 2));
 
-        DbCategoria dbCategoria = new DbCategoria(this);
-        arrayListCategorias = dbCategoria.mostrarCategorias();
-        adapter = new CategoriaAdapter(arrayListCategorias);
-        listaCategorias.setAdapter(adapter);
+        DbGenero dbGenero = new DbGenero(this);
+        arrayListGeneros = dbGenero.mostrarGeneros();
+        adapter = new GeneroAdapter(arrayListGeneros);
+        listaGeneros.setAdapter(adapter);
 
-        btn_newCategory.setOnClickListener(v -> crearNuevaCategoria());
-        btn_newProduct.setOnClickListener(v -> verLista(NuevoProducto.class));
-        btn_productList.setOnClickListener(v -> verLista(ListaProducto.class));
+        btn_newGenre.setOnClickListener(v -> crearNuevoGenero());
+        btn_newBook.setOnClickListener(v -> verLista(NuevoLibro.class));
+        btn_bookList.setOnClickListener(v -> verLista(ListaLibro.class));
     }
 
-    public void crearNuevaCategoria() {
+    public void crearNuevoGenero() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("NUEVA CATEGORÍA");
+        builder.setTitle("NUEVO GÉNERO");
 
-        final View customCategoriaAlert = getLayoutInflater().inflate(R.layout.custom_nueva_categoria, null);
-        builder.setView(customCategoriaAlert);
+        final View customGeneroAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_genero, null);
+        builder.setView(customGeneroAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
-            DbCategoria dbCategoria = new DbCategoria(this);
-            EditText nombre = customCategoriaAlert.findViewById(R.id.nombreNuevaCategoria);
-
-            Categoria category = dbCategoria.getCategoriaPorNombre(nombre.getText().toString());
-            if (category == null) {
-                dbCategoria.insertarCategoria(nombre.getText().toString());
+            DbGenero dbGenero = new DbGenero(this);
+            @SuppressLint("MissingInflatedId")
+            EditText nombre = customGeneroAlert.findViewById(R.id.nombreNuevoGenero);
+            Genero genre = dbGenero.getGeneroPorNombre(nombre.getText().toString());
+            if (genre == null) {
+                dbGenero.insertarGenero(nombre.getText().toString());
             } else {
-                dbCategoria.editarCategoria(category.getId(), category.getNombre());
+                dbGenero.editarGenero(genre.getId(), genre.getNombre());
             }
-
-            arrayListCategorias = dbCategoria.mostrarCategorias();
-            adapter = new CategoriaAdapter(arrayListCategorias);
-            listaCategorias.setAdapter(adapter);
+            arrayListGeneros = dbGenero.mostrarGeneros();
+            adapter = new GeneroAdapter(arrayListGeneros);
+            listaGeneros.setAdapter(adapter);
         });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
 
     /* *** *** *** MENÚ PRINCIPAL *** *** *** */
 

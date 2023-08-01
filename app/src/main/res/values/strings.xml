@@ -12,11 +12,17 @@
     <string name="hint_imagen">URL de la imagen:</string>
     <string name="hint_para_comprar">¿Es para comprar?</string>
 
+    <!-- Formulario Libro -->
+    <string name="hint_genero">Género:</string>
+
     <!-- Botones con texto -->
     <string name="terminar_compra">Terminar compra</string>
     <string name="btn_new_product">Agregar nuevo producto</string>
     <string name="btn_product_list">Ver lista completa de productos</string>
     <string name="btn_new_category">Añadir nueva categoría</string>
+    <string name="btn_new_genre">Añadir nuevo género</string>
+    <string name="btn_new_book">Agregar nuevo libro</string>
+    <string name="btn_book_list">Ver lista completa de libros</string>
 
     <!-- Menú principal -->
     <string name="menu_lista_compra">Lista de la Compra</string>

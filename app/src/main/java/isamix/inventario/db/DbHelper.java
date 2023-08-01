@@ -56,13 +56,15 @@ public class DbHelper extends SQLiteOpenHelper {
                 "apellido TEXT, " +
                 "profesion TEXT," +
                 "FOREIGN KEY(profesion) REFERENCES " + TABLE_PROFESION + "(id))");
+
+        db.execSQL("CREATE TABLE " + TABLE_GENERO + "(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTO);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIENDA);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIA);
-//        onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIENDA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIA);
+        onCreate(db);
     }
 }

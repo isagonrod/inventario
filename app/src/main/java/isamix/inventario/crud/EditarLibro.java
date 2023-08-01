@@ -91,7 +91,9 @@ public class EditarLibro extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        libro = dbLibro.verLibro(id);
+        final DbLibro dbLibros = new DbLibro(EditarLibro.this);
+        libro = dbLibros.verLibro(id);
+
         if (libro != null) {
             titulo.setText(libro.getTitulo());
             autor.setText(libro.getAutor());
@@ -108,7 +110,7 @@ public class EditarLibro extends AppCompatActivity {
                     && !editorial.getText().toString().isEmpty()
                     && !genero.getText().toString().isEmpty()) {
 
-                corr = dbLibro.editarLibro(id,
+                corr = dbLibros.editarLibro(id,
                         titulo.getText().toString(),
                         autor.getText().toString(),
                         editorial.getText().toString(),

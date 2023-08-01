@@ -12,7 +12,7 @@
         android:id="@+id/viewNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_nombre"
+        android:text="@string/oblig_nombre"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -47,7 +47,7 @@
         android:id="@+id/viewCantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_cantidad"
+        android:text="@string/oblig_cantidad"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -97,7 +97,7 @@
         android:id="@+id/viewTienda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_tienda"
+        android:text="@string/oblig_tienda"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <AutoCompleteTextView
@@ -115,7 +115,7 @@
         android:id="@+id/viewCategoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_categoria"
+        android:text="@string/oblig_categoria"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <AutoCompleteTextView

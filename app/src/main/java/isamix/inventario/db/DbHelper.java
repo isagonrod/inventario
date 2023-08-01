@@ -48,7 +48,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 ")");
 
         db.execSQL("CREATE TABLE " + TABLE_PROFESION + "(id INTEGER PRIMARY KEY AUTOINCREMENT, prof TEXT NOT NULL)");
-        db.execSQL("INSERT INTO " + TABLE_PROFESION + "(prof) VALUES ('Autor', 'Director', 'Artista', 'Grupo/Banda')");
 
         db.execSQL("CREATE TABLE " + TABLE_PERSONA + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +

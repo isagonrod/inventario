@@ -39,6 +39,7 @@
                 android:value=".MainActivity"/>
         </activity>
 
+        <!-- PRODUCTOS -->
         <activity
             android:name=".crud.ListaCategoria"
             android:exported="false"
@@ -48,7 +49,6 @@
                 android:value=".MainActivity"/>
         </activity>
 
-        <!-- PRODUCTOS -->
         <activity
             android:name=".crud.ListaProductoPorCategoria"
             android:exported="false"
@@ -102,6 +102,15 @@
         </activity>
 
         <!-- LIBROS -->
+        <activity
+            android:name=".crud.ListaGenero"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
         <activity
             android:name=".crud.ListaLibroPorGenero"
             android:exported="false"

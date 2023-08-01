@@ -91,8 +91,7 @@ public class DbPersona extends DbHelper {
     public Persona getPersona(String nombreCompleto, String profesion) {
         Persona persona = null;
         Cursor cursorPersona;
-        cursorPersona = db.rawQuery("SELECT * FROM " + TABLE_PERSONA + " WHERE nombreCompleto = '" + nombreCompleto +
-                " AND profesion = '" + profesion + "'", null);
+        cursorPersona = db.rawQuery("SELECT * FROM " + TABLE_PERSONA + " WHERE nombreCompleto = '" + nombreCompleto + "' AND profesion = '" + profesion + "'", null);
         if (cursorPersona.moveToFirst()) {
             persona = new Persona();
             persona.setId(cursorPersona.getInt(0));

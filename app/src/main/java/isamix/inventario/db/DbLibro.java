@@ -24,8 +24,8 @@ public class DbLibro extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarLibro(String titulo, String autor, String editorial, String genero, int isbn,
-                              String lugarImpresion, int fechaImpresion) {
+    public long insertarLibro(String titulo, String autor, String editorial, String genero, String isbn,
+                              String lugarImpresion, String fechaImpresion) {
         long id = 0;
         try {
             ContentValues values = new ContentValues();

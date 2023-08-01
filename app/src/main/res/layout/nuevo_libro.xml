@@ -12,7 +12,7 @@
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_titulo"
+        android:text="@string/oblig_title"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -29,7 +29,7 @@
         android:id="@+id/txtAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_author"
+        android:text="@string/oblig_author"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <AutoCompleteTextView
@@ -47,7 +47,7 @@
         android:id="@+id/txtEditorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_editorial"
+        android:text="@string/oblig_editorial"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <AutoCompleteTextView
@@ -81,7 +81,7 @@
         android:id="@+id/txtGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_genero"
+        android:text="@string/oblig_genero"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <AutoCompleteTextView

@@ -105,9 +105,9 @@ public class NuevoLibro extends AppCompatActivity {
                         autor.getText().toString(),
                         editorial.getText().toString(),
                         isbn.getText().toString(),
-                        Integer.parseInt(genero.getText().toString()),
+                        genero.getText().toString(),
                         lugarImpresion.getText().toString(),
-                        Integer.parseInt(fechaImpresion.getText().toString()));
+                        fechaImpresion.getText().toString());
 
                 Toast.makeText(NuevoLibro.this, "LIBRO GUARDADO", Toast.LENGTH_LONG).show();
                 limpiarFormulario();

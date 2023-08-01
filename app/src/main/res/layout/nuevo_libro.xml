@@ -118,7 +118,7 @@
                 android:id="@+id/lugarImpresion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="text"
                 android:labelFor="@+id/txtPrintPlace"
                 android:textSize="24sp"
                 tools:ignore="SpeakableTextPresentCheck" />

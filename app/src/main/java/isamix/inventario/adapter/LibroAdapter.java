@@ -35,7 +35,7 @@ public class LibroAdapter extends RecyclerView.Adapter<LibroAdapter.LibroViewHol
     @NonNull
     @Override
     public LibroViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_libro, null, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_libro, null, true);
         return new LibroViewHolder(view);
     }
 

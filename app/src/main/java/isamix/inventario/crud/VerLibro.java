@@ -55,9 +55,9 @@ public class VerLibro extends AppCompatActivity {
             autor.setText(libro.getAutor());
             editorial.setText(libro.getEditorial());
             genero.setText(libro.getGenero());
-            isbn.setText(libro.getIsbn());
+            isbn.setText(String.valueOf(libro.getIsbn()));
             lugarImpresion.setText(libro.getLugarImpresion());
-            fechaImpresion.setText(libro.getFechaImpresion());
+            fechaImpresion.setText(String.valueOf(libro.getFechaImpresion()));
             btnGuardar.setVisibility(View.INVISIBLE);
         }
 

@@ -98,10 +98,10 @@ public class EditarLibro extends AppCompatActivity {
             titulo.setText(libro.getTitulo());
             autor.setText(libro.getAutor());
             editorial.setText(libro.getEditorial());
-            isbn.setText(libro.getIsbn());
+            isbn.setText(String.valueOf(libro.getIsbn()));
             genero.setText(libro.getGenero());
             lugarImpresion.setText(libro.getLugarImpresion());
-            fechaImpresion.setText(libro.getFechaImpresion());
+            fechaImpresion.setText(String.valueOf(libro.getFechaImpresion()));
         }
 
         btnGuardar.setOnClickListener(v -> {

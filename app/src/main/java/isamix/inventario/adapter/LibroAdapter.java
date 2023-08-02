@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
-import isamix.inventario.crud.EditarLibro;
-import isamix.inventario.crud.VerLibro;
+import isamix.inventario.crud.libro.EditarLibro;
+import isamix.inventario.crud.libro.VerLibro;
 import isamix.inventario.db.DbLibro;
 import isamix.inventario.modelo.Libro;
 

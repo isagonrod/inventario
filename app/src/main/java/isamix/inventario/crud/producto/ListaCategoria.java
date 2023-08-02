@@ -1,4 +1,4 @@
-package isamix.inventario.crud;
+package isamix.inventario.crud.producto;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,6 +18,9 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.adapter.CategoriaAdapter;
+import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.crud.ListaCompra;
+import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.db.DbCategoria;
 import isamix.inventario.modelo.Categoria;
 

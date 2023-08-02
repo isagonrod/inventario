@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.crud.ListaProductoPorCategoria;
+import isamix.inventario.crud.producto.ListaProductoPorCategoria;
 import isamix.inventario.db.DbCategoria;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Categoria;

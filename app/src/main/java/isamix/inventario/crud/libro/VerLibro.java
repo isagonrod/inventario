@@ -1,4 +1,4 @@
-package isamix.inventario.crud;
+package isamix.inventario.crud.libro;
 
 import android.content.Intent;
 import android.os.Bundle;

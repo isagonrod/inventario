@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".crud.ListaProducto">
+    tools:context=".crud.producto.ListaProducto">
 
     <TextView
         android:id="@+id/title_category"

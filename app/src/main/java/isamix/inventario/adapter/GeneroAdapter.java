@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.crud.ListaLibroPorGenero;
+import isamix.inventario.crud.libro.ListaLibroPorGenero;
 import isamix.inventario.db.DbGenero;
 import isamix.inventario.db.DbLibro;
 import isamix.inventario.modelo.Genero;

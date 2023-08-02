@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
-import isamix.inventario.crud.EditarProducto;
-import isamix.inventario.crud.VerProducto;
+import isamix.inventario.crud.producto.EditarProducto;
+import isamix.inventario.crud.producto.VerProducto;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Producto;
 

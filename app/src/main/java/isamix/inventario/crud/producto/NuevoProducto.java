@@ -1,4 +1,4 @@
-package isamix.inventario.crud;
+package isamix.inventario.crud.producto;
 
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;

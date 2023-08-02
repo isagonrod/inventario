@@ -6,7 +6,7 @@ public class Juego {
     private String nombre;
     private String marca;
     private String tipoJuego;
-    private int numJugadores;
+    private String numJugadores;
 
     public int getId() {
         return id;
@@ -40,11 +40,11 @@ public class Juego {
         this.tipoJuego = tipoJuego;
     }
 
-    public int getNumJugadores() {
+    public String getNumJugadores() {
         return numJugadores;
     }
 
-    public void setNumJugadores(int numJugadores) {
+    public void setNumJugadores(String numJugadores) {
         this.numJugadores = numJugadores;
     }
 }

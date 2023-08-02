@@ -51,36 +51,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
+                    android:layout_marginEnd="5dp"
                     android:text="@string/hint_author"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/black"
                     android:textSize="14sp"/>
 
                 <TextView
                     android:id="@+id/viewBookAuthor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="16sp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:text="@string/hint_editorial"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:id="@+id/viewBookEditorial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/dark_grey"
@@ -106,7 +83,16 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="@color/white"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/borde_genero"/>
+
+                <TextView
+                    android:id="@+id/viewBookEditorial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@drawable/borde_editorial"
+                    android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout

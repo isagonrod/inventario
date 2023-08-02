@@ -62,22 +62,6 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/txtIsbn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hint_isbn"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/isbn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:labelFor="@+id/txtIsbn"
-        android:textSize="24sp"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
         android:id="@+id/txtGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,6 +76,22 @@
         android:completionThreshold="1"
         android:inputType="text"
         android:labelFor="@+id/txtGenre"
+        android:textSize="24sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/txtIsbn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_isbn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/isbn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:labelFor="@+id/txtIsbn"
         android:textSize="24sp"
         tools:ignore="SpeakableTextPresentCheck" />
 

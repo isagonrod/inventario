@@ -104,8 +104,8 @@ public class NuevoLibro extends AppCompatActivity {
                         titulo.getText().toString(),
                         autor.getText().toString(),
                         editorial.getText().toString(),
-                        isbn.getText().toString(),
                         genero.getText().toString(),
+                        isbn.getText().toString(),
                         lugarImpresion.getText().toString(),
                         fechaImpresion.getText().toString());
 
@@ -121,8 +121,8 @@ public class NuevoLibro extends AppCompatActivity {
         titulo.setText("");
         autor.setText("");
         editorial.setText("");
-        isbn.setText("");
         genero.setText("");
+        isbn.setText("");
         lugarImpresion.setText("");
         fechaImpresion.setText("");
     }

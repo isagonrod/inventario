@@ -55,7 +55,7 @@ public class DbLibro extends DbHelper {
                 libro.setTitulo(cursorLibro.getString(1));
                 libro.setAutor(cursorLibro.getString(2));
                 libro.setEditorial(cursorLibro.getString(3));
-                libro.setEditorial(cursorLibro.getString(4));
+                libro.setGenero(cursorLibro.getString(4));
                 libro.setIsbn(cursorLibro.getInt(5));
                 libro.setLugarImpresion(cursorLibro.getString(6));
                 libro.setFechaImpresion(cursorLibro.getInt(7));
@@ -79,7 +79,7 @@ public class DbLibro extends DbHelper {
                 libro.setTitulo(cursorLibro.getString(1));
                 libro.setAutor(cursorLibro.getString(2));
                 libro.setEditorial(cursorLibro.getString(3));
-                libro.setEditorial(cursorLibro.getString(4));
+                libro.setGenero(cursorLibro.getString(4));
                 libro.setIsbn(cursorLibro.getInt(5));
                 libro.setLugarImpresion(cursorLibro.getString(6));
                 libro.setFechaImpresion(cursorLibro.getInt(7));
@@ -101,7 +101,7 @@ public class DbLibro extends DbHelper {
                 libro.setTitulo(cursorLibro.getString(1));
                 libro.setAutor(cursorLibro.getString(2));
                 libro.setEditorial(cursorLibro.getString(3));
-                libro.setEditorial(cursorLibro.getString(4));
+                libro.setGenero(cursorLibro.getString(4));
                 libro.setIsbn(cursorLibro.getInt(5));
                 libro.setLugarImpresion(cursorLibro.getString(6));
                 libro.setFechaImpresion(cursorLibro.getInt(7));

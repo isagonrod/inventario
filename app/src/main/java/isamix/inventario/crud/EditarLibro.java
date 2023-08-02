@@ -98,8 +98,8 @@ public class EditarLibro extends AppCompatActivity {
             titulo.setText(libro.getTitulo());
             autor.setText(libro.getAutor());
             editorial.setText(libro.getEditorial());
-            isbn.setText(String.valueOf(libro.getIsbn()));
             genero.setText(libro.getGenero());
+            isbn.setText(String.valueOf(libro.getIsbn()));
             lugarImpresion.setText(libro.getLugarImpresion());
             fechaImpresion.setText(String.valueOf(libro.getFechaImpresion()));
         }
@@ -114,8 +114,8 @@ public class EditarLibro extends AppCompatActivity {
                         titulo.getText().toString(),
                         autor.getText().toString(),
                         editorial.getText().toString(),
-                        isbn.getText().toString(),
-                        Integer.parseInt(genero.getText().toString()),
+                        genero.getText().toString(),
+                        Integer.parseInt(isbn.getText().toString()),
                         lugarImpresion.getText().toString(),
                         Integer.parseInt(fechaImpresion.getText().toString()));
 

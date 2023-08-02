@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
-import isamix.inventario.crud.EditarProducto;
-import isamix.inventario.crud.VerProducto;
+import isamix.inventario.crud.producto.EditarProducto;
+import isamix.inventario.crud.producto.VerProducto;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Producto;
 
@@ -78,7 +78,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
 
     public class ProductoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewCantidad, viewPrecio, viewTienda, viewCategoria;
+        TextView viewNombre, viewMarca, viewCantidad, viewPrecio, viewTienda, viewCategoria;
         Button btnCompra, btnEditar, btnEliminar;
         DbProducto dbProducto;
 
@@ -86,6 +86,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
             super(itemView);
 
             viewNombre = itemView.findViewById(R.id.viewNombre);
+            viewMarca = itemView.findViewById(R.id.viewMarca);
             viewCantidad = itemView.findViewById(R.id.viewCantidad);
             viewPrecio = itemView.findViewById(R.id.viewPrecio);
             viewTienda = itemView.findViewById(R.id.tienda_pro);
@@ -112,6 +113,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
                 dbProducto.editarProducto(
                         listaProductos.get(getAdapterPosition()).getId(),
                         listaProductos.get(getAdapterPosition()).getNombre(),
+                        listaProductos.get(getAdapterPosition()).getMarca(),
                         listaProductos.get(getAdapterPosition()).getCantidad(),
                         listaProductos.get(getAdapterPosition()).getPrecio(),
                         listaProductos.get(getAdapterPosition()).getTienda(),

@@ -18,6 +18,9 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.adapter.CategoriaAdapter;
+import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.producto.ListaProducto;
+import isamix.inventario.crud.producto.NuevoProducto;
 import isamix.inventario.db.DbCategoria;
 import isamix.inventario.modelo.Categoria;
 
@@ -97,8 +100,9 @@ public class ListaCategoria extends AppCompatActivity {
             case R.id.menuGestionProductos:
                 verLista(ListaCategoria.class);
                 return true;
-//            case R.id.menuGestionLibros:
-//                return true;
+            case R.id.menuGestionLibros:
+                verLista(ListaGenero.class);
+                return true;
 //            case R.id.menuGestionJuegos:
 //                return true;
 //            case R.id.menuGestionMultimedia:

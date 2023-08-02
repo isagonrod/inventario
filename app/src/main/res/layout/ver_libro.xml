@@ -9,27 +9,13 @@
     android:layout_margin="10dp">
 
     <TextView
-        android:id="@+id/viewNombre"
+        android:id="@+id/tvBookTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_nombre" />
+        android:text="@string/hint_titulo" />
 
     <TextView
-        android:id="@+id/txtNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginBottom="10dp"/>
-
-    <TextView
-        android:id="@+id/viewMarca"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hint_marca" />
-
-    <TextView
-        android:id="@+id/txtMarca"
+        android:id="@+id/bookTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -37,13 +23,27 @@
         android:layout_marginBottom="10dp"/>
 
     <TextView
-        android:id="@+id/viewCantidad"
+        android:id="@+id/tvBookAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_cantidad" />
+        android:text="@string/hint_author" />
 
     <TextView
-        android:id="@+id/txtCantidad"
+        android:id="@+id/bookAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/tvBookEditorial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_editorial" />
+
+    <TextView
+        android:id="@+id/bookEditorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -51,61 +51,68 @@
         android:layout_marginBottom="10dp" />
 
     <TextView
-        android:id="@+id/viewPrecio"
+        android:id="@+id/tvBookGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_precio" />
+        android:text="@string/hint_genero" />
+
+    <TextView
+        android:id="@+id/bookGenre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/tvBookIsbn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_isbn" />
+
+    <TextView
+        android:id="@+id/bookIsbn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginBottom="10dp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/txtPrecio"
+            android:id="@+id/tvBookPrint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="@string/hint_impresion"/>
+
+        <TextView
+            android:id="@+id/bookPrintPlace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="24dp"/>
 
         <TextView
-            android:text="@string/moneda"
-            android:layout_marginStart="2dp"
+            android:text=", "
             android:textSize="24sp"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <TextView
+            android:id="@+id/bookPrintYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_marginBottom="24dp"/>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/viewTienda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hint_tienda" />
-
-    <TextView
-        android:id="@+id/txtTienda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:layout_marginBottom="10dp" />
-
-    <TextView
-        android:id="@+id/viewCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hint_categoria" />
-
-    <TextView
-        android:id="@+id/txtCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:layout_marginBottom="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

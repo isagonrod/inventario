@@ -1,85 +1,70 @@
-package isamix.inventario.crud;
+package isamix.inventario.crud.producto;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.SearchView;
+import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.CompraAdapter;
+import isamix.inventario.adapter.ProductoAdapter;
+import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.crud.ListaCategoria;
+import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Producto;
 
-public class ListaCompra extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListaProductoPorCategoria extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
+    SearchView txtBuscar;
     RecyclerView listaProductos;
-    ArrayList<Producto> listaCompra;
-    CompraAdapter adapter;
-    SearchView txtCompra;
-    Button btnTerminarCompra;
-    int id = 0;
+    List<Producto> arrayProductos;
+    ProductoAdapter adapter;
+    TextView title;
 
+    Intent intent;
+    Bundle extra;
+    String category;
+
+    @SuppressLint({"MissingInflatedId", "ResourceType"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_compra);
+        setContentView(R.layout.lista_producto);
 
-        txtCompra = findViewById(R.id.txtCompra);
-        btnTerminarCompra = findViewById(R.id.btnTerminarCompra);
+        intent = this.getIntent();
+        extra = intent.getExtras();
+        category = extra.getString("CATEGORIA");
+
+        title = findViewById(R.id.title_category);
+        title.setText(category);
+
+        txtBuscar = findViewById(R.id.txtBuscar);
         listaProductos = findViewById(R.id.listaProductos);
         listaProductos.setLayoutManager(new LinearLayoutManager(this));
 
-        DbProducto dbProducto = new DbProducto(ListaCompra.this);
-        listaCompra = dbProducto.mostrarProductosParaComprar();
-        adapter = new CompraAdapter(listaCompra);
+        DbProducto dbProducto = new DbProducto(ListaProductoPorCategoria.this);
+        arrayProductos = dbProducto.mostrarProductosPorCategoria(category);
+
+        adapter = new ProductoAdapter(arrayProductos);
         listaProductos.setAdapter(adapter);
 
+        // Pinta la línea divisoria entre elementos de la lista
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
                 this, new LinearLayoutManager(this).getOrientation());
         listaProductos.addItemDecoration(dividerItemDecoration);
 
-        txtCompra.setOnQueryTextListener(this);
-
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                id = -1;
-            } else {
-                id = extras.getInt("ID");
-            }
-        } else {
-            id = (int) savedInstanceState.getSerializable("ID");
-        }
-
-        btnTerminarCompra.setOnClickListener(v -> {
-            for (int i = 0; i < listaProductos.getChildCount(); i++) {
-                View listItem = listaProductos.getChildAt(i);
-                int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
-                if (itemColor == Color.YELLOW) {
-                    int cantidadComprada = this.listaCompra.get(i).getCantidad();
-                    int cantidadInicial = dbProducto.verProducto(listaCompra.get(i).getId()).getCantidad();
-                    int cantidadTotal = cantidadInicial + cantidadComprada;
-                    dbProducto.finCompra(this.listaCompra.get(i).getId(), cantidadTotal);
-                    adapter.eliminarItem(i);
-                    i--;
-                    listaProductos.removeView(listItem);
-                }
-            }
-        });
+        txtBuscar.setOnQueryTextListener(this);
     }
 
     @Override
@@ -89,7 +74,7 @@ public class ListaCompra extends AppCompatActivity implements SearchView.OnQuery
 
     @Override
     public boolean onQueryTextChange(String s) {
-        adapter.listaCompraPorTienda(s);
+        adapter.filtrado(s);
         return false;
     }
 

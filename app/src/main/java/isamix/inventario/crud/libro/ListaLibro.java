@@ -1,9 +1,8 @@
-package isamix.inventario.crud;
+package isamix.inventario.crud.libro;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,44 +11,42 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.ProductoAdapter;
-import isamix.inventario.db.DbProducto;
-import isamix.inventario.modelo.Producto;
+import isamix.inventario.adapter.LibroAdapter;
+import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.crud.ListaCategoria;
+import isamix.inventario.crud.ListaCompra;
+import isamix.inventario.db.DbLibro;
+import isamix.inventario.modelo.Libro;
 
-public class ListaProducto extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListaLibro extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
-    SearchView txtBuscar;
-    RecyclerView listaProductos;
-    ArrayList<Producto> listaArrayProductos;
-    ProductoAdapter adapter;
+    SearchView buscador;
+    RecyclerView listaLibros;
+    List<Libro> arrayListLibros;
+    LibroAdapter adapter;
 
-    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_producto);
+        setContentView(R.layout.lista_libro);
 
-        txtBuscar = findViewById(R.id.txtBuscar);
-        listaProductos = findViewById(R.id.listaProductos);
-        listaProductos.setLayoutManager(new LinearLayoutManager(this));
+        buscador = findViewById(R.id.buscador);
+        listaLibros = findViewById(R.id.listaLibros);
+        listaLibros.setLayoutManager(new LinearLayoutManager(this));
 
-        DbProducto dbProducto = new DbProducto(ListaProducto.this);
+        DbLibro dbLibro = new DbLibro(ListaLibro.this);
+        arrayListLibros = dbLibro.mostrarLibros();
+        adapter = new LibroAdapter(arrayListLibros);
+        listaLibros.setAdapter(adapter);
 
-        listaArrayProductos = dbProducto.mostrarProductos();
-
-        adapter = new ProductoAdapter(listaArrayProductos);
-        listaProductos.setAdapter(adapter);
-
-        // Pinta la línea divisoria entre elementos de la lista
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
                 this, new LinearLayoutManager(this).getOrientation());
-        listaProductos.addItemDecoration(dividerItemDecoration);
+        listaLibros.addItemDecoration(dividerItemDecoration);
 
-        txtBuscar.setOnQueryTextListener(this);
-
+        buscador.setOnQueryTextListener(this);
     }
 
     @Override
@@ -59,7 +56,7 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
 
     @Override
     public boolean onQueryTextChange(String s) {
-        adapter.filtrado(s);
+        adapter.filtradoLibros(s);
         return false;
     }
 
@@ -82,8 +79,9 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
             case R.id.menuGestionProductos:
                 verLista(ListaCategoria.class);
                 return true;
-//            case R.id.menuGestionLibros:
-//                return true;
+            case R.id.menuGestionLibros:
+                verLista(ListaGenero.class);
+                return true;
 //            case R.id.menuGestionJuegos:
 //                return true;
 //            case R.id.menuGestionMultimedia:

@@ -1,27 +1,17 @@
 package isamix.inventario;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
-import java.util.List;
-
-import isamix.inventario.adapter.CategoriaAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
 import isamix.inventario.crud.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
-import isamix.inventario.crud.ListaProducto;
-import isamix.inventario.db.DbCategoria;
-import isamix.inventario.modelo.Categoria;
+import isamix.inventario.crud.libro.ListaGenero;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         gestionProductos.setOnClickListener(v -> verLista(ListaCategoria.class));
 
         gestionLibros = findViewById(R.id.gestionLibros);
+        gestionLibros.setOnClickListener(v -> verLista(ListaGenero.class));
+
         gestionJuegos = findViewById(R.id.gestionJuegos);
         gestionMultimedia = findViewById(R.id.gestionMultimedia);
     }
@@ -63,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuGestionProductos:
                 verLista(ListaCategoria.class);
                 return true;
-//            case R.id.menuGestionLibros:
-//                return true;
+            case R.id.menuGestionLibros:
+                verLista(ListaGenero.class);
+                return true;
 //            case R.id.menuGestionJuegos:
 //                return true;
 //            case R.id.menuGestionMultimedia:

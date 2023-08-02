@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -19,14 +19,14 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/viewImagen"
+                android:id="@+id/viewBookIcon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="2dp"
-                android:src="@drawable/cesto" />
+                android:src="@drawable/book" />
 
             <TextView
-                android:id="@+id/viewNombre"
+                android:id="@+id/viewBookTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -34,7 +34,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,79 +51,48 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:text="@string/hint_cantidad"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="14sp" />
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/hint_author"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/viewCantidad"
+                    android:id="@+id/viewBookAuthor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/dark_grey"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:text="@string/hint_precio_lista"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/viewPrecio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="2dp"
-                    android:text="@string/moneda"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"/>
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:weightSum="2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="2">
 
             <LinearLayout
-                android:gravity="start"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:gravity="start">
 
                 <TextView
-                    android:id="@+id/tienda_pro"
+                    android:id="@+id/viewBookGenre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="@color/white"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/borde_tienda" />
+                    android:background="@drawable/borde_genero"/>
 
                 <TextView
-                    android:id="@+id/categoria_pro"
+                    android:id="@+id/viewBookEditorial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/borde_categoria" />
+                    android:textColor="@color/black"
+                    android:background="@drawable/borde_editorial"
+                    android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -133,15 +101,6 @@
                 android:layout_marginTop="5dp"
                 android:gravity="end"
                 android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/basketButton"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/carrito"
-                    android:clickable="true"
-                    tools:ignore="SpeakableTextPresentCheck"/>
 
                 <Button
                     android:id="@+id/editButton"
@@ -161,9 +120,7 @@
                     android:clickable="true"
                     tools:ignore="SpeakableTextPresentCheck"/>
             </LinearLayout>
-
         </LinearLayout>
-
-
     </LinearLayout>
+
 </RelativeLayout>

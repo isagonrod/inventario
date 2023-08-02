@@ -39,6 +39,7 @@
                 android:value=".MainActivity"/>
         </activity>
 
+        <!-- PRODUCTOS -->
         <activity
             android:name=".crud.ListaCategoria"
             android:exported="false"
@@ -49,7 +50,7 @@
         </activity>
 
         <activity
-            android:name=".crud.ListaProductoPorCategoria"
+            android:name=".crud.producto.ListaProductoPorCategoria"
             android:exported="false"
             android:parentActivityName=".crud.ListaCategoria" >
             <meta-data
@@ -67,7 +68,7 @@
         </activity>
 
         <activity
-            android:name=".crud.ListaProducto"
+            android:name=".crud.producto.ListaProducto"
             android:exported="false"
             android:parentActivityName=".crud.ListaCategoria" >
             <meta-data
@@ -76,7 +77,7 @@
         </activity>
 
         <activity
-            android:name=".crud.EditarProducto"
+            android:name=".crud.producto.EditarProducto"
             android:exported="false"
             android:parentActivityName=".crud.ListaCategoria">
             <meta-data
@@ -84,7 +85,7 @@
                 android:value=".crud.ListaCategoria" />
         </activity>
         <activity
-            android:name=".crud.VerProducto"
+            android:name=".crud.producto.VerProducto"
             android:exported="false"
             android:parentActivityName=".crud.ListaCategoria" >
             <meta-data
@@ -92,12 +93,65 @@
                 android:value=".crud.ListaCategoria" />
         </activity>
         <activity
-            android:name=".crud.NuevoProducto"
+            android:name=".crud.producto.NuevoProducto"
             android:exported="false"
             android:parentActivityName=".crud.ListaCategoria" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".crud.ListaCategoria" />
+        </activity>
+
+        <!-- LIBROS -->
+        <activity
+            android:name=".crud.libro.ListaGenero"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".crud.libro.ListaLibroPorGenero"
+            android:exported="false"
+            android:parentActivityName=".crud.libro.ListaLibro" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.libro.ListaLibro" />
+        </activity>
+
+        <activity
+            android:name=".crud.libro.ListaLibro"
+            android:exported="false"
+            android:parentActivityName=".crud.libro.ListaGenero" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.libro.ListaGenero" />
+        </activity>
+
+        <activity
+            android:name=".crud.libro.EditarLibro"
+            android:exported="false"
+            android:parentActivityName=".crud.libro.ListaGenero">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.libro.ListaGenero" />
+        </activity>
+        <activity
+            android:name=".crud.libro.VerLibro"
+            android:exported="false"
+            android:parentActivityName=".crud.libro.ListaGenero" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.libro.ListaGenero" />
+        </activity>
+        <activity
+            android:name=".crud.libro.NuevoLibro"
+            android:exported="false"
+            android:parentActivityName=".crud.libro.ListaGenero" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.libro.ListaGenero" />
         </activity>
 
     </application>

@@ -27,7 +27,14 @@
 
             <TextView
                 android:id="@+id/txtNombre"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtMarca"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp" />
 
@@ -46,7 +53,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/white"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/tienda_border" />
+                android:background="@drawable/borde_tienda" />
 
             <TextView
                 android:id="@+id/txtCategoria"
@@ -54,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/white"
-                android:background="@drawable/categoria_border" />
+                android:background="@drawable/borde_categoria" />
         </LinearLayout>
 
 

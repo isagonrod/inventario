@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".crud.producto.ListaProducto">
+    tools:context=".crud.libro.ListaLibro">
 
     <TextView
         android:id="@+id/title_category"
-        android:text="@string/menu_lista_productos"
+        android:text="@string/menu_lista_libros"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/pink"
@@ -19,16 +19,16 @@
         android:layout_height="wrap_content"/>
 
     <SearchView
-        android:id="@+id/txtBuscar"
+        android:id="@+id/buscador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:queryHint="Indica el nombre del producto"
         app:actionViewClass="androix.appcompat.widget.SearchView" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/listaProductos"
+        android:id="@+id/listaLibros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_producto" />
+        tools:listitem="@layout/item_libro" />
 
 </LinearLayout>

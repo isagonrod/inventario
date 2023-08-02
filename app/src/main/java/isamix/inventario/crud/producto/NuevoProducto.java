@@ -1,4 +1,4 @@
-package isamix.inventario.crud;
+package isamix.inventario.crud.producto;
 
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
@@ -14,21 +14,25 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.db.DbCategoria;
+import isamix.inventario.db.DbMarca;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.db.DbTienda;
 import isamix.inventario.modelo.Categoria;
+import isamix.inventario.modelo.Marca;
 import isamix.inventario.modelo.Tienda;
 
 public class NuevoProducto extends AppCompatActivity {
 
     EditText txtNombre, txtCantidad, txtPrecio;
-    AutoCompleteTextView txtTienda, txtCategoria;
+    AutoCompleteTextView txtMarca, txtTienda, txtCategoria;
     Button btnGuardar, favEditar, favEliminar;
     DbProducto dbProducto;
+    DbMarca dbMarca;
     DbTienda dbTienda;
     DbCategoria dbCategoria;
     List<Tienda> tiendas;
     List<Categoria> categorias;
+    List<Marca> marcas;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,6 +41,7 @@ public class NuevoProducto extends AppCompatActivity {
         setContentView(R.layout.nuevo_producto);
 
         txtNombre = findViewById(R.id.nombre);
+        txtMarca = findViewById(R.id.marca);
         txtCantidad = findViewById(R.id.cantidad);
         txtPrecio = findViewById(R.id.precio);
         txtTienda = findViewById(R.id.tienda);
@@ -44,11 +49,13 @@ public class NuevoProducto extends AppCompatActivity {
 
         btnGuardar = findViewById(R.id.btnGuardar);
         favEditar = findViewById(R.id.fabEditar);
-        favEditar.setVisibility(View.INVISIBLE);
+        favEditar.setVisibility(View.GONE);
         favEliminar = findViewById(R.id.fabEliminar);
-        favEliminar.setVisibility(View.INVISIBLE);
+        favEliminar.setVisibility(View.GONE);
 
         dbProducto = new DbProducto(NuevoProducto.this);
+        dbMarca = new DbMarca(NuevoProducto.this);
+        marcas = dbMarca.mostrarMarcas();
         dbTienda = new DbTienda(NuevoProducto.this);
         dbCategoria = new DbCategoria(NuevoProducto.this);
         tiendas = dbTienda.mostrarTiendas();
@@ -62,8 +69,13 @@ public class NuevoProducto extends AppCompatActivity {
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, categorias);
         txtCategoria.setAdapter(arrayAdapterCategoria);
 
+        ArrayAdapter<Marca> arrayAdapterMarca = new ArrayAdapter<>(getApplicationContext(),
+                android.support.design.R.layout.support_simple_spinner_dropdown_item, marcas);
+        txtMarca.setAdapter(arrayAdapterMarca);
+
         btnGuardar.setOnClickListener(v -> {
             if (!txtNombre.getText().toString().isEmpty()
+                    && !txtMarca.getText().toString().isEmpty()
                     && !txtTienda.getText().toString().isEmpty()
                     && !txtCategoria.getText().toString().isEmpty()) {
 
@@ -81,8 +93,16 @@ public class NuevoProducto extends AppCompatActivity {
                     dbCategoria.editarCategoria(category.getId(), category.getNombre());
                 }
 
+                Marca brand = dbMarca.getMarca(txtMarca.getText().toString());
+                if (brand == null) {
+                    dbMarca.insertarMarca(txtMarca.getText().toString());
+                } else {
+                    dbMarca.editarMarca(brand.getId(), brand.getNombre());
+                }
+
                 dbProducto.insertarProducto(
                         txtNombre.getText().toString(),
+                        txtMarca.getText().toString(),
                         txtCantidad.getText().toString(),
                         txtPrecio.getText().toString(),
                         txtTienda.getText().toString(),
@@ -99,6 +119,7 @@ public class NuevoProducto extends AppCompatActivity {
 
     private void limpiar() {
         txtNombre.setText("");
+        txtMarca.setText("");
         txtCantidad.setText("");
         txtPrecio.setText("");
         txtTienda.setText("");

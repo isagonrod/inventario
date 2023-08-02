@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import isamix.inventario.crud.FuncionamientoApp;
-import isamix.inventario.crud.producto.ListaCategoria;
+import isamix.inventario.crud.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
 

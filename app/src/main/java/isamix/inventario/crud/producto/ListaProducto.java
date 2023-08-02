@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import isamix.inventario.R;
 import isamix.inventario.adapter.ProductoAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.crud.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.db.DbProducto;

@@ -43,6 +43,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "tienda INTEGER, " +
                 "categoria INTEGER, " +
                 "paraComprar INTEGER," +
+                "FOREIGN KEY(marca) REFERENCES " + TABLE_MARCA + "(id), " +
                 "FOREIGN KEY(tienda) REFERENCES " + TABLE_TIENDA + "(id), " +
                 "FOREIGN KEY(categoria) REFERENCES " + TABLE_CATEGORIA + "(id)" +
                 ")");

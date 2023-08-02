@@ -11,7 +11,7 @@ public class FuncionamientoApp extends AppCompatActivity {
     TextView tvTitle, tvMessage;
     String textMessage =
             "1. Elige qué lista quieres ver y/o gestionar. Verás una ventana con las categorías existentes, y si se pulsa dentro de cada una, se verá una lista específica de la misma.\n\n" +
-            "2. Dentro de la gestión de productos puedes crear nuevos productos, nuevas categorías o ver la lista completa de productos.\n\n" +
+            "2. Dentro de la gestión de productos puedes crear nuevos productos, nuevas categorías o ver la lista completa de productos. Pero no utilices la comilla simple.\n\n" +
             "3. En la vista de las listas, cada item tiene varias opciones:\n\n" +
                     "\t\t 3.1. Si se deja pulsado, se abre una nueva ventana con los detalles del mismo.\n\n" +
                     "\t\t 3.2. Si se pulsa una vez, se restará 1 de la cantidad total de las existencias (en cada se ser un producto).\n\n" +

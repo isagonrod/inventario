@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     private static final String DATABASE_NAME = "inventario.db";
     public static final String TABLE_PRODUCTO = "t_producto";
     public static final String TABLE_TIENDA = "t_tienda";
@@ -17,6 +17,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_GENERO = "t_genero";
     public static final String TABLE_PERSONA = "t_persona";
     public static final String TABLE_PROFESION = "t_profesion";
+    public static final String TABLE_TIPO_JUEGO = "t_tipo_juego";
+    public static final String TABLE_JUEGO = "t_juego";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -70,6 +72,17 @@ public class DbHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(autor) REFERENCES " + TABLE_PERSONA + "(id), " +
                 "FOREIGN KEY(editorial) REFERENCES " + TABLE_MARCA + "(id)," +
                 "FOREIGN KEY(genero) REFERENCES " + TABLE_GENERO + "(id))");
+
+        db.execSQL("CREATE TABLE " + TABLE_TIPO_JUEGO + "(id INTEGER PRIMARY KEY AUTOINCREMENT, tipo TEXT NOT NULL)");
+
+        db.execSQL("CREATE TABLE " + TABLE_JUEGO + "(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "nombre TEXT NOT NULL, " +
+                "marca TEXT, " +
+                "tipoJuego TEXT, " +
+                "numJugadores TEXT, " +
+                "FOREIGN KEY(marca) REFERENCES "+ TABLE_MARCA + "(id)," +
+                "FOREIGN KEY(tipoJuego) REFERENCES " + TABLE_TIPO_JUEGO + "(id))");
     }
 
     @Override
@@ -82,6 +95,8 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFESION);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LIBRO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_GENERO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_JUEGO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIPO_JUEGO);
         onCreate(db);
     }
 }

@@ -60,7 +60,7 @@ public class VerProducto extends AppCompatActivity {
             txtTienda.setText(producto.getTienda());
             txtCategoria.setText(producto.getCategoria());
 
-            btnGuardar.setVisibility(View.INVISIBLE);
+            btnGuardar.setVisibility(View.GONE);
 
         }
 
@@ -72,6 +72,7 @@ public class VerProducto extends AppCompatActivity {
 
         fabEliminar.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(VerProducto.this);
+            builder.setTitle("ELIMINAR PRODUCTO");
             builder.setMessage("¿Desea eliminar este producto?")
                     .setPositiveButton("SÍ", (dialog, which) -> {
                         if (dbProducto.eliminarProducto(id)) {

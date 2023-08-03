@@ -58,7 +58,7 @@ public class VerLibro extends AppCompatActivity {
             isbn.setText(String.valueOf(libro.getIsbn()));
             lugarImpresion.setText(libro.getLugarImpresion());
             fechaImpresion.setText(String.valueOf(libro.getFechaImpresion()));
-            btnGuardar.setVisibility(View.INVISIBLE);
+            btnGuardar.setVisibility(View.GONE);
         }
 
         btnEditar.setOnClickListener(v -> {
@@ -69,6 +69,7 @@ public class VerLibro extends AppCompatActivity {
 
         btnEliminar.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(VerLibro.this);
+            builder.setTitle("ELIMINAR LIBRO");
             builder.setMessage("¿Desea eliminar este libro?");
             builder.setPositiveButton("SÍ", (dialogInterface, i) -> {
                 if (dbLibro.eliminarLibro(id)) {

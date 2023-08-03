@@ -65,7 +65,7 @@
         android:id="@+id/txtGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/oblig_genero"
+        android:text="@string/oblig_genre"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <AutoCompleteTextView

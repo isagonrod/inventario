@@ -9,7 +9,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import isamix.inventario.crud.FuncionamientoApp;
-import isamix.inventario.crud.ListaCategoria;
+import isamix.inventario.crud.juego.ListaTipoJuego;
+import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
 
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         gestionLibros.setOnClickListener(v -> verLista(ListaGenero.class));
 
         gestionJuegos = findViewById(R.id.gestionJuegos);
+        gestionJuegos.setOnClickListener(v -> verLista(ListaTipoJuego.class));
+
         gestionMultimedia = findViewById(R.id.gestionMultimedia);
     }
 
@@ -58,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuGestionLibros:
                 verLista(ListaGenero.class);
                 return true;
-//            case R.id.menuGestionJuegos:
-//                return true;
+            case R.id.menuGestionJuegos:
+                verLista(ListaTipoJuego.class);
+                return true;
 //            case R.id.menuGestionMultimedia:
 //                return true;
         }

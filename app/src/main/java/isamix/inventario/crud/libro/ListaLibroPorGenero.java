@@ -18,7 +18,8 @@ import java.util.List;
 import isamix.inventario.R;
 import isamix.inventario.adapter.LibroAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
-import isamix.inventario.crud.ListaCategoria;
+import isamix.inventario.crud.juego.ListaTipoJuego;
+import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.db.DbLibro;
 import isamix.inventario.modelo.Libro;
@@ -98,8 +99,9 @@ public class ListaLibroPorGenero extends AppCompatActivity implements SearchView
             case R.id.menuGestionLibros:
                 verLista(ListaGenero.class);
                 return true;
-//            case R.id.menuGestionJuegos:
-//                return true;
+            case R.id.menuGestionJuegos:
+                verLista(ListaTipoJuego.class);
+                return true;
 //            case R.id.menuGestionMultimedia:
 //                return true;
         }

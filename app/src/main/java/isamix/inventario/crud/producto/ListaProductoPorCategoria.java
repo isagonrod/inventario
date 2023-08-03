@@ -18,8 +18,8 @@ import java.util.List;
 import isamix.inventario.R;
 import isamix.inventario.adapter.ProductoAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
-import isamix.inventario.crud.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
+import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Producto;
@@ -100,8 +100,9 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
             case R.id.menuGestionLibros:
                 verLista(ListaGenero.class);
                 return true;
-//            case R.id.menuGestionJuegos:
-//                return true;
+            case R.id.menuGestionJuegos:
+                verLista(ListaTipoJuego.class);
+                return true;
 //            case R.id.menuGestionMultimedia:
 //                return true;
         }

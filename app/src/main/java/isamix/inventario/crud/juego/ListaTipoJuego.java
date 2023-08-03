@@ -1,6 +1,5 @@
-package isamix.inventario.crud.libro;
+package isamix.inventario.crud.juego;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -17,62 +16,61 @@ import android.widget.EditText;
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.GeneroAdapter;
+import isamix.inventario.adapter.TipoJuegoAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
-import isamix.inventario.crud.juego.ListaTipoJuego;
-import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
-import isamix.inventario.db.DbGenero;
-import isamix.inventario.modelo.Genero;
+import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.producto.ListaCategoria;
+import isamix.inventario.db.DbTipoJuego;
+import isamix.inventario.modelo.TipoJuego;
 
-public class ListaGenero extends AppCompatActivity {
+public class ListaTipoJuego extends AppCompatActivity {
 
-    RecyclerView listaGeneros;
-    Button btn_newGenre, btn_newBook, btn_bookList;
-    List<Genero> arrayListGeneros;
-    GeneroAdapter adapter;
+    RecyclerView listaTipos;
+    Button btn_newType, btn_newGame, btn_gameList;
+    List<TipoJuego> arrayListTipos;
+    TipoJuegoAdapter adapter;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_genero);
+        setContentView(R.layout.lista_tipo);
 
-        btn_newGenre = findViewById(R.id.addNewGenre);
-        btn_newBook = findViewById(R.id.addNewBook);
-        btn_bookList = findViewById(R.id.getBookList);
+        btn_newType = findViewById(R.id.addNewType);
+        btn_newGame = findViewById(R.id.addNewGame);
+        btn_gameList = findViewById(R.id.getGameList);
 
-        listaGeneros = findViewById(R.id.listaGeneros);
-        listaGeneros.setLayoutManager(new GridLayoutManager(this, 2));
+        listaTipos = findViewById(R.id.listaTipos);
+        listaTipos.setLayoutManager(new GridLayoutManager(this, 2));
 
-        DbGenero dbGenero = new DbGenero(this);
-        arrayListGeneros = dbGenero.mostrarGeneros();
-        adapter = new GeneroAdapter(arrayListGeneros);
-        listaGeneros.setAdapter(adapter);
+        DbTipoJuego dbTipoJuego = new DbTipoJuego(this);
+        arrayListTipos = dbTipoJuego.mostrarTiposJuego();
+        adapter = new TipoJuegoAdapter(arrayListTipos);
+        listaTipos.setAdapter(adapter);
 
-        btn_newGenre.setOnClickListener(v -> crearNuevoGenero());
-        btn_newBook.setOnClickListener(v -> verLista(NuevoLibro.class));
-        btn_bookList.setOnClickListener(v -> verLista(ListaLibro.class));
+        btn_newType.setOnClickListener(v -> crearNuevoTipoJuego());
+        btn_newGame.setOnClickListener(v -> verLista(NuevoJuego.class));
+        btn_gameList.setOnClickListener(v -> verLista(ListaJuego.class));
     }
 
-    public void crearNuevoGenero() {
+    public void crearNuevoTipoJuego() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("NUEVO GÉNERO");
+        builder.setTitle("NUEVO TIPO DE JUEGO");
 
-        final View customGeneroAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_genero, null);
-        builder.setView(customGeneroAlert);
+        final View customTipoAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_tipo, null);
+        builder.setView(customTipoAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
-            DbGenero dbGenero = new DbGenero(this);
-            EditText nombre = customGeneroAlert.findViewById(R.id.nombreNuevoGenero);
-            Genero genre = dbGenero.getGeneroPorNombre(nombre.getText().toString());
-            if (genre == null) {
-                dbGenero.insertarGenero(nombre.getText().toString());
+            DbTipoJuego dbTipoJuego = new DbTipoJuego(this);
+            EditText tipo = customTipoAlert.findViewById(R.id.nuevoTipoJuego);
+            TipoJuego type = dbTipoJuego.getTipoJuego(tipo.getText().toString());
+            if (type == null) {
+                dbTipoJuego.insertarTipoJuego(tipo.getText().toString());
             } else {
-                dbGenero.editarGenero(genre.getId(), genre.getNombre());
+                dbTipoJuego.editarTipoJuego(type.getId(), type.getTipo());
             }
-            arrayListGeneros = dbGenero.mostrarGeneros();
-            adapter = new GeneroAdapter(arrayListGeneros);
-            listaGeneros.setAdapter(adapter);
+            arrayListTipos = dbTipoJuego.mostrarTiposJuego();
+            adapter = new TipoJuegoAdapter(arrayListTipos);
+            listaTipos.setAdapter(adapter);
         });
         AlertDialog dialog = builder.create();
         dialog.show();

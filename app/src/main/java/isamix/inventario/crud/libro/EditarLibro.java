@@ -17,7 +17,8 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.crud.FuncionamientoApp;
-import isamix.inventario.crud.ListaCategoria;
+import isamix.inventario.crud.juego.ListaTipoJuego;
+import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.db.DbGenero;
 import isamix.inventario.db.DbLibro;
@@ -185,8 +186,9 @@ public class EditarLibro extends AppCompatActivity {
             case R.id.menuGestionLibros:
                 verLista(ListaGenero.class);
                 return true;
-//            case R.id.menuGestionJuegos:
-//                return true;
+            case R.id.menuGestionJuegos:
+                verLista(ListaTipoJuego.class);
+                return true;
 //            case R.id.menuGestionMultimedia:
 //                return true;
         }

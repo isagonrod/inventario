@@ -22,15 +22,21 @@
     <string name="hint_impresion_lugar">Lugar de impresión:</string>
     <string name="hint_impresion_fecha">Año de impresión:</string>
 
+    <!-- Formulario Juego -->
+    <string name="hint_tipo">Tipo de juego:</string>
+    <string name="hint_num_jugadores">Número de jugadores:</string>
+
     <!-- Campos obligatorios -->
-    <string name="oblig_nombre">Nombre: *</string>
-    <string name="oblig_cantidad">Cantidad: *</string>
-    <string name="oblig_tienda">Tienda: *</string>
-    <string name="oblig_categoria">Categoría: *</string>
+    <string name="oblig_name">Nombre: *</string>
+    <string name="oblig_amount">Cantidad: *</string>
+    <string name="oblig_shop">Tienda: *</string>
+    <string name="oblig_category">Categoría: *</string>
     <string name="oblig_title">Título: *</string>
     <string name="oblig_author">Autor: *</string>
     <string name="oblig_editorial">Editorial: *</string>
-    <string name="oblig_genero">Género: *</string>
+    <string name="oblig_genre">Género: *</string>
+    <string name="oblig_brand">Marca: *</string>
+    <string name="oblig_type">Tipo de juego: *</string>
 
     <!-- Botones con texto -->
     <string name="terminar_compra">Terminar compra</string>
@@ -40,6 +46,9 @@
     <string name="btn_new_genre">Añadir nuevo género</string>
     <string name="btn_new_book">Agregar nuevo libro</string>
     <string name="btn_book_list">Ver lista completa de libros</string>
+    <string name="btn_new_type">Añadir nuevo tipo de juevo</string>
+    <string name="btn_new_game">Agregar nuevo juego</string>
+    <string name="btn_game_list">Ver lista completa de juegos</string>
 
     <!-- Menú principal -->
     <string name="menu_lista_compra">Lista de la Compra</string>

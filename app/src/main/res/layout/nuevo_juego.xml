@@ -9,131 +9,80 @@
     tools:context=".crud.producto.NuevoProducto">
 
     <TextView
-        android:id="@+id/viewNombre"
+        android:id="@+id/tvGameName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/oblig_name"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/nombre"
+        android:id="@+id/etGameName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:labelFor="@+id/viewNombre"
+        android:labelFor="@+id/txtTitle"
         android:textSize="24sp"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/viewMarca"
+        android:id="@+id/tvGameBrand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_marca"
+        android:text="@string/oblig_brand"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <AutoCompleteTextView
-        android:id="@+id/marca"
-        android:labelFor="@+id/viewMarca"
-        android:textSize="24sp"
-        android:inputType="text"
+        android:id="@+id/etGameBrand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:completionThreshold="1"
         android:autoSizeTextType="uniform"
+        android:completionThreshold="1"
+        android:inputType="text"
+        android:labelFor="@+id/tvGameBrand"
+        android:textSize="24sp"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/viewCantidad"
+        android:id="@+id/tvGameType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/oblig_amount"
+        android:text="@string/oblig_type"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <AutoCompleteTextView
+        android:id="@+id/etGameType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:completionThreshold="1"
+        android:inputType="text"
+        android:labelFor="@+id/tvGameType"
+        android:textSize="24sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tvGamePlayers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_num_jugadores"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/cantidad"
+        android:id="@+id/etGamePlayers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number|numberDecimal"
-        android:labelFor="@+id/viewCantidad"
-        android:textSize="24sp"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/viewPrecio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hint_precio"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <LinearLayout
-        android:weightSum="4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/precio"
-            android:layout_weight="3.8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number|numberDecimal"
-            android:labelFor="@+id/viewPrecio"
-            android:textSize="24sp"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/moneda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".2"
-            android:textAlignment="center"
-            android:text="@string/moneda"
-            android:textSize="24sp"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/viewTienda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/oblig_shop"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <AutoCompleteTextView
-        android:id="@+id/tienda"
-        android:labelFor="@+id/viewTienda"
-        android:textSize="24sp"
+        android:ems="10"
         android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:completionThreshold="1"
-        android:autoSizeTextType="uniform"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/viewCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/oblig_category"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <AutoCompleteTextView
-        android:id="@+id/categoria"
-        android:labelFor="@+id/viewCategoria"
+        android:labelFor="@+id/tvGamePlayers"
         android:textSize="24sp"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:completionThreshold="1"
-        android:autoSizeTextType="uniform"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:gravity="center" >
+        android:gravity="center">
 
         <Button
             android:id="@+id/btnGuardar"
@@ -143,7 +92,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/save"
             android:clickable="true"
-            tools:ignore="SpeakableTextPresentCheck"/>
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/fabEditar"
@@ -163,7 +112,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/delete"
             android:clickable="true"
-            tools:ignore="SpeakableTextPresentCheck"/>
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
 

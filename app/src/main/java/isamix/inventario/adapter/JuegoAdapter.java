@@ -42,7 +42,6 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     @Override
     public void onBindViewHolder(@NonNull JuegoViewHolder juegoViewHolder, int i) {
         juegoViewHolder.nombre.setText(listaJuegos.get(i).getNombre());
-        juegoViewHolder.marca.setText(listaJuegos.get(i).getMarca());
         juegoViewHolder.tipoJuego.setText(listaJuegos.get(i).getTipoJuego());
         juegoViewHolder.numJugadores.setText(listaJuegos.get(i).getNumJugadores());
     }
@@ -73,20 +72,19 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
 
     public class JuegoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nombre, marca, tipoJuego, numJugadores;
+        TextView nombre, tipoJuego, numJugadores;
         Button btnEditar, btnEliminar;
         DbJuego dbJuego;
 
         public JuegoViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nombre = itemView.findViewById(R.id.tvGameName);
-            marca = itemView.findViewById(R.id.tvGameBrand);
-            tipoJuego = itemView.findViewById(R.id.tvGameType);
-            numJugadores = itemView.findViewById(R.id.tvGamePlayers);
+            nombre = itemView.findViewById(R.id.viewGameName);
+            tipoJuego = itemView.findViewById(R.id.viewGameType);
+            numJugadores = itemView.findViewById(R.id.viewGameNum);
 
-            btnEditar = itemView.findViewById(R.id.fabEditar);
-            btnEliminar = itemView.findViewById(R.id.fabEliminar);
+            btnEditar = itemView.findViewById(R.id.editButton);
+            btnEliminar = itemView.findViewById(R.id.deleteButton);
 
             itemView.setOnClickListener(v -> {
                 Context context = v.getContext();

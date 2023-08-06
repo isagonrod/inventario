@@ -85,8 +85,8 @@ public class DbPelicula extends DbHelper {
             db.execSQL("UPDATE " + TABLE_PELICULA + " SET " +
                     "titulo = '" + titulo +"', " +
                     "director = '" + director + "', " +
-                    "fechaEstreno = '" + fecha + "' " +
-                    "minDuracion = '" + minDuracion + "', " +
+                    "fechaEstreno = '" + fecha + "', " +
+                    "minDuracion = '" + minDuracion + "' " +
                     "WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {

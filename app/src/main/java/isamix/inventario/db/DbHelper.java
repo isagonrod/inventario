@@ -21,7 +21,6 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_JUEGO = "t_juego";
     public static final String TABLE_PELICULA = "t_pelicula";
     public static final String TABLE_DISCO_MUSICA = "t_disco_musica";
-    public static final String TABLE_FORMATO = "t_formato";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -50,8 +49,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "paraComprar INTEGER," +
                 "FOREIGN KEY(marca) REFERENCES " + TABLE_MARCA + "(id), " +
                 "FOREIGN KEY(tienda) REFERENCES " + TABLE_TIENDA + "(id), " +
-                "FOREIGN KEY(categoria) REFERENCES " + TABLE_CATEGORIA + "(id)" +
-                ")");
+                "FOREIGN KEY(categoria) REFERENCES " + TABLE_CATEGORIA + "(id))");
 
         db.execSQL("CREATE TABLE " + TABLE_PROFESION + "(id INTEGER PRIMARY KEY AUTOINCREMENT, prof TEXT NOT NULL)");
 

@@ -207,6 +207,85 @@
                 android:value=".crud.juego.ListaTipoJuego" />
         </activity>
 
+        <!-- MULTIMEDIA -->
+        <activity
+            android:name=".crud.multimedia.ListaMultimedia"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".crud.multimedia.ListaPelicula"
+            android:exported="false"
+            android:parentActivityName=".crud.multimedia.ListaMultimedia" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.multimedia.ListaMultimedia" />
+        </activity>
+
+        <activity
+            android:name=".crud.multimedia.ListaDiscoMusica"
+            android:exported="false"
+            android:parentActivityName=".crud.multimedia.ListaMultimedia" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.multimedia.ListaMultimedia" />
+        </activity>
+
+        <activity
+            android:name=".crud.multimedia.EditarPelicula"
+            android:exported="false"
+            android:parentActivityName=".crud.multimedia.ListaPelicula">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.multimedia.ListaPelicula" />
+        </activity>
+        <activity
+            android:name=".crud.multimedia.EditarDisco"
+            android:exported="false"
+            android:parentActivityName=".crud.multimedia.ListaDiscoMusica">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.multimedia.ListaDiscoMusica" />
+        </activity>
+
+        <activity
+            android:name=".crud.multimedia.VerPelicula"
+            android:exported="false"
+            android:parentActivityName=".crud.multimedia.ListaPelicula" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.multimedia.ListaPelicula" />
+        </activity>
+        <activity
+            android:name=".crud.multimedia.VerDisco"
+            android:exported="false"
+            android:parentActivityName=".crud.multimedia.ListaDiscoMusica" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.multimedia.ListaDiscoMusica" />
+        </activity>
+
+        <activity
+            android:name=".crud.multimedia.NuevaPelicula"
+            android:exported="false"
+            android:parentActivityName=".crud.multimedia.ListaPelicula" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.multimedia.ListaPelicula" />
+        </activity>
+        <activity
+            android:name=".crud.multimedia.NuevoDisco"
+            android:exported="false"
+            android:parentActivityName=".crud.multimedia.ListaDiscoMusica" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".crud.multimedia.ListaDiscoMusica" />
+        </activity>
+
     </application>
 
 </manifest>

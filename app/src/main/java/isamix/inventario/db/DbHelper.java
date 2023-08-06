@@ -21,6 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_JUEGO = "t_juego";
     public static final String TABLE_PELICULA = "t_pelicula";
     public static final String TABLE_DISCO_MUSICA = "t_disco_musica";
+    public static final String TABLE_FORMATO = "t_formato";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -86,19 +87,25 @@ public class DbHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(marca) REFERENCES "+ TABLE_MARCA + "(id)," +
                 "FOREIGN KEY(tipoJuego) REFERENCES " + TABLE_TIPO_JUEGO + "(id))");
 
+        db.execSQL("CREATE TABLE " + TABLE_FORMATO + "(id INTEGER PRIMARY KEY AUTOINCREMENT, formato TEXT NOT NULL)");
+
         db.execSQL("CREATE TABLE " + TABLE_PELICULA + " (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "titulo TEXT NOT NULL, " +
                 "director TEXT NOT NULL, " +
                 "fechaEstreno INTEGER, " +
-                "FOREIGN KEY(director) REFERENCES " + TABLE_PERSONA + "(id))");
+                "formato TEXT, " +
+                "FOREIGN KEY(director) REFERENCES " + TABLE_PERSONA + "(id), " +
+                "FOREIGN KEY(formato) REFERENCES " + TABLE_FORMATO + "(id))");
 
         db.execSQL("CREATE TABLE " + TABLE_DISCO_MUSICA + " (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "titulo TEXT NOT NULL, " +
                 "artista_grupo TEXT NOT NULL, " +
                 "fechaLanzamiento INTEGER, " +
-                "FOREIGN KEY(artista_grupo) REFERENCES " + TABLE_PERSONA + "(id))");
+                "formato TEXT, " +
+                "FOREIGN KEY(artista_grupo) REFERENCES " + TABLE_PERSONA + "(id), " +
+                "FOREIGN KEY(formato) REFERENCES " + TABLE_FORMATO + "(id))");
     }
 
     @Override
@@ -115,6 +122,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIPO_JUEGO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PELICULA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DISCO_MUSICA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FORMATO);
         onCreate(db);
     }
 }

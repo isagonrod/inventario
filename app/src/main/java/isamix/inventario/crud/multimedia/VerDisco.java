@@ -9,25 +9,24 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import isamix.inventario.R;
-import isamix.inventario.db.DbPelicula;
-import isamix.inventario.modelo.Pelicula;
+import isamix.inventario.db.DbDiscoMusica;
+import isamix.inventario.modelo.DiscoMusica;
 
-public class VerPelicula extends AppCompatActivity {
+public class VerDisco extends AppCompatActivity {
 
-    TextView titulo, director, fechaEstreno, descripcion;
+    TextView titulo, artista, fechaLanzamiento;
     Button btnGuardar, btnEditar, btnEliminar;
-    Pelicula pelicula;
+    DiscoMusica disco;
     int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ver_pelicula);
+        setContentView(R.layout.ver_disco);
 
-        titulo = findViewById(R.id.filmTitle);
-        director = findViewById(R.id.filmDirector);
-        fechaEstreno = findViewById(R.id.filmYear);
-        descripcion = findViewById(R.id.filmDescription);
+        titulo = findViewById(R.id.discTitle);
+        artista = findViewById(R.id.discArtist);
+        fechaLanzamiento = findViewById(R.id.discYear);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -44,29 +43,28 @@ public class VerPelicula extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        final DbPelicula dbPelicula = new DbPelicula(VerPelicula.this);
-        pelicula = dbPelicula.verPelicula(id);
+        final DbDiscoMusica dbDiscos = new DbDiscoMusica(VerDisco.this);
+        disco = dbDiscos.verDiscoMusica(id);
 
-        if (pelicula != null) {
-            titulo.setText(pelicula.getTitulo());
-            director.setText(pelicula.getDirector());
-            fechaEstreno.setText(String.valueOf(pelicula.getFechaEstreno()));
-            descripcion.setText(pelicula.getDescripcion());
+        if (disco != null) {
+            titulo.setText(disco.getTitulo());
+            artista.setText(disco.getArtista_grupo());
+            fechaLanzamiento.setText(disco.getFechaLanzamiento());
             btnGuardar.setVisibility(View.GONE);
         }
 
         btnEditar.setOnClickListener(v -> {
-            Intent intent = new Intent(VerPelicula.this, EditarPelicula.class);
+            Intent intent = new Intent(VerDisco.this, EditarDisco.class);
             intent.putExtra("ID", id);
             startActivity(intent);
         });
 
         btnEliminar.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(VerPelicula.this);
-            builder.setTitle("ELIMINAR PELÍCULA");
-            builder.setMessage("¿Desea eliminar esta película?");
+            AlertDialog.Builder builder = new AlertDialog.Builder(VerDisco.this);
+            builder.setTitle("ELIMINAR DISCO DE MÚSICA");
+            builder.setMessage("¿Desea eliminar este disco?");
             builder.setPositiveButton("SÍ", (dialogInterface, i) -> {
-                if (dbPelicula.eliminarPelicula(id)) {
+                if (dbDiscos.eliminarDiscoMusica(id)) {
                     lista();
                 }
             }).setNegativeButton("NO", (dialogInterface, i) -> {}).show();
@@ -74,7 +72,7 @@ public class VerPelicula extends AppCompatActivity {
     }
 
     private void lista() {
-        Intent intent = new Intent(this, ListaPelicula.class);
+        Intent intent = new Intent(this, ListaDiscoMusica.class);
         startActivity(intent);
     }
 }

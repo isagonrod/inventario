@@ -21,32 +21,31 @@ import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.producto.ListaCategoria;
-import isamix.inventario.db.DbPelicula;
+import isamix.inventario.db.DbDiscoMusica;
 import isamix.inventario.db.DbPersona;
-import isamix.inventario.modelo.Pelicula;
+import isamix.inventario.modelo.DiscoMusica;
 import isamix.inventario.modelo.Persona;
 
-public class EditarPelicula extends AppCompatActivity {
+public class EditarDisco extends AppCompatActivity {
 
-    EditText titulo, fechaEstreno, descripcion;
-    AutoCompleteTextView director;
+    EditText titulo, fechaLanzamiento;
+    AutoCompleteTextView artista;
     Button btnGuardar, btnEditar, btnEliminar;
-    DbPelicula dbPelicula;
-    DbPersona dbDirector;
-    Pelicula pelicula;
-    List<Persona> directores;
+    DbDiscoMusica dbDiscoMusica;
+    DbPersona dbArtista;
+    DiscoMusica discoMusica;
+    List<Persona> artistas, grupos;
     int id = 0;
     boolean correcto = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nueva_pelicula);
+        setContentView(R.layout.nuevo_disco);
 
-        titulo = findViewById(R.id.etFilmTitle);
-        director = findViewById(R.id.etFilmDirector);
-        fechaEstreno = findViewById(R.id.etFilmYear);
-        descripcion = findViewById(R.id.etFilmDescription);
+        titulo = findViewById(R.id.etDiscTitle);
+        artista = findViewById(R.id.etDiscArtist);
+        fechaLanzamiento = findViewById(R.id.etDiscYear);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -54,13 +53,15 @@ public class EditarPelicula extends AppCompatActivity {
         btnEliminar = findViewById(R.id.fabEliminar);
         btnEliminar.setVisibility(View.GONE);
 
-        dbPelicula = new DbPelicula(EditarPelicula.this);
-        dbDirector = new DbPersona(EditarPelicula.this);
-        directores = dbDirector.mostrarPersonasPorProfesion("Director");
+        dbDiscoMusica = new DbDiscoMusica(EditarDisco.this);
+        dbArtista = new DbPersona(EditarDisco.this);
+        artistas = dbArtista.mostrarPersonasPorProfesion("Artista");
+        grupos = dbArtista.mostrarPersonasPorProfesion("Grupo/Banda");
+        artistas.addAll(grupos);
 
-        ArrayAdapter<Persona> directorArrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                android.support.design.R.layout.support_simple_spinner_dropdown_item, directores);
-        director.setAdapter(directorArrayAdapter);
+        ArrayAdapter<Persona> artistaAdapter = new ArrayAdapter<>(getApplicationContext(),
+                android.support.design.R.layout.support_simple_spinner_dropdown_item, artistas);
+        artista.setAdapter(artistaAdapter);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -73,46 +74,52 @@ public class EditarPelicula extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        final DbPelicula dbPeliculas = new DbPelicula(EditarPelicula.this);
-        pelicula = dbPeliculas.verPelicula(id);
+        final DbDiscoMusica dbDiscosMusica = new DbDiscoMusica(EditarDisco.this);
+        discoMusica = dbDiscosMusica.verDiscoMusica(id);
 
-        if (pelicula != null) {
-            titulo.setText(pelicula.getTitulo());
-            director.setText(pelicula.getDirector());
-            fechaEstreno.setText(pelicula.getFechaEstreno());
-            descripcion.setText(pelicula.getDescripcion());
+        if (discoMusica != null) {
+            titulo.setText(discoMusica.getTitulo());
+            artista.setText(discoMusica.getArtista_grupo());
+            fechaLanzamiento.setText(discoMusica.getFechaLanzamiento());
         }
 
         btnGuardar.setOnClickListener(v -> {
-            if (!titulo.getText().toString().isEmpty() && !director.getText().toString().isEmpty()) {
-                correcto = dbPeliculas.editarPelicula(id,
+            if (!titulo.getText().toString().isEmpty() && !artista.getText().toString().isEmpty()) {
+
+                correcto = dbDiscosMusica.editarDiscoMusica(id,
                         titulo.getText().toString(),
-                        director.getText().toString(),
-                        Integer.parseInt(fechaEstreno.getText().toString()),
-                        descripcion.getText().toString());
+                        artista.getText().toString(),
+                        Integer.parseInt(fechaLanzamiento.getText().toString()));
 
-                Persona filmDirector = dbDirector.getPersona(director.getText().toString(), "Director");
+                Persona artist = dbArtista.getPersona(artista.getText().toString(), "Artista");
+                Persona group = dbArtista.getPersona(artista.getText().toString(), "Grupo/Banda");
 
-                if (filmDirector == null) {
-                    dbDirector.insertarPersona(director.getText().toString(), "Director");
+                if (artist == null) {
+                    dbArtista.insertarPersona(artista.getText().toString(), "Artista");
                 } else {
-                    dbDirector.editarPersona(filmDirector.getId(), filmDirector.getNombreCompleto(), filmDirector.getProfesion());
+                    dbArtista.editarPersona(artist.getId(), artist.getNombreCompleto(), artist.getProfesion());
+                }
+
+                if (group == null) {
+                    dbArtista.insertarPersona(artista.getText().toString(), "Grupo/Banda");
+                } else {
+                    dbArtista.editarPersona(group.getId(), group.getNombreCompleto(), group.getProfesion());
                 }
 
                 if (correcto) {
-                    Toast.makeText(EditarPelicula.this, "PELÍCULA MODIFICADA", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarDisco.this, "DISCO DE MÚSICA MODIFICADO", Toast.LENGTH_LONG).show();
                     recargarVista();
                 } else {
-                    Toast.makeText(EditarPelicula.this, "ERROR AL MODIFICAR PELÍCULA", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarDisco.this, "ERROR AL MODIFICAR DISCO DE MÚSICA", Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(EditarPelicula.this, "DEBE RELLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditarDisco.this, "DEBE RELLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
             }
         });
     }
 
     private void recargarVista() {
-        Intent intent = new Intent(this, VerPelicula.class);
+        Intent intent = new Intent(this, VerDisco.class);
         intent.putExtra("ID", id);
         startActivity(intent);
     }

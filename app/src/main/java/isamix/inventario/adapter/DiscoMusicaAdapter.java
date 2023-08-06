@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
+import isamix.inventario.crud.multimedia.EditarDisco;
+import isamix.inventario.crud.multimedia.VerDisco;
 import isamix.inventario.db.DbDiscoMusica;
 import isamix.inventario.db.DbPelicula;
 import isamix.inventario.modelo.DiscoMusica;
@@ -42,7 +44,7 @@ public class DiscoMusicaAdapter extends RecyclerView.Adapter<DiscoMusicaAdapter.
     @Override
     public void onBindViewHolder(@NonNull DiscoViewHolder discoViewHolder, int i) {
         discoViewHolder.titulo.setText(listaDiscos.get(i).getTitulo());
-        discoViewHolder.director.setText(listaDiscos.get(i).getArtista_grupo());
+        discoViewHolder.artista.setText(listaDiscos.get(i).getArtista_grupo());
         discoViewHolder.fecha.setText(listaDiscos.get(i).getFechaLanzamiento());
     }
 

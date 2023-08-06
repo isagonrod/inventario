@@ -79,7 +79,7 @@ public class EditarPelicula extends AppCompatActivity {
         if (pelicula != null) {
             titulo.setText(pelicula.getTitulo());
             director.setText(pelicula.getDirector());
-            fechaEstreno.setText(pelicula.getFechaEstreno());
+            fechaEstreno.setText(String.valueOf(pelicula.getFechaEstreno()));
             descripcion.setText(pelicula.getDescripcion());
         }
 

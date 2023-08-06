@@ -44,7 +44,7 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.Pelicu
     public void onBindViewHolder(@NonNull PeliculaViewHolder peliculaViewHolder, int i) {
         peliculaViewHolder.titulo.setText(listaPeliculas.get(i).getTitulo());
         peliculaViewHolder.director.setText(listaPeliculas.get(i).getDirector());
-        peliculaViewHolder.fecha.setText(listaPeliculas.get(i).getFechaEstreno());
+        peliculaViewHolder.fecha.setText(String.valueOf(listaPeliculas.get(i).getFechaEstreno()));
     }
 
     @Override

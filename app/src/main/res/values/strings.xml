@@ -31,7 +31,7 @@
     <string name="hint_artista">Artista o Grupo:</string>
     <string name="hint_fecha_estreno">Fecha de Estreno:</string>
     <string name="hint_fecha_lanzamiento">Fecha de Lanzamiento:</string>
-    <string name="hint_descripcion">Descripción:</string>
+    <string name="hint_descripcion">Sinopsis:</string>
 
     <!-- Campos obligatorios -->
     <string name="oblig_name">Nombre: *</string>

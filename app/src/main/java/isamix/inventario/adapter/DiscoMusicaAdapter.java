@@ -45,7 +45,7 @@ public class DiscoMusicaAdapter extends RecyclerView.Adapter<DiscoMusicaAdapter.
     public void onBindViewHolder(@NonNull DiscoViewHolder discoViewHolder, int i) {
         discoViewHolder.titulo.setText(listaDiscos.get(i).getTitulo());
         discoViewHolder.artista.setText(listaDiscos.get(i).getArtista_grupo());
-        discoViewHolder.fecha.setText(listaDiscos.get(i).getFechaLanzamiento());
+        discoViewHolder.fecha.setText(String.valueOf(listaDiscos.get(i).getFechaLanzamiento()));
     }
 
     @Override

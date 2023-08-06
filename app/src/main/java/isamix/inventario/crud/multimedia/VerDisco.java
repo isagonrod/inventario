@@ -49,7 +49,7 @@ public class VerDisco extends AppCompatActivity {
         if (disco != null) {
             titulo.setText(disco.getTitulo());
             artista.setText(disco.getArtista_grupo());
-            fechaLanzamiento.setText(disco.getFechaLanzamiento());
+            fechaLanzamiento.setText(String.valueOf(disco.getFechaLanzamiento()));
             btnGuardar.setVisibility(View.GONE);
         }
 

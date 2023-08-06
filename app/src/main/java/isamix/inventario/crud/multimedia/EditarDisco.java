@@ -80,7 +80,7 @@ public class EditarDisco extends AppCompatActivity {
         if (discoMusica != null) {
             titulo.setText(discoMusica.getTitulo());
             artista.setText(discoMusica.getArtista_grupo());
-            fechaLanzamiento.setText(discoMusica.getFechaLanzamiento());
+            fechaLanzamiento.setText(String.valueOf(discoMusica.getFechaLanzamiento()));
         }
 
         btnGuardar.setOnClickListener(v -> {

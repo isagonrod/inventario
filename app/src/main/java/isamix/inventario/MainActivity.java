@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         gestionJuegos.setOnClickListener(v -> verLista(ListaTipoJuego.class));
 
         gestionMultimedia = findViewById(R.id.gestionMultimedia);
+        gestionMultimedia.setOnClickListener(v -> verLista(ListaMultimedia.class));
     }
 
 

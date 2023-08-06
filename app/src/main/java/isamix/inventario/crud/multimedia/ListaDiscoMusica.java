@@ -1,4 +1,4 @@
-package isamix.inventario.crud.libro;
+package isamix.inventario.crud.multimedia;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,46 +9,51 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.SearchView;
 
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.LibroAdapter;
+import isamix.inventario.adapter.DiscoMusicaAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
-import isamix.inventario.crud.juego.ListaTipoJuego;
-import isamix.inventario.crud.multimedia.ListaMultimedia;
-import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
-import isamix.inventario.db.DbLibro;
-import isamix.inventario.modelo.Libro;
+import isamix.inventario.crud.juego.ListaTipoJuego;
+import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.producto.ListaCategoria;
+import isamix.inventario.db.DbDiscoMusica;
+import isamix.inventario.modelo.DiscoMusica;
 
-public class ListaLibro extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListaDiscoMusica extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     SearchView buscador;
-    RecyclerView listaLibros;
-    List<Libro> arrayListLibros;
-    LibroAdapter adapter;
+    RecyclerView listaDiscos;
+    Button btn_newDisc;
+    List<DiscoMusica> arrayListDiscos;
+    DiscoMusicaAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_libro);
+        setContentView(R.layout.lista_disco);
 
-        buscador = findViewById(R.id.buscador);
-        listaLibros = findViewById(R.id.listaLibros);
-        listaLibros.setLayoutManager(new LinearLayoutManager(this));
+        buscador = findViewById(R.id.buscadorDisco);
+        listaDiscos = findViewById(R.id.listaDiscos);
+        listaDiscos.setLayoutManager(new LinearLayoutManager(this));
 
-        DbLibro dbLibro = new DbLibro(ListaLibro.this);
-        arrayListLibros = dbLibro.mostrarLibros();
-        adapter = new LibroAdapter(arrayListLibros);
-        listaLibros.setAdapter(adapter);
+        DbDiscoMusica dbDiscoMusica = new DbDiscoMusica(ListaDiscoMusica.this);
+        arrayListDiscos = dbDiscoMusica.mostrarDiscosMusica();
+        adapter = new DiscoMusicaAdapter(arrayListDiscos);
+        listaDiscos.setAdapter(adapter);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
-                this, new LinearLayoutManager(this).getOrientation());
-        listaLibros.addItemDecoration(dividerItemDecoration);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
+                new LinearLayoutManager(this).getOrientation());
+        listaDiscos.addItemDecoration(dividerItemDecoration);
 
         buscador.setOnQueryTextListener(this);
+
+        btn_newDisc = findViewById(R.id.btnAddNewDisc);
+        btn_newDisc.setOnClickListener(v -> verLista(NuevoDisco.class));
     }
 
     @Override
@@ -58,7 +63,7 @@ public class ListaLibro extends AppCompatActivity implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextChange(String s) {
-        adapter.filtradoLibros(s);
+        adapter.filtrarDiscos(s);
         return false;
     }
 

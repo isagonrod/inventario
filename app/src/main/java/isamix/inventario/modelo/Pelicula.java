@@ -6,7 +6,6 @@ public class Pelicula {
     private String titulo;
     private String director;
     private int fechaEstreno;
-    private String formato;
 
     public int getId() {
         return id;
@@ -38,13 +37,5 @@ public class Pelicula {
 
     public void setFechaEstreno(int fechaEstreno) {
         this.fechaEstreno = fechaEstreno;
-    }
-
-    public String getFormato() {
-        return formato;
-    }
-
-    public void setFormato(String formato) {
-        this.formato = formato;
     }
 }

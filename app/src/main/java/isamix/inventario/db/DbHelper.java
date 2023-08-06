@@ -87,16 +87,13 @@ public class DbHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(marca) REFERENCES "+ TABLE_MARCA + "(id)," +
                 "FOREIGN KEY(tipoJuego) REFERENCES " + TABLE_TIPO_JUEGO + "(id))");
 
-        db.execSQL("CREATE TABLE " + TABLE_FORMATO + "(id INTEGER PRIMARY KEY AUTOINCREMENT, formato TEXT NOT NULL)");
-
         db.execSQL("CREATE TABLE " + TABLE_PELICULA + " (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "titulo TEXT NOT NULL, " +
                 "director TEXT NOT NULL, " +
                 "fechaEstreno INTEGER, " +
                 "formato TEXT, " +
-                "FOREIGN KEY(director) REFERENCES " + TABLE_PERSONA + "(id), " +
-                "FOREIGN KEY(formato) REFERENCES " + TABLE_FORMATO + "(id))");
+                "FOREIGN KEY(director) REFERENCES " + TABLE_PERSONA + "(id))");
 
         db.execSQL("CREATE TABLE " + TABLE_DISCO_MUSICA + " (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -104,8 +101,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "artista_grupo TEXT NOT NULL, " +
                 "fechaLanzamiento INTEGER, " +
                 "formato TEXT, " +
-                "FOREIGN KEY(artista_grupo) REFERENCES " + TABLE_PERSONA + "(id), " +
-                "FOREIGN KEY(formato) REFERENCES " + TABLE_FORMATO + "(id))");
+                "FOREIGN KEY(artista_grupo) REFERENCES " + TABLE_PERSONA + "(id))");
     }
 
     @Override
@@ -122,7 +118,6 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIPO_JUEGO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PELICULA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DISCO_MUSICA);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FORMATO);
         onCreate(db);
     }
 }

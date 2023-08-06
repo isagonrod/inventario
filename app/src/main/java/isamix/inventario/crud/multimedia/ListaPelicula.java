@@ -1,4 +1,4 @@
-package isamix.inventario.crud.libro;
+package isamix.inventario.crud.multimedia;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,46 +9,51 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.SearchView;
 
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.LibroAdapter;
+import isamix.inventario.adapter.PeliculaAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
-import isamix.inventario.crud.juego.ListaTipoJuego;
-import isamix.inventario.crud.multimedia.ListaMultimedia;
-import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
-import isamix.inventario.db.DbLibro;
-import isamix.inventario.modelo.Libro;
+import isamix.inventario.crud.juego.ListaTipoJuego;
+import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.producto.ListaCategoria;
+import isamix.inventario.db.DbPelicula;
+import isamix.inventario.modelo.Pelicula;
 
-public class ListaLibro extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListaPelicula extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     SearchView buscador;
-    RecyclerView listaLibros;
-    List<Libro> arrayListLibros;
-    LibroAdapter adapter;
+    RecyclerView listaPeliculas;
+    Button btn_newFilm;
+    List<Pelicula> arrayListPeliculas;
+    PeliculaAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_libro);
+        setContentView(R.layout.lista_pelicula);
 
-        buscador = findViewById(R.id.buscador);
-        listaLibros = findViewById(R.id.listaLibros);
-        listaLibros.setLayoutManager(new LinearLayoutManager(this));
+        buscador = findViewById(R.id.buscadorPelicula);
+        listaPeliculas = findViewById(R.id.listaPeliculas);
+        listaPeliculas.setLayoutManager(new LinearLayoutManager(this));
 
-        DbLibro dbLibro = new DbLibro(ListaLibro.this);
-        arrayListLibros = dbLibro.mostrarLibros();
-        adapter = new LibroAdapter(arrayListLibros);
-        listaLibros.setAdapter(adapter);
+        DbPelicula dbPelicula = new DbPelicula(ListaPelicula.this);
+        arrayListPeliculas = dbPelicula.mostrarPeliculas();
+        adapter = new PeliculaAdapter(arrayListPeliculas);
+        listaPeliculas.setAdapter(adapter);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
-                this, new LinearLayoutManager(this).getOrientation());
-        listaLibros.addItemDecoration(dividerItemDecoration);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
+                new LinearLayoutManager(this).getOrientation());
+        listaPeliculas.addItemDecoration(dividerItemDecoration);
 
         buscador.setOnQueryTextListener(this);
+
+        btn_newFilm = findViewById(R.id.btnAddNewFilm);
+        btn_newFilm.setOnClickListener(v -> verLista(NuevaPelicula.class));
     }
 
     @Override
@@ -58,7 +63,7 @@ public class ListaLibro extends AppCompatActivity implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextChange(String s) {
-        adapter.filtradoLibros(s);
+        adapter.filtrarPeliculas(s);
         return false;
     }
 

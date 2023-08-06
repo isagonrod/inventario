@@ -26,6 +26,12 @@
     <string name="hint_tipo">Tipo de juego:</string>
     <string name="hint_num_jugadores">Número de jugadores:</string>
 
+    <!-- Formulario Multimedia -->
+    <string name="hint_director">Director:</string>
+    <string name="hint_artista">Artista o Grupo:</string>
+    <string name="hint_fecha_estreno">Fecha de Estreno:</string>
+    <string name="hint_fecha_lanzamiento">Fecha de Lanzamiento:</string>
+
     <!-- Campos obligatorios -->
     <string name="oblig_name">Nombre: *</string>
     <string name="oblig_amount">Cantidad: *</string>
@@ -49,6 +55,10 @@
     <string name="btn_new_type">Añadir nuevo tipo de juevo</string>
     <string name="btn_new_game">Agregar nuevo juego</string>
     <string name="btn_game_list">Ver lista completa de juegos</string>
+    <string name="btn_new_film">Agregar nueva película</string>
+    <string name="btn_new_disc">Agregar nuevo disco de música</string>
+    <string name="btn_films">PELÍCULAS</string>
+    <string name="btn_discs">DISCOS DE MÚSICA</string>
 
     <!-- Menú principal -->
     <string name="menu_lista_compra">Lista de la Compra</string>
@@ -56,6 +66,8 @@
     <string name="menu_lista_libros">Gestión de Libros</string>
     <string name="menu_lista_juegos">Gestión de Juegos</string>
     <string name="menu_lista_multimedia">Gestión Multimedia</string>
+    <string name="menu_lista_pelicula">Gestión de Películas</string>
+    <string name="menu_lista_disco">Gestión de Discos de Música</string>
     <string name="funcionamiento">Funcionamiento de la App</string>
 
     <string name="moneda">€</string>

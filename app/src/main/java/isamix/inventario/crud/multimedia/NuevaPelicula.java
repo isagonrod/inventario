@@ -18,7 +18,7 @@ import isamix.inventario.modelo.Persona;
 
 public class NuevaPelicula extends AppCompatActivity {
 
-    EditText titulo, fechaEstreno, descripcion;
+    EditText titulo, fechaEstreno, minDuracion;
     AutoCompleteTextView director;
     Button btnGuardar, btnEditar, btnEliminar;
     DbPelicula dbPelicula;
@@ -33,7 +33,7 @@ public class NuevaPelicula extends AppCompatActivity {
         titulo = findViewById(R.id.etFilmTitle);
         director = findViewById(R.id.etFilmDirector);
         fechaEstreno = findViewById(R.id.etFilmYear);
-        descripcion = findViewById(R.id.etFilmDescription);
+        minDuracion = findViewById(R.id.etFilmDuration);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -63,7 +63,7 @@ public class NuevaPelicula extends AppCompatActivity {
                         titulo.getText().toString(),
                         director.getText().toString(),
                         Integer.parseInt(fechaEstreno.getText().toString()),
-                        descripcion.getText().toString());
+                        Integer.parseInt(minDuracion.getText().toString()));
 
                 Toast.makeText(NuevaPelicula.this, "PELÍCULA GUARDADA", Toast.LENGTH_LONG).show();
                 limpiarFormulario();
@@ -78,6 +78,6 @@ public class NuevaPelicula extends AppCompatActivity {
         titulo.setText("");
         director.setText("");
         fechaEstreno.setText("");
-        descripcion.setText("");
+        minDuracion.setText("");
     }
 }

@@ -6,7 +6,7 @@ public class Pelicula {
     private String titulo;
     private String director;
     private int fechaEstreno;
-    private String descripcion;
+    private int minDuracion;
 
     public int getId() {
         return id;
@@ -40,11 +40,11 @@ public class Pelicula {
         this.fechaEstreno = fechaEstreno;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public int getMinDuracion() {
+        return minDuracion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setMinDuracion(int minDuracion) {
+        this.minDuracion = minDuracion;
     }
 }

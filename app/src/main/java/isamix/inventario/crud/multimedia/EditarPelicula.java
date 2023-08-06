@@ -28,7 +28,7 @@ import isamix.inventario.modelo.Persona;
 
 public class EditarPelicula extends AppCompatActivity {
 
-    EditText titulo, fechaEstreno, descripcion;
+    EditText titulo, fechaEstreno, minDuracion;
     AutoCompleteTextView director;
     Button btnGuardar, btnEditar, btnEliminar;
     DbPelicula dbPelicula;
@@ -46,7 +46,7 @@ public class EditarPelicula extends AppCompatActivity {
         titulo = findViewById(R.id.etFilmTitle);
         director = findViewById(R.id.etFilmDirector);
         fechaEstreno = findViewById(R.id.etFilmYear);
-        descripcion = findViewById(R.id.etFilmDescription);
+        minDuracion = findViewById(R.id.etFilmDuration);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -80,7 +80,7 @@ public class EditarPelicula extends AppCompatActivity {
             titulo.setText(pelicula.getTitulo());
             director.setText(pelicula.getDirector());
             fechaEstreno.setText(String.valueOf(pelicula.getFechaEstreno()));
-            descripcion.setText(pelicula.getDescripcion());
+            minDuracion.setText(String.valueOf(pelicula.getMinDuracion()));
         }
 
         btnGuardar.setOnClickListener(v -> {
@@ -89,7 +89,7 @@ public class EditarPelicula extends AppCompatActivity {
                         titulo.getText().toString(),
                         director.getText().toString(),
                         Integer.parseInt(fechaEstreno.getText().toString()),
-                        descripcion.getText().toString());
+                        Integer.parseInt(minDuracion.getText().toString()));
 
                 Persona filmDirector = dbDirector.getPersona(director.getText().toString(), "Director");
 

@@ -24,14 +24,14 @@ public class DbPelicula extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarPelicula(String titulo, String director, int fecha, String descripcion) {
+    public long insertarPelicula(String titulo, String director, int fecha, int minDuracion) {
         long id = 0;
         try {
             ContentValues values = new ContentValues();
             values.put("titulo", titulo);
             values.put("director", director);
             values.put("fechaEstreno", fecha);
-            values.put("descripcion", descripcion);
+            values.put("minDuracion", minDuracion);
             id = db.insert(TABLE_PELICULA, null, values);
         } catch (Exception ex) {
             ex.toString();
@@ -52,7 +52,7 @@ public class DbPelicula extends DbHelper {
                 pelicula.setTitulo(cursorPelicula.getString(1));
                 pelicula.setDirector(cursorPelicula.getString(2));
                 pelicula.setFechaEstreno(cursorPelicula.getInt(3));
-                pelicula.setDescripcion(cursorPelicula.getString(4));
+                pelicula.setMinDuracion(cursorPelicula.getInt(4));
                 listaPeliculas.add(pelicula);
             } while (cursorPelicula.moveToNext());
         }
@@ -72,21 +72,21 @@ public class DbPelicula extends DbHelper {
                 pelicula.setTitulo(cursorPelicula.getString(1));
                 pelicula.setDirector(cursorPelicula.getString(2));
                 pelicula.setFechaEstreno(cursorPelicula.getInt(3));
-                pelicula.setDescripcion(cursorPelicula.getString(4));
+                pelicula.setMinDuracion(cursorPelicula.getInt(4));
             } while (cursorPelicula.moveToNext());
         }
         cursorPelicula.close();
         return pelicula;
     }
 
-    public boolean editarPelicula(int id, String titulo, String director, int fecha, String descripcion) {
+    public boolean editarPelicula(int id, String titulo, String director, int fecha, int minDuracion) {
         boolean correcto;
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             db.execSQL("UPDATE " + TABLE_PELICULA + " SET " +
                     "titulo = '" + titulo +"', " +
                     "director = '" + director + "', " +
                     "fechaEstreno = '" + fecha + "' " +
-                    "descripcion = '" + descripcion + "', " +
+                    "minDuracion = '" + minDuracion + "', " +
                     "WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {

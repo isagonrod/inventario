@@ -57,19 +57,33 @@
             android:layout_marginBottom="10dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvFilmDescription"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_descripcion" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/filmDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginBottom="10dp" />
+        <TextView
+            android:id="@+id/tvFilmDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_min_duracion" />
+
+        <TextView
+            android:id="@+id/filmDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/min"/>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

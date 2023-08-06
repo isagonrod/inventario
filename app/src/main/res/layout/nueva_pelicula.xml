@@ -61,21 +61,32 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/tvFilmDescription"
+        android:id="@+id/tvFilmDuration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_descripcion"
+        android:text="@string/hint_min_duracion"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <EditText
-        android:id="@+id/etFilmDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:labelFor="@+id/tvFilmDescription"
-        android:textSize="24sp"
-        tools:ignore="SpeakableTextPresentCheck" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etFilmDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:inputType="number"
+            android:labelFor="@+id/tvFilmDuration"
+            android:textSize="24sp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:text="@string/min"
+            android:layout_marginStart="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -75,7 +75,6 @@ public class NuevoProducto extends AppCompatActivity {
 
         btnGuardar.setOnClickListener(v -> {
             if (!txtNombre.getText().toString().isEmpty()
-                    && !txtMarca.getText().toString().isEmpty()
                     && !txtTienda.getText().toString().isEmpty()
                     && !txtCategoria.getText().toString().isEmpty()) {
 

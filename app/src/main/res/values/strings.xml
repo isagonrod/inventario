@@ -31,6 +31,7 @@
     <string name="hint_artista">Artista o Grupo:</string>
     <string name="hint_fecha_estreno">Fecha de Estreno:</string>
     <string name="hint_fecha_lanzamiento">Fecha de Lanzamiento:</string>
+    <string name="hint_descripcion">Descripción:</string>
 
     <!-- Campos obligatorios -->
     <string name="oblig_name">Nombre: *</string>
@@ -43,6 +44,8 @@
     <string name="oblig_genre">Género: *</string>
     <string name="oblig_brand">Marca: *</string>
     <string name="oblig_type">Tipo de juego: *</string>
+    <string name="oblig_director">Director: *</string>
+    <string name="oblig_artist">Artista o Grupo: *</string>
 
     <!-- Botones con texto -->
     <string name="terminar_compra">Terminar compra</string>

@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
+import isamix.inventario.crud.multimedia.EditarPelicula;
+import isamix.inventario.crud.multimedia.VerPelicula;
 import isamix.inventario.db.DbPelicula;
 import isamix.inventario.modelo.Pelicula;
 

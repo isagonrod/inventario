@@ -92,7 +92,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "titulo TEXT NOT NULL, " +
                 "director TEXT NOT NULL, " +
                 "fechaEstreno INTEGER, " +
-                "formato TEXT, " +
+                "descripcion TEXT, " +
                 "FOREIGN KEY(director) REFERENCES " + TABLE_PERSONA + "(id))");
 
         db.execSQL("CREATE TABLE " + TABLE_DISCO_MUSICA + " (" +
@@ -100,7 +100,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 "titulo TEXT NOT NULL, " +
                 "artista_grupo TEXT NOT NULL, " +
                 "fechaLanzamiento INTEGER, " +
-                "formato TEXT, " +
                 "FOREIGN KEY(artista_grupo) REFERENCES " + TABLE_PERSONA + "(id))");
     }
 

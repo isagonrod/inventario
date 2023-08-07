@@ -20,6 +20,7 @@ import isamix.inventario.crud.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Producto;
 
@@ -92,8 +93,9 @@ public class ListaProducto extends AppCompatActivity implements SearchView.OnQue
             case R.id.menuGestionJuegos:
                 verLista(ListaTipoJuego.class);
                 return true;
-//            case R.id.menuGestionMultimedia:
-//                return true;
+            case R.id.menuGestionMultimedia:
+                verLista(ListaMultimedia.class);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

@@ -19,6 +19,7 @@ import isamix.inventario.R;
 import isamix.inventario.crud.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.db.DbJuego;
 import isamix.inventario.db.DbMarca;
@@ -164,8 +165,9 @@ public class EditarJuego extends AppCompatActivity {
             case R.id.menuGestionJuegos:
                 verLista(ListaTipoJuego.class);
                 return true;
-//            case R.id.menuGestionMultimedia:
-//                return true;
+            case R.id.menuGestionMultimedia:
+                verLista(ListaMultimedia.class);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

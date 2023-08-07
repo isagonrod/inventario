@@ -20,6 +20,7 @@ import isamix.inventario.adapter.TipoJuegoAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.db.DbTipoJuego;
 import isamix.inventario.modelo.TipoJuego;
@@ -101,8 +102,9 @@ public class ListaTipoJuego extends AppCompatActivity {
             case R.id.menuGestionJuegos:
                 verLista(ListaTipoJuego.class);
                 return true;
-//            case R.id.menuGestionMultimedia:
-//                return true;
+            case R.id.menuGestionMultimedia:
+                verLista(ListaMultimedia.class);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

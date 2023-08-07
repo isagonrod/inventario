@@ -52,7 +52,7 @@ public class DbProducto extends DbHelper {
         Producto producto;
         Cursor cursorProductos;
 
-        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " ORDER BY cantidad, nombre ASC", null);
+        cursorProductos = db.rawQuery("SELECT * FROM " + TABLE_PRODUCTO + " ORDER BY nombre ASC", null);
 
         if (cursorProductos.moveToFirst()) {
             do {

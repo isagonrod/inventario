@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -16,11 +17,20 @@
         android:textStyle="bold"
         android:textAlignment="center"/>
 
-    <TextView
-        android:id="@+id/tvMessage"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:textSize="13sp"
-        android:gravity="fill_horizontal"/>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="textMultiLine"
+            android:textSize="15sp"
+            android:scrollbars="vertical"
+            android:gravity="fill_horizontal"
+            tools:ignore="TextViewEdits" />
+    </ScrollView>
+
 </LinearLayout>

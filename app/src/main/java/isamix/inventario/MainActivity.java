@@ -17,15 +17,15 @@ import isamix.inventario.crud.libro.ListaGenero;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button gestionCompra, gestionProductos, gestionLibros, gestionJuegos, gestionMultimedia;
+    Button gestionProductos, gestionLibros, gestionJuegos, gestionMultimedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        gestionCompra = findViewById(R.id.gestionCompra);
-        gestionCompra.setOnClickListener(v -> verLista(ListaCompra.class));
+//        gestionCompra = findViewById(R.id.gestionCompra);
+//        gestionCompra.setOnClickListener(v -> verLista(ListaCompra.class));
 
         gestionProductos = findViewById(R.id.gestionProductos);
         gestionProductos.setOnClickListener(v -> verLista(ListaCategoria.class));

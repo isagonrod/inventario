@@ -4,11 +4,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuFuncionamiento"
-        android:title="@string/funcionamiento"/>
+        android:title="@string/funcionamiento"
+        android:icon="?android:attr/actionModeFindDrawable"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/menuListaCompra"
-        android:title="@string/menu_lista_compra" />
+        android:title="@string/menu_lista_compra"
+        android:icon="@drawable/carritocompra"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/menuGestionProductos"

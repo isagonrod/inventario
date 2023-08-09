@@ -33,7 +33,6 @@ public class ListaRopa extends AppCompatActivity implements SearchView.OnQueryTe
     Button btnNewClothes;
     List<Ropa> arrayListRopa;
     RopaAdapter adapter;
-    Bundle extra;
     TextView title;
 
     @Override
@@ -45,16 +44,19 @@ public class ListaRopa extends AppCompatActivity implements SearchView.OnQueryTe
         listaRopa = findViewById(R.id.listaRopa);
         listaRopa.setLayoutManager(new LinearLayoutManager(this));
 
-        extra = getIntent().getExtras();
         title = findViewById(R.id.title_category);
 
         DbRopa dbRopa = new DbRopa(ListaRopa.this);
 
-        if (extra.containsKey("TIPO")) {
-            title.setText(R.string.textil_hogar);
-            arrayListRopa = dbRopa.mostrarRopasTextilHogar();
-        } else {
-            arrayListRopa = dbRopa.mostrarRopas();
+        if (savedInstanceState == null) {
+            Bundle extra = getIntent().getExtras();
+            if (extra == null) {
+                arrayListRopa = dbRopa.mostrarRopas();
+            } else {
+                extra.getInt("TIPO");
+                title.setText(R.string.textil_hogar);
+                arrayListRopa = dbRopa.mostrarRopasTextilHogar();
+            }
         }
 
         adapter = new RopaAdapter(arrayListRopa);

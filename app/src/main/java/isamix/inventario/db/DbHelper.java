@@ -117,7 +117,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "talla TEXT, " +
                 "tipo TEXT, " +
                 "cantidad INTEGER, " +
-                "estado TEXT," +
+                "estado TEXT, " +
                 "FOREIGN KEY(marca) REFERENCES " + TABLE_MARCA + "(id), " +
                 "FOREIGN KEY(tienda) REFERENCES " + TABLE_TIENDA + "(id), " +
                 "FOREIGN KEY(tipo) REFERENCES " + TABLE_TIPO_ROPA + "(id), " +

@@ -29,4 +29,8 @@
     <item
         android:id="@+id/menuGestionMultimedia"
         android:title="@string/menu_lista_multimedia" />
+
+    <item
+        android:id="@+id/menuGestionTextil"
+        android:title="@string/menu_lista_textil" />
 </menu>

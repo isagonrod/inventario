@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
+import isamix.inventario.crud.textil.EditarRopa;
+import isamix.inventario.crud.textil.VerRopa;
 import isamix.inventario.db.DbRopa;
 import isamix.inventario.modelo.Ropa;
 
@@ -46,6 +48,7 @@ public class RopaAdapter extends RecyclerView.Adapter<RopaAdapter.RopaViewHolder
     @Override
     public void onBindViewHolder(@NonNull RopaViewHolder ropaViewHolder, int i) {
         ropaViewHolder.nombre.setText(listaRopa.get(i).getNombre());
+        ropaViewHolder.cantidad.setText(listaRopa.get(i).getCantidad());
         ropaViewHolder.tipoRopa.setText(listaRopa.get(i).getTipo());
         ropaViewHolder.talla.setText(listaRopa.get(i).getTalla());
         ropaViewHolder.estadoRopa.setText(listaRopa.get(i).getEstado());
@@ -71,19 +74,19 @@ public class RopaAdapter extends RecyclerView.Adapter<RopaAdapter.RopaViewHolder
 
     public class RopaViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nombre, tipoRopa, talla, estadoRopa;
-        Button btnCarrito, btnEditar, btnEliminar;
+        TextView nombre, cantidad, tipoRopa, talla, estadoRopa;
+        Button btnEditar, btnEliminar;
         DbRopa dbRopa;
 
         public RopaViewHolder(@NonNull View itemView) {
             super(itemView);
 
             nombre = itemView.findViewById(R.id.NombreRopa);
+            cantidad = itemView.findViewById(R.id.CantidadRopa);
             tipoRopa = itemView.findViewById(R.id.TipoRopa);
             talla = itemView.findViewById(R.id.TallaRopa);
             estadoRopa = itemView.findViewById(R.id.EstadoRopa);
 
-            btnCarrito = itemView.findViewById(R.id.basketButton);
             btnEditar = itemView.findViewById(R.id.editButton);
             btnEliminar = itemView.findViewById(R.id.deleteButton);
 

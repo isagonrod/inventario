@@ -68,10 +68,10 @@ public class DbTipoRopa extends DbHelper {
         return corr;
     }
 
-    public TipoRopa getTipoRopa() {
+    public TipoRopa getTipoRopa(String tipo) {
         TipoRopa tipoRopa = null;
         Cursor cursorTipo;
-        String select = "SELECT * FROM " + TABLE_TIPO_ROPA + " WHERE tipoRopa != 'Textil Hogar'";
+        String select = "SELECT * FROM " + TABLE_TIPO_ROPA + " WHERE tipoRopa = '" + tipo + "'";
         cursorTipo = db.rawQuery(select, null);
         if (cursorTipo.moveToFirst()) {
             tipoRopa = new TipoRopa();

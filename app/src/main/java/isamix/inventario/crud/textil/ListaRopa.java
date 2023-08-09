@@ -1,4 +1,4 @@
-package isamix.inventario.crud.multimedia;
+package isamix.inventario.crud.textil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,46 +15,46 @@ import android.widget.SearchView;
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.PeliculaAdapter;
+import isamix.inventario.adapter.RopaAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
-import isamix.inventario.crud.textil.ListaTextil;
-import isamix.inventario.db.DbPelicula;
-import isamix.inventario.modelo.Pelicula;
+import isamix.inventario.db.DbRopa;
+import isamix.inventario.modelo.Ropa;
 
-public class ListaPelicula extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListaRopa extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     SearchView buscador;
-    RecyclerView listaPeliculas;
-    Button btn_newFilm;
-    List<Pelicula> arrayListPeliculas;
-    PeliculaAdapter adapter;
+    RecyclerView listaRopa;
+    Button btnNewClothes;
+    List<Ropa> arrayListRopa;
+    RopaAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_pelicula);
+        setContentView(R.layout.lista_ropa);
 
-        buscador = findViewById(R.id.buscadorPelicula);
-        listaPeliculas = findViewById(R.id.listaPeliculas);
-        listaPeliculas.setLayoutManager(new LinearLayoutManager(this));
+        buscador = findViewById(R.id.buscadorTextil);
+        listaRopa = findViewById(R.id.listaRopa);
+        listaRopa.setLayoutManager(new LinearLayoutManager(this));
 
-        DbPelicula dbPelicula = new DbPelicula(ListaPelicula.this);
-        arrayListPeliculas = dbPelicula.mostrarPeliculas();
-        adapter = new PeliculaAdapter(arrayListPeliculas);
-        listaPeliculas.setAdapter(adapter);
+        DbRopa dbRopa = new DbRopa(ListaRopa.this);
+        arrayListRopa = dbRopa.mostrarRopas();
+        adapter = new RopaAdapter(arrayListRopa);
+        listaRopa.setAdapter(adapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 new LinearLayoutManager(this).getOrientation());
-        listaPeliculas.addItemDecoration(dividerItemDecoration);
+        listaRopa.addItemDecoration(dividerItemDecoration);
 
         buscador.setOnQueryTextListener(this);
 
-        btn_newFilm = findViewById(R.id.btnAddNewFilm);
-        btn_newFilm.setOnClickListener(v -> verLista(NuevaPelicula.class));
+        btnNewClothes = findViewById(R.id.btnAddNewTextil);
+        btnNewClothes.setOnClickListener(v -> verLista(NuevaRopa.class));
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ListaPelicula extends AppCompatActivity implements SearchView.OnQue
 
     @Override
     public boolean onQueryTextChange(String s) {
-        adapter.filtrarPeliculas(s);
+        adapter.filtradoRopa(s);
         return false;
     }
 

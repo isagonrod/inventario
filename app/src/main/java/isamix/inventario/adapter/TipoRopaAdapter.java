@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import isamix.inventario.R;
+import isamix.inventario.crud.textil.ListaRopaPorTipo;
 import isamix.inventario.db.DbRopa;
 import isamix.inventario.db.DbTipoRopa;
 import isamix.inventario.modelo.TipoRopa;

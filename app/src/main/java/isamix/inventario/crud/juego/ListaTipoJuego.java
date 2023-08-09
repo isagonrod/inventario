@@ -37,11 +37,11 @@ public class ListaTipoJuego extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lista_tipo_juego);
 
-        btn_newType = findViewById(R.id.addNewType);
+        btn_newType = findViewById(R.id.addNewTypeGame);
         btn_newGame = findViewById(R.id.addNewGame);
         btn_gameList = findViewById(R.id.getGameList);
 
-        listaTipos = findViewById(R.id.listaTipos);
+        listaTipos = findViewById(R.id.listaTiposJuego);
         listaTipos.setLayoutManager(new GridLayoutManager(this, 2));
 
         DbTipoJuego dbTipoJuego = new DbTipoJuego(this);

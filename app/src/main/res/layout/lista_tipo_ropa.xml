@@ -18,8 +18,8 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/addNewTypeGame"
-            android:text="@string/btn_new_type_game"
+            android:id="@+id/addNewTypeClothes"
+            android:text="@string/btn_new_type_clothes"
             android:clickable="true"
             android:background="@color/orange"
             android:textColor="@color/white"
@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/addNewGame"
-            android:text="@string/btn_new_game"
+            android:id="@+id/addNewClothes"
+            android:text="@string/btn_new_clothes"
             android:clickable="true"
             android:background="@color/pink"
             android:textColor="@color/white"
@@ -47,7 +47,7 @@
 
         <Button
             android:id="@+id/getGameList"
-            android:text="@string/btn_game_list"
+            android:text="@string/btn_clothes_list"
             android:clickable="true"
             android:background="@color/blue"
             android:textColor="@color/white"
@@ -58,9 +58,9 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/listaTiposJuego"
+        android:id="@+id/listaTiposRopa"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_tipo_juego" />
+        tools:listitem="@layout/item_tipo_ropa" />
 
 </LinearLayout>

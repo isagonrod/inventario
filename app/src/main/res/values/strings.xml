@@ -23,7 +23,7 @@
     <string name="hint_impresion_fecha">Año de impresión:</string>
 
     <!-- Formulario Juego -->
-    <string name="hint_tipo">Tipo de juego:</string>
+    <string name="hint_tipo_juego">Tipo de juego:</string>
     <string name="hint_num_jugadores">Número de jugadores:</string>
 
     <!-- Formulario Multimedia -->
@@ -32,6 +32,12 @@
     <string name="hint_fecha_estreno">Fecha de Estreno:</string>
     <string name="hint_fecha_lanzamiento">Fecha de Lanzamiento:</string>
     <string name="hint_min_duracion">Duración:</string>
+
+    <!-- Formulario Ropa -->
+    <string name="hint_tipo_ropa">Tipo de ropa:</string>
+    <string name="hint_color">Color:</string>
+    <string name="hint_talla">Talla:</string>
+    <string name="hint_estado">Estado:</string>
 
     <!-- Campos obligatorios -->
     <string name="oblig_name">Nombre: *</string>
@@ -46,6 +52,7 @@
     <string name="oblig_type">Tipo de juego: *</string>
     <string name="oblig_director">Director: *</string>
     <string name="oblig_artist">Artista o Grupo: *</string>
+    <string name="oblig_tipo_ropa">Tipo de ropa: *</string>
 
     <!-- Botones con texto -->
     <string name="terminar_compra">Terminar compra</string>
@@ -55,13 +62,18 @@
     <string name="btn_new_genre">Añadir nuevo género</string>
     <string name="btn_new_book">Agregar nuevo libro</string>
     <string name="btn_book_list">Ver lista completa de libros</string>
-    <string name="btn_new_type">Añadir nuevo tipo de juevo</string>
+    <string name="btn_new_type_game">Añadir nuevo tipo de juevo</string>
     <string name="btn_new_game">Agregar nuevo juego</string>
     <string name="btn_game_list">Ver lista completa de juegos</string>
     <string name="btn_new_film">Agregar nueva película</string>
     <string name="btn_new_disc">Agregar nuevo disco de música</string>
     <string name="btn_films">PELÍCULAS</string>
     <string name="btn_discs">DISCOS DE MÚSICA</string>
+    <string name="btn_ropa">ARMARIO</string>
+    <string name="btn_textil">TEXTIL HOGAR</string>
+    <string name="btn_new_clothes">Agregar nuevo textil</string>
+    <string name="btn_new_type_clothes">Añadir nuevo tipo de textil</string>
+    <string name="btn_clothes_list">Ver lista completa de ropa</string>
 
     <!-- Menú principal -->
     <string name="menu_lista_compra">Lista de la Compra</string>
@@ -71,6 +83,7 @@
     <string name="menu_lista_multimedia">Gestión Multimedia</string>
     <string name="menu_lista_pelicula">Gestión de Películas</string>
     <string name="menu_lista_disco">Gestión de Discos de Música</string>
+    <string name="menu_lista_textil">Gestión Textil</string>
     <string name="funcionamiento">Funcionamiento de la App</string>
 
     <string name="moneda">€</string>

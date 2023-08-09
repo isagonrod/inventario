@@ -1,4 +1,4 @@
-package isamix.inventario.crud.juego;
+package isamix.inventario.crud.textil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,62 +16,62 @@ import android.widget.EditText;
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.TipoJuegoAdapter;
+import isamix.inventario.adapter.TipoRopaAdapter;
 import isamix.inventario.crud.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
+import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
-import isamix.inventario.crud.textil.ListaTextil;
-import isamix.inventario.db.DbTipoJuego;
-import isamix.inventario.modelo.TipoJuego;
+import isamix.inventario.db.DbTipoRopa;
+import isamix.inventario.modelo.TipoRopa;
 
-public class ListaTipoJuego extends AppCompatActivity {
+public class ListaTipoRopa extends AppCompatActivity {
 
     RecyclerView listaTipos;
-    Button btn_newType, btn_newGame, btn_gameList;
-    List<TipoJuego> arrayListTipos;
-    TipoJuegoAdapter adapter;
+    Button btnNewType, btnNewClothes, btnClothesList;
+    List<TipoRopa> arrayListTipoRopa;
+    TipoRopaAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_tipo_juego);
+        setContentView(R.layout.lista_tipo_ropa);
 
-        btn_newType = findViewById(R.id.addNewTypeGame);
-        btn_newGame = findViewById(R.id.addNewGame);
-        btn_gameList = findViewById(R.id.getGameList);
+        btnNewType = findViewById(R.id.addNewTypeClothes);
+        btnNewClothes = findViewById(R.id.addNewClothes);
+        btnClothesList = findViewById(R.id.getClothesList);
 
-        listaTipos = findViewById(R.id.listaTiposJuego);
+        listaTipos = findViewById(R.id.listaTiposRopa);
         listaTipos.setLayoutManager(new GridLayoutManager(this, 2));
 
-        DbTipoJuego dbTipoJuego = new DbTipoJuego(this);
-        arrayListTipos = dbTipoJuego.mostrarTiposJuego();
-        adapter = new TipoJuegoAdapter(arrayListTipos);
+        DbTipoRopa dbTipoRopa = new DbTipoRopa(this);
+        arrayListTipoRopa = dbTipoRopa.mostrarTiposRopa();
+        adapter = new TipoRopaAdapter(arrayListTipoRopa);
         listaTipos.setAdapter(adapter);
 
-        btn_newType.setOnClickListener(v -> crearNuevoTipoJuego());
-        btn_newGame.setOnClickListener(v -> verLista(NuevoJuego.class));
-        btn_gameList.setOnClickListener(v -> verLista(ListaJuego.class));
+        btnNewType.setOnClickListener(v -> crearNuevoTipoRopa());
+        btnNewClothes.setOnClickListener(v -> verLista(NuevaRopa.class));
+        btnClothesList.setOnClickListener(v -> verLista(ListaRopa.class));
     }
 
-    public void crearNuevoTipoJuego() {
+    public void crearNuevoTipoRopa() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("NUEVO TIPO DE JUEGO");
+        builder.setTitle("NUEVO TIPO DE ROPA");
 
-        final View customTipoAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_tipo_juego, null);
+        final View customTipoAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_tipo_ropa, null);
         builder.setView(customTipoAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
-            DbTipoJuego dbTipoJuego = new DbTipoJuego(this);
+            DbTipoRopa dbTipoRopa = new DbTipoRopa(this);
             EditText tipo = customTipoAlert.findViewById(R.id.nuevoTipoJuego);
-            TipoJuego type = dbTipoJuego.getTipoJuego(tipo.getText().toString());
+            TipoRopa type = dbTipoRopa.getTipoRopa(tipo.getText().toString());
             if (type == null) {
-                dbTipoJuego.insertarTipoJuego(tipo.getText().toString());
+                dbTipoRopa.insertarTipoRopa(tipo.getText().toString());
             } else {
-                dbTipoJuego.editarTipoJuego(type.getId(), type.getTipo());
+                dbTipoRopa.editarTipoRopa(type.getId(), type.getTipoRopa());
             }
-            arrayListTipos = dbTipoJuego.mostrarTiposJuego();
-            adapter = new TipoJuegoAdapter(arrayListTipos);
+            arrayListTipoRopa = dbTipoRopa.mostrarTiposRopa();
+            adapter = new TipoRopaAdapter(arrayListTipoRopa);
             listaTipos.setAdapter(adapter);
         });
         AlertDialog dialog = builder.create();

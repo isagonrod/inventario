@@ -46,7 +46,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/getGameList"
+            android:id="@+id/getClothesList"
             android:text="@string/btn_clothes_list"
             android:clickable="true"
             android:background="@color/blue"

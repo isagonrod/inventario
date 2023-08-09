@@ -38,6 +38,7 @@
     <string name="hint_color">Color:</string>
     <string name="hint_talla">Talla:</string>
     <string name="hint_estado">Estado:</string>
+    <string name="textil_hogar">Textil Hogar</string>
 
     <!-- Campos obligatorios -->
     <string name="oblig_name">Nombre: *</string>

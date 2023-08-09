@@ -21,6 +21,7 @@ import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.producto.ListaCategoria;
+import isamix.inventario.crud.textil.ListaTextil;
 import isamix.inventario.db.DbPelicula;
 import isamix.inventario.db.DbPersona;
 import isamix.inventario.modelo.Pelicula;
@@ -144,6 +145,9 @@ public class EditarPelicula extends AppCompatActivity {
                 return true;
             case R.id.menuGestionMultimedia:
                 verLista(ListaMultimedia.class);
+                return true;
+            case R.id.menuGestionTextil:
+                verLista(ListaTextil.class);
                 return true;
         }
 

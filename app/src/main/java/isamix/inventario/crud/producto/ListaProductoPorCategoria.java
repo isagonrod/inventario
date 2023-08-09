@@ -22,6 +22,7 @@ import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.multimedia.ListaMultimedia;
+import isamix.inventario.crud.textil.ListaTextil;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Producto;
 
@@ -106,6 +107,9 @@ public class ListaProductoPorCategoria extends AppCompatActivity implements Sear
                 return true;
             case R.id.menuGestionMultimedia:
                 verLista(ListaMultimedia.class);
+                return true;
+            case R.id.menuGestionTextil:
+                verLista(ListaTextil.class);
                 return true;
         }
 

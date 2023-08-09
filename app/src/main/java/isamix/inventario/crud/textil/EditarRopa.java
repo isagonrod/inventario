@@ -72,7 +72,6 @@ public class EditarRopa extends AppCompatActivity {
         btnEliminar = findViewById(R.id.fabEliminar);
         btnEliminar.setVisibility(View.GONE);
 
-        //dbRopa = new DbRopa(this);
         dbMarca = new DbMarca(this);
         dbTienda = new DbTienda(this);
         dbTipoRopa = new DbTipoRopa(this);
@@ -126,7 +125,6 @@ public class EditarRopa extends AppCompatActivity {
 
         btnGuardar.setOnClickListener(v -> {
             if (!nombre.getText().toString().isEmpty()
-                    && !marca.getText().toString().isEmpty()
                     && !tipo.getText().toString().isEmpty()) {
 
                 correcto = dbRopa.editarRopa(id,

@@ -21,6 +21,7 @@ import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.producto.ListaCategoria;
+import isamix.inventario.crud.textil.ListaTextil;
 import isamix.inventario.db.DbDiscoMusica;
 import isamix.inventario.modelo.DiscoMusica;
 
@@ -94,6 +95,9 @@ public class ListaDiscoMusica extends AppCompatActivity implements SearchView.On
                 return true;
             case R.id.menuGestionMultimedia:
                 verLista(ListaMultimedia.class);
+                return true;
+            case R.id.menuGestionTextil:
+                verLista(ListaTextil.class);
                 return true;
         }
 

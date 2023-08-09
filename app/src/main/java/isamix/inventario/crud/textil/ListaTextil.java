@@ -27,7 +27,7 @@ public class ListaTextil extends AppCompatActivity {
         setContentView(R.layout.lista_textil);
 
         armario = findViewById(R.id.btnArmario);
-        armario.setOnClickListener(v -> verLista(ListaRopa.class));
+        armario.setOnClickListener(v -> verLista(ListaTipoRopa.class));
 
         textilHogar = findViewById(R.id.btnTextilHogar);
         textilHogar.setOnClickListener(v -> {

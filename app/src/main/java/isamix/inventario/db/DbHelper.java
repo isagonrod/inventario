@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "inventario.db";
     public static final String TABLE_PRODUCTO = "t_producto";
     public static final String TABLE_TIENDA = "t_tienda";

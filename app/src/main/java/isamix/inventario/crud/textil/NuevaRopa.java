@@ -1,5 +1,6 @@
 package isamix.inventario.crud.textil;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -37,7 +38,9 @@ public class NuevaRopa extends AppCompatActivity {
     List<Tienda> tiendas;
     List<TipoRopa> tiposRopa;
     List<Estado> estados;
+    Bundle extra;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,8 @@ public class NuevaRopa extends AppCompatActivity {
         tipo = findViewById(R.id.etTipoRopa);
         cantidad = findViewById(R.id.etCantidadRopa);
         estado = findViewById(R.id.etEstadoRopa);
+
+        extra = getIntent().getExtras();
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -87,7 +92,6 @@ public class NuevaRopa extends AppCompatActivity {
 
         btnGuardar.setOnClickListener(v -> {
             if (!nombre.getText().toString().isEmpty()
-                    && !marca.getText().toString().isEmpty()
                     && !tipo.getText().toString().isEmpty()) {
 
                 Marca brand = dbMarca.getMarca(marca.getText().toString());

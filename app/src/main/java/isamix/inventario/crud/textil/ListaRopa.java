@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class ListaRopa extends AppCompatActivity implements SearchView.OnQueryTe
     Button btnNewClothes;
     List<Ropa> arrayListRopa;
     RopaAdapter adapter;
+    Bundle extra;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,18 @@ public class ListaRopa extends AppCompatActivity implements SearchView.OnQueryTe
         listaRopa = findViewById(R.id.listaRopa);
         listaRopa.setLayoutManager(new LinearLayoutManager(this));
 
+        extra = getIntent().getExtras();
+        title = findViewById(R.id.title_category);
+
         DbRopa dbRopa = new DbRopa(ListaRopa.this);
-        arrayListRopa = dbRopa.mostrarRopas();
+
+        if (extra.containsKey("TIPO")) {
+            title.setText(R.string.textil_hogar);
+            arrayListRopa = dbRopa.mostrarRopasTextilHogar();
+        } else {
+            arrayListRopa = dbRopa.mostrarRopas();
+        }
+
         adapter = new RopaAdapter(arrayListRopa);
         listaRopa.setAdapter(adapter);
 

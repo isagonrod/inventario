@@ -94,6 +94,31 @@ public class DbRopa extends DbHelper {
         return listaRopa;
     }
 
+    public List<Ropa> mostrarRopasTextilHogar() {
+        List<Ropa> listaRopa = new ArrayList<>();
+        Ropa ropa;
+        Cursor cursorRopa;
+        String select = "SELECT * FROM " + TABLE_ROPA + " WHERE tipo = 'Textil Hogar' ORDER BY nombre ASC";
+        cursorRopa = db.rawQuery(select, null);
+        if (cursorRopa.moveToFirst()) {
+            do {
+                ropa = new Ropa();
+                ropa.setId(cursorRopa.getInt(0));
+                ropa.setNombre(cursorRopa.getString(1));
+                ropa.setMarca(cursorRopa.getString(2));
+                ropa.setTienda(cursorRopa.getString(3));
+                ropa.setColor(cursorRopa.getString(4));
+                ropa.setTalla(cursorRopa.getString(5));
+                ropa.setTipo(cursorRopa.getString(6));
+                ropa.setCantidad(cursorRopa.getInt(7));
+                ropa.setEstado(cursorRopa.getString(8));
+                listaRopa.add(ropa);
+            } while (cursorRopa.moveToNext());
+        }
+        cursorRopa.close();
+        return listaRopa;
+    }
+
     public Ropa verRopa(int id) {
         Ropa ropa = null;
         Cursor cursorRopa;

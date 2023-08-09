@@ -14,18 +14,16 @@ import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.textil.ListaTextil;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button gestionProductos, gestionLibros, gestionJuegos, gestionMultimedia;
+    Button gestionProductos, gestionLibros, gestionJuegos, gestionMultimedia, gestionTextil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        gestionCompra = findViewById(R.id.gestionCompra);
-//        gestionCompra.setOnClickListener(v -> verLista(ListaCompra.class));
 
         gestionProductos = findViewById(R.id.gestionProductos);
         gestionProductos.setOnClickListener(v -> verLista(ListaCategoria.class));
@@ -38,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         gestionMultimedia = findViewById(R.id.gestionMultimedia);
         gestionMultimedia.setOnClickListener(v -> verLista(ListaMultimedia.class));
+
+        gestionTextil = findViewById(R.id.gestionTextil);
+        gestionTextil.setOnClickListener(v -> verLista(ListaTextil.class));
     }
 
 
@@ -68,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menuGestionMultimedia:
                 verLista(ListaMultimedia.class);
+                return true;
+            case R.id.menuGestionTextil:
+                verLista(ListaTextil.class);
                 return true;
         }
 

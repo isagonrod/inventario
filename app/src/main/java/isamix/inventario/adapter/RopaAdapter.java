@@ -48,7 +48,7 @@ public class RopaAdapter extends RecyclerView.Adapter<RopaAdapter.RopaViewHolder
     @Override
     public void onBindViewHolder(@NonNull RopaViewHolder ropaViewHolder, int i) {
         ropaViewHolder.nombre.setText(listaRopa.get(i).getNombre());
-        ropaViewHolder.cantidad.setText(listaRopa.get(i).getCantidad());
+        ropaViewHolder.cantidad.setText(String.valueOf(listaRopa.get(i).getCantidad()));
         ropaViewHolder.tipoRopa.setText(listaRopa.get(i).getTipo());
         ropaViewHolder.talla.setText(listaRopa.get(i).getTalla());
         ropaViewHolder.estadoRopa.setText(listaRopa.get(i).getEstado());

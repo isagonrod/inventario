@@ -28,7 +28,7 @@ public class DbTipoRopa extends DbHelper {
         List<TipoRopa> listaTipos = new ArrayList<>();
         TipoRopa tipo;
         Cursor cursorTipo;
-        String select = "SELECT * FROM " + TABLE_TIPO_ROPA + " ORDER BY tipoRopa ASC";
+        String select = "SELECT * FROM " + TABLE_TIPO_ROPA + " WHERE tipoRopa != 'Textil Hogar' ORDER BY tipoRopa ASC";
         cursorTipo = db.rawQuery(select, null);
         if (cursorTipo.moveToFirst()) {
             do {

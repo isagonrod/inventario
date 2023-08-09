@@ -35,7 +35,7 @@ public class ListaTipoJuego extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_tipo);
+        setContentView(R.layout.lista_tipo_juego);
 
         btn_newType = findViewById(R.id.addNewType);
         btn_newGame = findViewById(R.id.addNewGame);
@@ -58,7 +58,7 @@ public class ListaTipoJuego extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("NUEVO TIPO DE JUEGO");
 
-        final View customTipoAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_tipo, null);
+        final View customTipoAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_tipo_juego, null);
         builder.setView(customTipoAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
             DbTipoJuego dbTipoJuego = new DbTipoJuego(this);

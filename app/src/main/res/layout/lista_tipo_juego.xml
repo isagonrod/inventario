@@ -61,6 +61,6 @@
         android:id="@+id/listaTipos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_tipo" />
+        tools:listitem="@layout/item_tipo_juego" />
 
 </LinearLayout>

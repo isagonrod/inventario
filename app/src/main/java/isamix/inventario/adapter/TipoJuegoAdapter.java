@@ -14,7 +14,6 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.crud.juego.ListaJuegoPorTipo;
-import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.db.DbJuego;
 import isamix.inventario.db.DbTipoJuego;
 import isamix.inventario.modelo.TipoJuego;
@@ -33,7 +32,7 @@ public class TipoJuegoAdapter extends RecyclerView.Adapter<TipoJuegoAdapter.Tipo
     @NonNull
     @Override
     public TipoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_tipo, null, true);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_tipo_juego, null, true);
         return new TipoViewHolder(view);
     }
 

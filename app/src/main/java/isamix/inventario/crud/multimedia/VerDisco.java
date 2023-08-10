@@ -14,7 +14,7 @@ import isamix.inventario.modelo.DiscoMusica;
 
 public class VerDisco extends AppCompatActivity {
 
-    TextView titulo, artista, fechaLanzamiento;
+    TextView titulo, artista, fechaLanzamiento, estado;
     Button btnGuardar, btnEditar, btnEliminar;
     DiscoMusica disco;
     int id = 0;
@@ -27,6 +27,7 @@ public class VerDisco extends AppCompatActivity {
         titulo = findViewById(R.id.discTitle);
         artista = findViewById(R.id.discArtist);
         fechaLanzamiento = findViewById(R.id.discYear);
+        estado = findViewById(R.id.discState);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -50,6 +51,7 @@ public class VerDisco extends AppCompatActivity {
             titulo.setText(disco.getTitulo());
             artista.setText(disco.getArtista_grupo());
             fechaLanzamiento.setText(String.valueOf(disco.getFechaLanzamiento()));
+            estado.setText(disco.getEstado());
             btnGuardar.setVisibility(View.GONE);
         }
 

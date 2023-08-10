@@ -22,20 +22,24 @@ import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.textil.ListaTextil;
+import isamix.inventario.db.DbEstado;
 import isamix.inventario.db.DbPelicula;
 import isamix.inventario.db.DbPersona;
+import isamix.inventario.modelo.Estado;
 import isamix.inventario.modelo.Pelicula;
 import isamix.inventario.modelo.Persona;
 
 public class EditarPelicula extends AppCompatActivity {
 
     EditText titulo, fechaEstreno, minDuracion;
-    AutoCompleteTextView director;
+    AutoCompleteTextView director, estado;
     Button btnGuardar, btnEditar, btnEliminar;
     DbPelicula dbPelicula;
     DbPersona dbDirector;
+    DbEstado dbEstado;
     Pelicula pelicula;
     List<Persona> directores;
+    List<Estado> estados;
     int id = 0;
     boolean correcto = false;
 
@@ -48,6 +52,7 @@ public class EditarPelicula extends AppCompatActivity {
         director = findViewById(R.id.etFilmDirector);
         fechaEstreno = findViewById(R.id.etFilmYear);
         minDuracion = findViewById(R.id.etFilmDuration);
+        estado = findViewById(R.id.etFilmState);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -57,11 +62,17 @@ public class EditarPelicula extends AppCompatActivity {
 
         dbPelicula = new DbPelicula(EditarPelicula.this);
         dbDirector = new DbPersona(EditarPelicula.this);
+        dbEstado = new DbEstado(this);
         directores = dbDirector.mostrarPersonasPorProfesion("Director");
+        estados = dbEstado.mostrarEstados();
 
         ArrayAdapter<Persona> directorArrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, directores);
         director.setAdapter(directorArrayAdapter);
+
+        ArrayAdapter<Estado> estadoAdapter = new ArrayAdapter<>(getApplicationContext(),
+                android.support.design.R.layout.support_simple_spinner_dropdown_item, estados);
+        estado.setAdapter(estadoAdapter);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -82,6 +93,7 @@ public class EditarPelicula extends AppCompatActivity {
             director.setText(pelicula.getDirector());
             fechaEstreno.setText(String.valueOf(pelicula.getFechaEstreno()));
             minDuracion.setText(String.valueOf(pelicula.getMinDuracion()));
+            estado.setText(pelicula.getEstado());
         }
 
         btnGuardar.setOnClickListener(v -> {
@@ -90,14 +102,22 @@ public class EditarPelicula extends AppCompatActivity {
                         titulo.getText().toString(),
                         director.getText().toString(),
                         Integer.parseInt(fechaEstreno.getText().toString()),
-                        Integer.parseInt(minDuracion.getText().toString()));
+                        Integer.parseInt(minDuracion.getText().toString()),
+                        estado.getText().toString());
 
                 Persona filmDirector = dbDirector.getPersona(director.getText().toString(), "Director");
+                Estado state = dbEstado.getEstado(estado.getText().toString());
 
                 if (filmDirector == null) {
                     dbDirector.insertarPersona(director.getText().toString(), "Director");
                 } else {
                     dbDirector.editarPersona(filmDirector.getId(), filmDirector.getNombreCompleto(), filmDirector.getProfesion());
+                }
+
+                if (state == null) {
+                    dbEstado.insertarEstado(estado.getText().toString());
+                } else {
+                    dbEstado.editarEstado(state.getId(), state.getEstado());
                 }
 
                 if (correcto) {

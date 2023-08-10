@@ -14,7 +14,7 @@ import isamix.inventario.modelo.Pelicula;
 
 public class VerPelicula extends AppCompatActivity {
 
-    TextView titulo, director, fechaEstreno, minDuracion;
+    TextView titulo, director, fechaEstreno, minDuracion, estado;
     Button btnGuardar, btnEditar, btnEliminar;
     Pelicula pelicula;
     int id = 0;
@@ -28,6 +28,7 @@ public class VerPelicula extends AppCompatActivity {
         director = findViewById(R.id.filmDirector);
         fechaEstreno = findViewById(R.id.filmYear);
         minDuracion = findViewById(R.id.filmDuration);
+        estado = findViewById(R.id.filmState);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -52,6 +53,7 @@ public class VerPelicula extends AppCompatActivity {
             director.setText(pelicula.getDirector());
             fechaEstreno.setText(String.valueOf(pelicula.getFechaEstreno()));
             minDuracion.setText(String.valueOf(pelicula.getMinDuracion()));
+            estado.setText(pelicula.getEstado());
             btnGuardar.setVisibility(View.GONE);
         }
 

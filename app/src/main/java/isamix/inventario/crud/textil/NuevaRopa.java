@@ -39,7 +39,6 @@ public class NuevaRopa extends AppCompatActivity {
     List<TipoRopa> tiposRopa;
     List<Estado> estados;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -46,6 +46,7 @@ public class DiscoMusicaAdapter extends RecyclerView.Adapter<DiscoMusicaAdapter.
         discoViewHolder.titulo.setText(listaDiscos.get(i).getTitulo());
         discoViewHolder.artista.setText(listaDiscos.get(i).getArtista_grupo());
         discoViewHolder.fecha.setText(String.valueOf(listaDiscos.get(i).getFechaLanzamiento()));
+        discoViewHolder.estado.setText(listaDiscos.get(i).getEstado());
     }
 
     @Override
@@ -74,7 +75,7 @@ public class DiscoMusicaAdapter extends RecyclerView.Adapter<DiscoMusicaAdapter.
 
     public class DiscoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView titulo, artista, fecha;
+        TextView titulo, artista, fecha, estado;
         Button btnEditar, btnEliminar;
         DbDiscoMusica dbDiscoMusica;
 
@@ -84,6 +85,7 @@ public class DiscoMusicaAdapter extends RecyclerView.Adapter<DiscoMusicaAdapter.
             titulo = itemView.findViewById(R.id.viewDiscTitle);
             artista = itemView.findViewById(R.id.viewDiscArtist);
             fecha = itemView.findViewById(R.id.viewDiscYear);
+            estado = itemView.findViewById(R.id.viewDiscState);
 
             btnEditar = itemView.findViewById(R.id.editButton);
             btnEliminar = itemView.findViewById(R.id.deleteButton);

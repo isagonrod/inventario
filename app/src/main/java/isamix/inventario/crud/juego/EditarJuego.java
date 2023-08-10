@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -22,9 +23,11 @@ import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.textil.ListaTextil;
+import isamix.inventario.db.DbEstado;
 import isamix.inventario.db.DbJuego;
 import isamix.inventario.db.DbMarca;
 import isamix.inventario.db.DbTipoJuego;
+import isamix.inventario.modelo.Estado;
 import isamix.inventario.modelo.Juego;
 import isamix.inventario.modelo.Marca;
 import isamix.inventario.modelo.TipoJuego;
@@ -32,15 +35,17 @@ import isamix.inventario.modelo.TipoJuego;
 public class EditarJuego extends AppCompatActivity {
 
     EditText nombre, numJugadores;
-    AutoCompleteTextView marca, tipoJuego;
+    AutoCompleteTextView marca, tipoJuego, estado;
     Button btnGuardar, btnEditar, btnEliminar;
     DbJuego dbJuego;
     DbTipoJuego dbTipoJuego;
     DbMarca dbMarca;
+    DbEstado dbEstado;
     Juego juego;
     List<Juego> juegos;
     List<TipoJuego> tiposJuego;
     List<Marca> marcas;
+    List<Estado> estados;
     int id = 0;
     boolean corr = false;
 
@@ -53,6 +58,7 @@ public class EditarJuego extends AppCompatActivity {
         marca = findViewById(R.id.etGameBrand);
         tipoJuego = findViewById(R.id.etGameType);
         numJugadores = findViewById(R.id.etGamePlayers);
+        estado = findViewById(R.id.etGameState);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -63,9 +69,11 @@ public class EditarJuego extends AppCompatActivity {
         dbJuego = new DbJuego(EditarJuego.this);
         dbTipoJuego = new DbTipoJuego(EditarJuego.this);
         dbMarca = new DbMarca(EditarJuego.this);
+        dbEstado = new DbEstado(this);
         juegos = dbJuego.mostrarJuegos();
         tiposJuego = dbTipoJuego.mostrarTiposJuego();
         marcas = dbMarca.mostrarMarcas();
+        estados = dbEstado.mostrarEstados();
 
         ArrayAdapter<TipoJuego> tipoJuegoArrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, tiposJuego);
@@ -74,6 +82,10 @@ public class EditarJuego extends AppCompatActivity {
         ArrayAdapter<Marca> marcaArrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, marcas);
         marca.setAdapter(marcaArrayAdapter);
+
+        ArrayAdapter<Estado> estadoAdapter = new ArrayAdapter<>(getApplicationContext(),
+                android.support.design.R.layout.support_simple_spinner_dropdown_item, estados);
+        estado.setAdapter(estadoAdapter);
 
         if (savedInstanteState == null) {
             Bundle extras = getIntent().getExtras();
@@ -94,6 +106,7 @@ public class EditarJuego extends AppCompatActivity {
             marca.setText(juego.getMarca());
             tipoJuego.setText(juego.getTipoJuego());
             numJugadores.setText(juego.getNumJugadores());
+            estado.setText(juego.getEstado());
         }
 
         btnGuardar.setOnClickListener(v -> {
@@ -105,10 +118,12 @@ public class EditarJuego extends AppCompatActivity {
                         nombre.getText().toString(),
                         marca.getText().toString(),
                         tipoJuego.getText().toString(),
-                        numJugadores.getText().toString());
+                        numJugadores.getText().toString(),
+                        estado.getText().toString());
 
                 Marca brand = dbMarca.getMarca(marca.getText().toString());
                 TipoJuego type = dbTipoJuego.getTipoJuego(tipoJuego.getText().toString());
+                Estado state = dbEstado.getEstado(estado.getText().toString());
 
                 if (brand == null) {
                     dbMarca.insertarMarca(marca.getText().toString());
@@ -120,6 +135,12 @@ public class EditarJuego extends AppCompatActivity {
                     dbTipoJuego.insertarTipoJuego(tipoJuego.getText().toString());
                 } else {
                     dbTipoJuego.editarTipoJuego(type.getId(), type.getTipo());
+                }
+
+                if (state == null) {
+                    dbEstado.insertarEstado(estado.getText().toString());
+                } else {
+                    dbEstado.editarEstado(state.getId(), state.getEstado());
                 }
 
                 if (corr) {

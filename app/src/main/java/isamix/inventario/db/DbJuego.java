@@ -24,7 +24,7 @@ public class DbJuego extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarJuego(String nombre, String marca, String tipoJuego, String numJugadores) {
+    public long insertarJuego(String nombre, String marca, String tipoJuego, String numJugadores, String estado) {
         long id = 0;
         try {
             ContentValues values = new ContentValues();
@@ -32,6 +32,7 @@ public class DbJuego extends DbHelper {
             values.put("marca", marca);
             values.put("tipoJuego", tipoJuego);
             values.put("numJugadores", numJugadores);
+            values.put("estado", estado);
             id = db.insert(TABLE_JUEGO, null, values);
         } catch (Exception ex) {
             ex.toString();
@@ -52,6 +53,7 @@ public class DbJuego extends DbHelper {
                 juego.setMarca(cursorJuegos.getString(2));
                 juego.setTipoJuego(cursorJuegos.getString(3));
                 juego.setNumJugadores(cursorJuegos.getString(4));
+                juego.setEstado(cursorJuegos.getString(5));
                 listaJuegos.add(juego);
             } while (cursorJuegos.moveToNext());
         }
@@ -73,6 +75,7 @@ public class DbJuego extends DbHelper {
                 juego.setMarca(cursorJuegos.getString(2));
                 juego.setTipoJuego(cursorJuegos.getString(3));
                 juego.setNumJugadores(cursorJuegos.getString(4));
+                juego.setEstado(cursorJuegos.getString(5));
                 listaJuegos.add(juego);
             } while (cursorJuegos.moveToNext());
         }
@@ -91,19 +94,21 @@ public class DbJuego extends DbHelper {
             juego.setMarca(cursorJuegos.getString(2));
             juego.setTipoJuego(cursorJuegos.getString(3));
             juego.setNumJugadores(cursorJuegos.getString(4));
+            juego.setEstado(cursorJuegos.getString(5));
         }
         cursorJuegos.close();
         return juego;
     }
 
-    public boolean editarJuego(int id, String nombre, String marca, String tipoJuego, String numJugadores) {
+    public boolean editarJuego(int id, String nombre, String marca, String tipoJuego, String numJugadores, String estado) {
         boolean correct;
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             db.execSQL("UPDATE " + TABLE_JUEGO + " SET " +
                     "nombre = '" + nombre + "', " +
                     "marca = '" + marca + "', " +
                     "tipoJuego = '" + tipoJuego + "', " +
-                    "numJugadores = '" + numJugadores + "' " +
+                    "numJugadores = '" + numJugadores + "', " +
+                    "estado = '" + estado + "' " +
                     "WHERE id = '" + id + "'");
             correct = true;
         } catch (Exception ex) {

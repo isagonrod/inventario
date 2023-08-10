@@ -14,7 +14,7 @@ import isamix.inventario.modelo.Juego;
 
 public class VerJuego extends AppCompatActivity {
 
-    TextView nombre, marca, tipoJuego, numJugadores;
+    TextView nombre, marca, tipoJuego, numJugadores, estado;
     Button btnGuardar, btnEditar, btnEliminar;
     Juego juego;
     int id = 0;
@@ -28,6 +28,7 @@ public class VerJuego extends AppCompatActivity {
         marca = findViewById(R.id.gameBrand);
         tipoJuego = findViewById(R.id.gameType);
         numJugadores = findViewById(R.id.gamePlayers);
+        estado = findViewById(R.id.gameState);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -52,6 +53,7 @@ public class VerJuego extends AppCompatActivity {
             marca.setText(juego.getMarca());
             tipoJuego.setText(juego.getTipoJuego());
             numJugadores.setText(juego.getNumJugadores());
+            estado.setText(juego.getEstado());
             btnGuardar.setVisibility(View.GONE);
         }
 

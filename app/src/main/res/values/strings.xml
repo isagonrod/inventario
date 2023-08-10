@@ -36,7 +36,7 @@
     <!-- Formulario Ropa -->
     <string name="hint_tipo_ropa">Tipo de ropa:</string>
     <string name="hint_color">Color:</string>
-    <string name="hint_talla">Talla:</string>
+    <string name="hint_talla">Talla o Tamaño:</string>
     <string name="hint_estado">Estado:</string>
     <string name="textil_hogar">Textil Hogar</string>
 

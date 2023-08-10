@@ -60,11 +60,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/TipoRopa"
+                    android:id="@+id/TiendaRopa"
                     android:textSize="14sp"
                     android:textColor="@color/white"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/borde_tipo_ropa"/>
+                    android:background="@drawable/borde_ropa"/>
 
                 <TextView
                     android:layout_width="wrap_content"

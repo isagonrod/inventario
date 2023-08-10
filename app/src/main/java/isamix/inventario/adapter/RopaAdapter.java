@@ -48,10 +48,26 @@ public class RopaAdapter extends RecyclerView.Adapter<RopaAdapter.RopaViewHolder
     @Override
     public void onBindViewHolder(@NonNull RopaViewHolder ropaViewHolder, int i) {
         ropaViewHolder.nombre.setText(listaRopa.get(i).getNombre());
+
         ropaViewHolder.cantidad.setText(String.valueOf(listaRopa.get(i).getCantidad()));
-        ropaViewHolder.tipoRopa.setText(listaRopa.get(i).getTipo());
+        if (ropaViewHolder.cantidad.getText().toString().isEmpty()) {
+            ropaViewHolder.cantidad.setVisibility(View.GONE);
+        }
+
+        ropaViewHolder.tienda.setText(listaRopa.get(i).getTienda());
+        if (ropaViewHolder.tienda.getText().toString().isEmpty()) {
+            ropaViewHolder.tienda.setVisibility(View.GONE);
+        }
+
         ropaViewHolder.talla.setText(listaRopa.get(i).getTalla());
+        if (ropaViewHolder.talla.getText().toString().isEmpty()) {
+            ropaViewHolder.talla.setVisibility(View.GONE);
+        }
+
         ropaViewHolder.estadoRopa.setText(listaRopa.get(i).getEstado());
+        if (ropaViewHolder.estadoRopa.getText().toString().isEmpty()) {
+            ropaViewHolder.estadoRopa.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -74,7 +90,7 @@ public class RopaAdapter extends RecyclerView.Adapter<RopaAdapter.RopaViewHolder
 
     public class RopaViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nombre, cantidad, tipoRopa, talla, estadoRopa;
+        TextView nombre, cantidad, tienda, talla, estadoRopa;
         Button btnEditar, btnEliminar;
         DbRopa dbRopa;
 
@@ -83,7 +99,7 @@ public class RopaAdapter extends RecyclerView.Adapter<RopaAdapter.RopaViewHolder
 
             nombre = itemView.findViewById(R.id.NombreRopa);
             cantidad = itemView.findViewById(R.id.CantidadRopa);
-            tipoRopa = itemView.findViewById(R.id.TipoRopa);
+            tienda = itemView.findViewById(R.id.TiendaRopa);
             talla = itemView.findViewById(R.id.TallaRopa);
             estadoRopa = itemView.findViewById(R.id.EstadoRopa);
 

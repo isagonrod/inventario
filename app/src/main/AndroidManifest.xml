@@ -308,45 +308,45 @@
         <activity
             android:name=".crud.textil.ListaRopaPorTipo"
             android:exported="false"
-            android:parentActivityName=".crud.textil.ListaRopa" >
+            android:parentActivityName=".crud.textil.ListaTipoRopa" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".crud.textil.ListaRopa" />
+                android:value=".crud.textil.ListaTipoRopa" />
         </activity>
 
         <activity
             android:name=".crud.textil.EditarRopa"
             android:exported="false"
-            android:parentActivityName=".crud.textil.ListaRopa">
+            android:parentActivityName=".crud.textil.ListaTextil">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".crud.textil.ListaRopa" />
+                android:value=".crud.textil.ListaTextil" />
         </activity>
 
         <activity
             android:name=".crud.textil.VerRopa"
             android:exported="false"
-            android:parentActivityName=".crud.textil.ListaRopa" >
+            android:parentActivityName=".crud.textil.ListaTextil" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".crud.textil.ListaRopa" />
+                android:value=".crud.textil.ListaTextil" />
         </activity>
         <activity
             android:name=".crud.textil.NuevaRopa"
             android:exported="false"
-            android:parentActivityName=".crud.textil.ListaRopa" >
+            android:parentActivityName=".crud.textil.ListaTextil" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".crud.textil.ListaRopa" />
+                android:value=".crud.textil.ListaTextil" />
         </activity>
 
         <activity
             android:name=".crud.textil.ListaTipoRopa"
             android:exported="false"
-            android:parentActivityName=".crud.textil.ListaRopa" >
+            android:parentActivityName=".crud.textil.ListaTextil" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".crud.textil.ListaRopa" />
+                android:value=".crud.textil.ListaTextil" />
         </activity>
     </application>
 

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".crud.producto.NuevoProducto">
+
+    <TextView
+        android:id="@+id/tvNombreRopa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/oblig_name"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/etNombreRopa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:labelFor="@+id/tvNombreRopa"
+        android:textSize="24sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tvMarcaRopa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_marca"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <AutoCompleteTextView
+        android:id="@+id/etMarcaRopa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:completionThreshold="2"
+        android:inputType="text"
+        android:labelFor="@+id/tvMarcaRopa"
+        android:textSize="24sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tvTiendaRopa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_tienda"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <AutoCompleteTextView
+        android:id="@+id/etTiendaRopa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:completionThreshold="2"
+        android:inputType="text"
+        android:labelFor="@+id/tvTiendaRopa"
+        android:textSize="24sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTallaRopa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_talla"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <EditText
+                android:id="@+id/etTallaRopa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="7"
+                android:inputType="text"
+                android:labelFor="@+id/tvTallaRopa"
+                android:textSize="24sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tvTipoRopa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/oblig_tipo_ropa"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <AutoCompleteTextView
+                android:id="@+id/etTipoRopa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:completionThreshold="2"
+                android:ems="7"
+                android:inputType="text"
+                android:labelFor="@+id/tvTipoRopa"
+                android:textSize="24sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCantidadRopa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_cantidad"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <EditText
+                android:id="@+id/etCantidadRopa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="7"
+                android:inputType="number"
+                android:labelFor="@+id/tvCantidadRopa"
+                android:textSize="24sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvEstadoRopa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_estado"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <AutoCompleteTextView
+                android:id="@+id/etEstadoRopa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:completionThreshold="2"
+                android:ems="7"
+                android:inputType="text"
+                android:labelFor="@+id/tvTiendaRopa"
+                android:textSize="24sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/save"
+            android:clickable="true"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/fabEditar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/edit"
+            android:clickable="true"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/fabEliminar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/delete"
+            android:clickable="true"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+</LinearLayout>

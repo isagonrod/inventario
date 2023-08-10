@@ -40,7 +40,7 @@
         android:id="@+id/tvGameType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hint_tipo" />
+        android:text="@string/hint_tipo_juego" />
 
     <TextView
         android:id="@+id/gameType"

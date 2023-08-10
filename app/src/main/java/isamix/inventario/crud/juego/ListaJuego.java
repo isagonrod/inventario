@@ -15,11 +15,12 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.adapter.JuegoAdapter;
-import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
+import isamix.inventario.crud.textil.ListaTextil;
 import isamix.inventario.db.DbJuego;
 import isamix.inventario.modelo.Juego;
 
@@ -89,6 +90,9 @@ public class ListaJuego extends AppCompatActivity implements SearchView.OnQueryT
                 return true;
             case R.id.menuGestionMultimedia:
                 verLista(ListaMultimedia.class);
+                return true;
+            case R.id.menuGestionTextil:
+                verLista(ListaTextil.class);
                 return true;
         }
 

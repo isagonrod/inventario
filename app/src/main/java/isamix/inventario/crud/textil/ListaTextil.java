@@ -1,4 +1,4 @@
-package isamix.inventario.crud.multimedia;
+package isamix.inventario.crud.textil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,23 +13,27 @@ import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
-import isamix.inventario.crud.textil.ListaTextil;
 
-public class ListaMultimedia extends AppCompatActivity {
+public class ListaTextil extends AppCompatActivity {
 
-    Button peliculas, discosMusica;
+    Button armario, textilHogar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_multimedia);
+        setContentView(R.layout.lista_textil);
 
-        peliculas = findViewById(R.id.btnPeliculas);
-        peliculas.setOnClickListener(v -> verLista(ListaPelicula.class));
+        armario = findViewById(R.id.btnArmario);
+        armario.setOnClickListener(v -> verLista(ListaTipoRopa.class));
 
-        discosMusica = findViewById(R.id.btnDiscosMusica);
-        discosMusica.setOnClickListener(v -> verLista(ListaDiscoMusica.class));
+        textilHogar = findViewById(R.id.btnTextilHogar);
+        textilHogar.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), ListaRopa.class);
+            intent.putExtra("TIPO", "Textil Hogar");
+            startActivity(intent);
+        });
     }
 
     // Método para mostrar el ménu principal

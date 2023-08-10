@@ -18,11 +18,12 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.adapter.GeneroAdapter;
-import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.ListaCompra;
+import isamix.inventario.crud.textil.ListaTextil;
 import isamix.inventario.db.DbGenero;
 import isamix.inventario.modelo.Genero;
 
@@ -106,6 +107,9 @@ public class ListaGenero extends AppCompatActivity {
                 return true;
             case R.id.menuGestionMultimedia:
                 verLista(ListaMultimedia.class);
+                return true;
+            case R.id.menuGestionTextil:
+                verLista(ListaTextil.class);
                 return true;
         }
 

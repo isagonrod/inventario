@@ -17,6 +17,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.R;
 import isamix.inventario.adapter.CompraAdapter;
 import isamix.inventario.crud.juego.ListaTipoJuego;

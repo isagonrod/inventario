@@ -18,8 +18,8 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/addNewType"
-            android:text="@string/btn_new_type"
+            android:id="@+id/addNewTypeGame"
+            android:text="@string/btn_new_type_game"
             android:clickable="true"
             android:background="@color/orange"
             android:textColor="@color/white"
@@ -58,9 +58,9 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/listaTipos"
+        android:id="@+id/listaTiposJuego"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_tipo" />
+        tools:listitem="@layout/item_tipo_juego" />
 
 </LinearLayout>

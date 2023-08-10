@@ -9,19 +9,6 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-<!--    <Button-->
-<!--        android:id="@+id/gestionCompra"-->
-<!--        android:clickable="true"-->
-<!--        android:text="@string/menu_lista_compra"-->
-<!--        android:drawableStart="@drawable/carritocompra"-->
-<!--        android:background="@color/green"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="24sp"-->
-<!--        android:padding="10dp"-->
-<!--        android:layout_margin="20dp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content" />-->
-
     <Button
         android:id="@+id/gestionProductos"
         android:clickable="true"
@@ -67,6 +54,19 @@
         android:text="@string/menu_lista_multimedia"
         android:drawableStart="@drawable/multimedia"
         android:background="@color/yellow"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:padding="10dp"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/gestionTextil"
+        android:clickable="true"
+        android:text="@string/menu_lista_textil"
+        android:drawableStart="@drawable/textil"
+        android:background="@color/purple_700"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:padding="10dp"

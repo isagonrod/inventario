@@ -1,4 +1,4 @@
-package isamix.inventario.crud.multimedia;
+package isamix.inventario.crud.textil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,50 +11,63 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.DiscoMusicaAdapter;
+import isamix.inventario.adapter.RopaAdapter;
 import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
-import isamix.inventario.crud.textil.ListaTextil;
-import isamix.inventario.db.DbDiscoMusica;
-import isamix.inventario.modelo.DiscoMusica;
+import isamix.inventario.db.DbRopa;
+import isamix.inventario.modelo.Ropa;
 
-public class ListaDiscoMusica extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ListaRopaPorTipo extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     SearchView buscador;
-    RecyclerView listaDiscos;
-    Button btn_newDisc;
-    List<DiscoMusica> arrayListDiscos;
-    DiscoMusicaAdapter adapter;
+    RecyclerView listaRopa;
+    Button btnAddNewClothes;
+    List<Ropa> arrayRopa;
+    RopaAdapter adapter;
+    TextView title;
+    Intent intent;
+    Bundle extra;
+    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_disco);
+        setContentView(R.layout.lista_ropa);
 
-        buscador = findViewById(R.id.buscadorDisco);
-        listaDiscos = findViewById(R.id.listaDiscos);
-        listaDiscos.setLayoutManager(new LinearLayoutManager(this));
+        intent = this.getIntent();
+        extra = intent.getExtras();
+        type = extra.getString("TIPO");
 
-        DbDiscoMusica dbDiscoMusica = new DbDiscoMusica(ListaDiscoMusica.this);
-        arrayListDiscos = dbDiscoMusica.mostrarDiscosMusica();
-        adapter = new DiscoMusicaAdapter(arrayListDiscos);
-        listaDiscos.setAdapter(adapter);
+        title = findViewById(R.id.title_category);
+        title.setText(type);
+
+        buscador = findViewById(R.id.buscadorTextil);
+        listaRopa = findViewById(R.id.listaRopa);
+        listaRopa.setLayoutManager(new LinearLayoutManager(this));
+
+        DbRopa dbRopa = new DbRopa(this);
+        arrayRopa = dbRopa.mostrarRopasPorTipo(type);
+
+        adapter = new RopaAdapter(arrayRopa);
+        listaRopa.setAdapter(adapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
                 new LinearLayoutManager(this).getOrientation());
-        listaDiscos.addItemDecoration(dividerItemDecoration);
+        listaRopa.addItemDecoration(dividerItemDecoration);
 
         buscador.setOnQueryTextListener(this);
 
-        btn_newDisc = findViewById(R.id.btnAddNewDisc);
-        btn_newDisc.setOnClickListener(v -> verLista(NuevoDisco.class));
+        btnAddNewClothes = findViewById(R.id.btnAddNewTextil);
+        btnAddNewClothes.setOnClickListener(v -> verLista(NuevaRopa.class));
     }
 
     @Override
@@ -64,7 +77,7 @@ public class ListaDiscoMusica extends AppCompatActivity implements SearchView.On
 
     @Override
     public boolean onQueryTextChange(String s) {
-        adapter.filtrarDiscos(s);
+        adapter.filtradoRopa(s);
         return false;
     }
 

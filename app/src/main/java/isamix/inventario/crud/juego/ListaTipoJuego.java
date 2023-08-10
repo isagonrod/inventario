@@ -17,11 +17,12 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.adapter.TipoJuegoAdapter;
-import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
+import isamix.inventario.crud.textil.ListaTextil;
 import isamix.inventario.db.DbTipoJuego;
 import isamix.inventario.modelo.TipoJuego;
 
@@ -35,13 +36,13 @@ public class ListaTipoJuego extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_tipo);
+        setContentView(R.layout.lista_tipo_juego);
 
-        btn_newType = findViewById(R.id.addNewType);
+        btn_newType = findViewById(R.id.addNewTypeGame);
         btn_newGame = findViewById(R.id.addNewGame);
         btn_gameList = findViewById(R.id.getGameList);
 
-        listaTipos = findViewById(R.id.listaTipos);
+        listaTipos = findViewById(R.id.listaTiposJuego);
         listaTipos.setLayoutManager(new GridLayoutManager(this, 2));
 
         DbTipoJuego dbTipoJuego = new DbTipoJuego(this);
@@ -58,7 +59,7 @@ public class ListaTipoJuego extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("NUEVO TIPO DE JUEGO");
 
-        final View customTipoAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_tipo, null);
+        final View customTipoAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_tipo_juego, null);
         builder.setView(customTipoAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
             DbTipoJuego dbTipoJuego = new DbTipoJuego(this);
@@ -104,6 +105,9 @@ public class ListaTipoJuego extends AppCompatActivity {
                 return true;
             case R.id.menuGestionMultimedia:
                 verLista(ListaMultimedia.class);
+                return true;
+            case R.id.menuGestionTextil:
+                verLista(ListaTextil.class);
                 return true;
         }
 

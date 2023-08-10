@@ -1,6 +1,5 @@
-package isamix.inventario.crud.producto;
+package isamix.inventario.crud.textil;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -17,72 +16,67 @@ import android.widget.EditText;
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.adapter.CategoriaAdapter;
+import isamix.inventario.adapter.TipoRopaAdapter;
 import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.multimedia.ListaMultimedia;
-import isamix.inventario.crud.textil.ListaTextil;
-import isamix.inventario.db.DbCategoria;
-import isamix.inventario.modelo.Categoria;
+import isamix.inventario.crud.producto.ListaCategoria;
+import isamix.inventario.db.DbTipoRopa;
+import isamix.inventario.modelo.TipoRopa;
 
-public class ListaCategoria extends AppCompatActivity {
+public class ListaTipoRopa extends AppCompatActivity {
 
-    RecyclerView listaCategorias;
-    Button btn_newCategory, btn_newProduct, btn_productList;
-    List<Categoria> arrayListCategorias;
-    CategoriaAdapter adapter;
+    RecyclerView listaTipos;
+    Button btnNewType, btnNewClothes, btnClothesList;
+    List<TipoRopa> arrayListTipoRopa;
+    TipoRopaAdapter adapter;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_categoria);
+        setContentView(R.layout.lista_tipo_ropa);
 
-        btn_newCategory = findViewById(R.id.addNewCategory);
-        btn_newProduct = findViewById(R.id.addNewProduct);
-        btn_productList = findViewById(R.id.getProductList);
+        btnNewType = findViewById(R.id.addNewTypeClothes);
+        btnNewClothes = findViewById(R.id.addNewClothes);
+        btnClothesList = findViewById(R.id.getClothesList);
 
-        listaCategorias = findViewById(R.id.listaCategorias);
-        listaCategorias.setLayoutManager(new GridLayoutManager(this, 2));
+        listaTipos = findViewById(R.id.listaTiposRopa);
+        listaTipos.setLayoutManager(new GridLayoutManager(this, 2));
 
-        DbCategoria dbCategoria = new DbCategoria(this);
-        arrayListCategorias = dbCategoria.mostrarCategorias();
-        adapter = new CategoriaAdapter(arrayListCategorias);
-        listaCategorias.setAdapter(adapter);
+        DbTipoRopa dbTipoRopa = new DbTipoRopa(this);
+        arrayListTipoRopa = dbTipoRopa.mostrarTiposRopa();
+        adapter = new TipoRopaAdapter(arrayListTipoRopa);
+        listaTipos.setAdapter(adapter);
 
-        btn_newCategory.setOnClickListener(v -> crearNuevaCategoria());
-        btn_newProduct.setOnClickListener(v -> verLista(NuevoProducto.class));
-        btn_productList.setOnClickListener(v -> verLista(ListaProducto.class));
+        btnNewType.setOnClickListener(v -> crearNuevoTipoRopa());
+        btnNewClothes.setOnClickListener(v -> verLista(NuevaRopa.class));
+        btnClothesList.setOnClickListener(v -> verLista(ListaRopa.class));
     }
 
-    public void crearNuevaCategoria() {
+    public void crearNuevoTipoRopa() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("NUEVA CATEGORÍA");
+        builder.setTitle("NUEVO TIPO DE ROPA");
 
-        final View customCategoriaAlert = getLayoutInflater().inflate(R.layout.custom_nueva_categoria, null);
-        builder.setView(customCategoriaAlert);
+        final View customTipoAlert = getLayoutInflater().inflate(R.layout.custom_nuevo_tipo_ropa, null);
+        builder.setView(customTipoAlert);
         builder.setPositiveButton("CREAR", (dialogInterface, i) -> {
-            DbCategoria dbCategoria = new DbCategoria(this);
-            EditText nombre = customCategoriaAlert.findViewById(R.id.nombreNuevaCategoria);
-
-            Categoria category = dbCategoria.getCategoriaPorNombre(nombre.getText().toString());
-            if (category == null) {
-                dbCategoria.insertarCategoria(nombre.getText().toString());
+            DbTipoRopa dbTipoRopa = new DbTipoRopa(this);
+            EditText tipo = customTipoAlert.findViewById(R.id.nuevoTipoJuego);
+            TipoRopa type = dbTipoRopa.getTipoRopa(tipo.getText().toString());
+            if (type == null) {
+                dbTipoRopa.insertarTipoRopa(tipo.getText().toString());
             } else {
-                dbCategoria.editarCategoria(category.getId(), category.getNombre());
+                dbTipoRopa.editarTipoRopa(type.getId(), type.getTipoRopa());
             }
-
-            arrayListCategorias = dbCategoria.mostrarCategorias();
-            adapter = new CategoriaAdapter(arrayListCategorias);
-            listaCategorias.setAdapter(adapter);
+            arrayListTipoRopa = dbTipoRopa.mostrarTiposRopa();
+            adapter = new TipoRopaAdapter(arrayListTipoRopa);
+            listaTipos.setAdapter(adapter);
         });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
 
     /* *** *** *** MENÚ PRINCIPAL *** *** *** */
 

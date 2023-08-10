@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "inventario.db";
     public static final String TABLE_PRODUCTO = "t_producto";
     public static final String TABLE_TIENDA = "t_tienda";
@@ -21,6 +21,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_JUEGO = "t_juego";
     public static final String TABLE_PELICULA = "t_pelicula";
     public static final String TABLE_DISCO_MUSICA = "t_disco_musica";
+    public static final String TABLE_ESTADO = "t_estado";
+    public static final String TABLE_TIPO_ROPA = "t_tipo_ropa";
+    public static final String TABLE_ROPA = "t_ropa";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -76,6 +79,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABLE_TIPO_JUEGO + "(id INTEGER PRIMARY KEY AUTOINCREMENT, tipo TEXT NOT NULL)");
 
+        db.execSQL("CREATE TABLE " + TABLE_ESTADO + "(id INTEGER PRIMARY KEY AUTOINCREMENT, estado TEXT NOT NULL)");
+
         db.execSQL("CREATE TABLE " + TABLE_JUEGO + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre TEXT NOT NULL, " +
@@ -99,6 +104,23 @@ public class DbHelper extends SQLiteOpenHelper {
                 "artista_grupo TEXT NOT NULL, " +
                 "fechaLanzamiento INTEGER, " +
                 "FOREIGN KEY(artista_grupo) REFERENCES " + TABLE_PERSONA + "(id))");
+
+        db.execSQL("CREATE TABLE " + TABLE_TIPO_ROPA + " (id INTEGER PRIMARY KEY AUTOINCREMENT, tipoRopa TEXT NOT NULL)");
+        db.execSQL("INSERT INTO " + TABLE_TIPO_ROPA + " VALUES (1, 'Textil Hogar')");
+
+        db.execSQL("CREATE TABLE " + TABLE_ROPA + " (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "nombre TEXT NOT NULL, " +
+                "marca TEXT, " +
+                "tienda TEXT, " +
+                "talla TEXT, " +
+                "tipo TEXT, " +
+                "cantidad INTEGER, " +
+                "estado TEXT, " +
+                "FOREIGN KEY(marca) REFERENCES " + TABLE_MARCA + "(id), " +
+                "FOREIGN KEY(tienda) REFERENCES " + TABLE_TIENDA + "(id), " +
+                "FOREIGN KEY(tipo) REFERENCES " + TABLE_TIPO_ROPA + "(id), " +
+                "FOREIGN KEY(estado) REFERENCES " + TABLE_ESTADO + "(id))");
     }
 
     @Override
@@ -115,6 +137,9 @@ public class DbHelper extends SQLiteOpenHelper {
 //        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIPO_JUEGO);
 //        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PELICULA);
 //        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DISCO_MUSICA);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ESTADO);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIPO_ROPA);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROPA);
 //        onCreate(db);
     }
 }

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import isamix.inventario.R;
-import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.multimedia.ListaMultimedia;

@@ -2,7 +2,6 @@ package isamix.inventario.crud.textil;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import isamix.inventario.R;
-import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.crud.ListaCompra;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;

@@ -1,4 +1,4 @@
-package isamix.inventario.crud;
+package isamix.inventario;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -53,11 +53,20 @@ public class FuncionamientoApp extends AppCompatActivity {
                     "ni películas ni discos de música).\n\t" +
                     "El número que se escriba en dicha lista se sumará al total que había, después de " +
                     "pulsar el producto (aparecerá marcado en amarillo) y luego el botón de 'Terminar compra'.\n\n" +
-            "8. INFO EXTRA:\n\t" +
+            "8. GESTIÓN TEXTIL:\n\t" +
+                    "Igual que en la gestión multimedia, aparecen dos opciones.\n\t" +
+                    "La primera ('Armario') está pensada para la ropa de vestir así como los zapatos, " +
+                    "es decir, todo lo que se usa para vestir.\n\t" +
+                    "La segunda opción ('Textil Hogar'), cuyo nombre es también el del tipo de ropa, " +
+                    "está pensado para la ropa de hogar, por ejemplo toallas, cortillas, sábanas, etc. " +
+                    "Para que aparezcan dentro de esta opción, a la hora de crear un nuevo textil, hay " +
+                    "que poner en el tipo de ropa 'Hogar Textil', sino no aparecerá aquí, sino en la " +
+                    "opción del armario.\n\n" +
+            "9. INFO EXTRA:\n\t" +
                     "En la gestión de productos, para ver la información completa del producto, " +
                     "hay que dejar pulsado sobre el mismo. En el resto (libros, juegos, películas y discos), " +
                     "solo con pulsar se acceder a dicha información.\n\n" +
-            "9. ¡ATENCIÓN!\n\t" +
+            "10. ¡ATENCIÓN!\n\t" +
                     "Si se pulsa una vez sobre un producto, se descontará 1 de la cantidad introducida " +
                     "al crearlo.\n";
 

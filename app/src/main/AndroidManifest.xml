@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name=".crud.FuncionamientoApp"
+            android:name=".FuncionamientoApp"
             android:exported="false"
             android:parentActivityName=".MainActivity">
             <meta-data

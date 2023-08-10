@@ -17,7 +17,7 @@ import java.util.List;
 
 import isamix.inventario.R;
 import isamix.inventario.adapter.LibroAdapter;
-import isamix.inventario.crud.FuncionamientoApp;
+import isamix.inventario.FuncionamientoApp;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;

@@ -5,7 +5,7 @@
     <item
         android:id="@+id/menuFuncionamiento"
         android:title="@string/funcionamiento"
-        android:icon="?android:attr/actionModeFindDrawable"
+        android:icon="@drawable/info"
         app:showAsAction="ifRoom"/>
 
     <item

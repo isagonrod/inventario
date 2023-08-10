@@ -16,7 +16,7 @@ import isamix.inventario.modelo.Ropa;
 
 public class VerRopa extends AppCompatActivity {
 
-    TextView nombre, marca, tienda, color, talla, tipo, cantidad, estado;
+    TextView nombre, marca, tienda, talla, tipo, cantidad, estado;
     Button btnGuardar, btnEditar, btnEliminar;
     Ropa ropa;
     int id = 0;
@@ -29,7 +29,6 @@ public class VerRopa extends AppCompatActivity {
         nombre = findViewById(R.id.etNombreRopa);
         marca = findViewById(R.id.etMarcaRopa);
         tienda = findViewById(R.id.etTiendaRopa);
-        color = findViewById(R.id.etColorRopa);
         talla = findViewById(R.id.etTallaRopa);
         tipo = findViewById(R.id.etTipoRopa);
         cantidad = findViewById(R.id.etCantidadRopa);
@@ -57,7 +56,6 @@ public class VerRopa extends AppCompatActivity {
             nombre.setText(ropa.getNombre());
             marca.setText(ropa.getMarca());
             tienda.setText(ropa.getTienda());
-            color.setText(ropa.getColor());
             talla.setText(ropa.getTalla());
             tipo.setText(ropa.getTipo());
             cantidad.setText(String.valueOf(ropa.getCantidad()));

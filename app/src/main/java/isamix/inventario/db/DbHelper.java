@@ -113,7 +113,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 "nombre TEXT NOT NULL, " +
                 "marca TEXT, " +
                 "tienda TEXT, " +
-                "color TEXT, " +
                 "talla TEXT, " +
                 "tipo TEXT, " +
                 "cantidad INTEGER, " +

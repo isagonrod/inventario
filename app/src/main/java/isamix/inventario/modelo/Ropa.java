@@ -6,7 +6,6 @@ public class Ropa {
     private String nombre;
     private String marca;
     private String tienda;
-    private String color;
     private String talla;
     private String tipo;
     private int cantidad;
@@ -42,14 +41,6 @@ public class Ropa {
 
     public void setTienda(String tienda) {
         this.tienda = tienda;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public String getTalla() {

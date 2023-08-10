@@ -24,15 +24,14 @@ public class DbRopa extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarRopa(String nombre, String marca, String tienda, String color, String talla,
-                             String tipo, int cantidad, String estado) {
+    public long insertarRopa(String nombre, String marca, String tienda, String talla, String tipo,
+                             int cantidad, String estado) {
         long id = 0;
         try {
             ContentValues values = new ContentValues();
             values.put("nombre", nombre);
             values.put("marca", marca);
             values.put("tienda", tienda);
-            values.put("color", color);
             values.put("talla", talla);
             values.put("tipo", tipo);
             values.put("cantidad", cantidad);
@@ -57,11 +56,10 @@ public class DbRopa extends DbHelper {
                 ropa.setNombre(cursorRopa.getString(1));
                 ropa.setMarca(cursorRopa.getString(2));
                 ropa.setTienda(cursorRopa.getString(3));
-                ropa.setColor(cursorRopa.getString(4));
-                ropa.setTalla(cursorRopa.getString(5));
-                ropa.setTipo(cursorRopa.getString(6));
-                ropa.setCantidad(cursorRopa.getInt(7));
-                ropa.setEstado(cursorRopa.getString(8));
+                ropa.setTalla(cursorRopa.getString(4));
+                ropa.setTipo(cursorRopa.getString(5));
+                ropa.setCantidad(cursorRopa.getInt(6));
+                ropa.setEstado(cursorRopa.getString(7));
                 listaRopa.add(ropa);
             } while (cursorRopa.moveToNext());
         }
@@ -82,11 +80,10 @@ public class DbRopa extends DbHelper {
                 ropa.setNombre(cursorRopa.getString(1));
                 ropa.setMarca(cursorRopa.getString(2));
                 ropa.setTienda(cursorRopa.getString(3));
-                ropa.setColor(cursorRopa.getString(4));
-                ropa.setTalla(cursorRopa.getString(5));
-                ropa.setTipo(cursorRopa.getString(6));
-                ropa.setCantidad(cursorRopa.getInt(7));
-                ropa.setEstado(cursorRopa.getString(8));
+                ropa.setTalla(cursorRopa.getString(4));
+                ropa.setTipo(cursorRopa.getString(5));
+                ropa.setCantidad(cursorRopa.getInt(6));
+                ropa.setEstado(cursorRopa.getString(7));
                 listaRopa.add(ropa);
             } while (cursorRopa.moveToNext());
         }
@@ -107,11 +104,10 @@ public class DbRopa extends DbHelper {
                 ropa.setNombre(cursorRopa.getString(1));
                 ropa.setMarca(cursorRopa.getString(2));
                 ropa.setTienda(cursorRopa.getString(3));
-                ropa.setColor(cursorRopa.getString(4));
-                ropa.setTalla(cursorRopa.getString(5));
-                ropa.setTipo(cursorRopa.getString(6));
-                ropa.setCantidad(cursorRopa.getInt(7));
-                ropa.setEstado(cursorRopa.getString(8));
+                ropa.setTalla(cursorRopa.getString(4));
+                ropa.setTipo(cursorRopa.getString(5));
+                ropa.setCantidad(cursorRopa.getInt(6));
+                ropa.setEstado(cursorRopa.getString(7));
                 listaRopa.add(ropa);
             } while (cursorRopa.moveToNext());
         }
@@ -131,26 +127,24 @@ public class DbRopa extends DbHelper {
                 ropa.setNombre(cursorRopa.getString(1));
                 ropa.setMarca(cursorRopa.getString(2));
                 ropa.setTienda(cursorRopa.getString(3));
-                ropa.setColor(cursorRopa.getString(4));
-                ropa.setTalla(cursorRopa.getString(5));
-                ropa.setTipo(cursorRopa.getString(6));
-                ropa.setCantidad(cursorRopa.getInt(7));
-                ropa.setEstado(cursorRopa.getString(8));
+                ropa.setTalla(cursorRopa.getString(4));
+                ropa.setTipo(cursorRopa.getString(5));
+                ropa.setCantidad(cursorRopa.getInt(6));
+                ropa.setEstado(cursorRopa.getString(7));
             } while (cursorRopa.moveToNext());
         }
         cursorRopa.close();
         return ropa;
     }
 
-    public boolean editarRopa(int id, String nombre, String marca, String tienda, String color,
-                              String talla, String tipo, int cantidad, String estado) {
+    public boolean editarRopa(int id, String nombre, String marca, String tienda, String talla,
+                              String tipo, int cantidad, String estado) {
         boolean correcto;
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             db.execSQL("UPDATE " + TABLE_ROPA + " SET " +
                     "nombre = '" + nombre + "', " +
                     "marca = '" + marca + "', " +
                     "tienda = '" + tienda + "', " +
-                    "color = '" + color + "', " +
                     "talla = '" + talla + "', " +
                     "tipo = '" + tipo + "', " +
                     "cantidad = '" + cantidad + "', " +

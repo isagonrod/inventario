@@ -69,30 +69,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginEnd="10dp">
-
-            <TextView
-                android:id="@+id/tvColorRopa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hint_color"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <EditText
-                android:id="@+id/etColorRopa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="7"
-                android:inputType="text"
-                android:labelFor="@+id/tvColorRopa"
-                android:textSize="24sp"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -112,25 +89,33 @@
                 android:textSize="24sp"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tvTipoRopa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/oblig_tipo_ropa"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <AutoCompleteTextView
+                android:id="@+id/etTipoRopa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:completionThreshold="2"
+                android:ems="7"
+                android:inputType="text"
+                android:labelFor="@+id/tvTipoRopa"
+                android:textSize="24sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvTipoRopa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/oblig_tipo_ropa"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <AutoCompleteTextView
-        android:id="@+id/etTipoRopa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoSizeTextType="uniform"
-        android:completionThreshold="2"
-        android:inputType="text"
-        android:labelFor="@+id/tvTipoRopa"
-        android:textSize="24sp"
-        tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -140,8 +125,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginEnd="10dp">
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvCantidadRopa"
@@ -154,7 +139,7 @@
                 android:id="@+id/etCantidadRopa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="2"
+                android:ems="7"
                 android:inputType="number"
                 android:labelFor="@+id/tvCantidadRopa"
                 android:textSize="24sp"
@@ -177,9 +162,9 @@
                 android:id="@+id/etEstadoRopa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="12"
                 android:autoSizeTextType="uniform"
                 android:completionThreshold="2"
+                android:ems="7"
                 android:inputType="text"
                 android:labelFor="@+id/tvTiendaRopa"
                 android:textSize="24sp"

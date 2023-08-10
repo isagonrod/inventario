@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class ListaRopaPorTipo extends AppCompatActivity implements SearchView.On
 
     SearchView buscador;
     RecyclerView listaRopa;
+    Button btnAddNewClothes;
     List<Ropa> arrayRopa;
     RopaAdapter adapter;
     TextView title;
@@ -63,6 +65,9 @@ public class ListaRopaPorTipo extends AppCompatActivity implements SearchView.On
         listaRopa.addItemDecoration(dividerItemDecoration);
 
         buscador.setOnQueryTextListener(this);
+
+        btnAddNewClothes = findViewById(R.id.btnAddNewTextil);
+        btnAddNewClothes.setOnClickListener(v -> verLista(NuevaRopa.class));
     }
 
     @Override

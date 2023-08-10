@@ -35,7 +35,7 @@ import isamix.inventario.modelo.TipoRopa;
 
 public class EditarRopa extends AppCompatActivity {
 
-    EditText nombre, color, talla, cantidad;
+    EditText nombre, talla, cantidad;
     AutoCompleteTextView marca, tienda, tipo, estado;
     Button btnGuardar, btnEditar, btnEliminar;
     //DbRopa dbRopa;
@@ -56,11 +56,9 @@ public class EditarRopa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nueva_ropa);
 
-
         nombre = findViewById(R.id.etNombreRopa);
         marca = findViewById(R.id.etMarcaRopa);
         tienda = findViewById(R.id.etTiendaRopa);
-        color = findViewById(R.id.etColorRopa);
         talla = findViewById(R.id.etTallaRopa);
         tipo = findViewById(R.id.etTipoRopa);
         cantidad = findViewById(R.id.etCantidadRopa);
@@ -116,7 +114,6 @@ public class EditarRopa extends AppCompatActivity {
             nombre.setText(ropa.getNombre());
             marca.setText(ropa.getMarca());
             tienda.setText(ropa.getTienda());
-            color.setText(ropa.getColor());
             talla.setText(ropa.getTalla());
             tipo.setText(ropa.getTipo());
             cantidad.setText(String.valueOf(ropa.getCantidad()));
@@ -131,7 +128,6 @@ public class EditarRopa extends AppCompatActivity {
                         nombre.getText().toString(),
                         marca.getText().toString(),
                         tienda.getText().toString(),
-                        color.getText().toString(),
                         talla.getText().toString(),
                         tipo.getText().toString(),
                         Integer.parseInt(cantidad.getText().toString()),

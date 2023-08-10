@@ -26,7 +26,7 @@ import isamix.inventario.modelo.TipoRopa;
 
 public class NuevaRopa extends AppCompatActivity {
 
-    EditText nombre, color, talla, cantidad;
+    EditText nombre, talla, cantidad;
     AutoCompleteTextView marca, tienda, tipo, estado;
     Button btnGuardar, btnEditar, btnEliminar;
     DbRopa dbRopa;
@@ -38,7 +38,6 @@ public class NuevaRopa extends AppCompatActivity {
     List<Tienda> tiendas;
     List<TipoRopa> tiposRopa;
     List<Estado> estados;
-    Bundle extra;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -49,13 +48,10 @@ public class NuevaRopa extends AppCompatActivity {
         nombre = findViewById(R.id.etNombreRopa);
         marca = findViewById(R.id.etMarcaRopa);
         tienda = findViewById(R.id.etTiendaRopa);
-        color = findViewById(R.id.etColorRopa);
         talla = findViewById(R.id.etTallaRopa);
         tipo = findViewById(R.id.etTipoRopa);
         cantidad = findViewById(R.id.etCantidadRopa);
         estado = findViewById(R.id.etEstadoRopa);
-
-        extra = getIntent().getExtras();
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -127,7 +123,6 @@ public class NuevaRopa extends AppCompatActivity {
                         nombre.getText().toString(),
                         marca.getText().toString(),
                         tienda.getText().toString(),
-                        color.getText().toString(),
                         talla.getText().toString(),
                         tipo.getText().toString(),
                         Integer.parseInt(cantidad.getText().toString()),
@@ -146,7 +141,6 @@ public class NuevaRopa extends AppCompatActivity {
         nombre.setText("");
         marca.setText("");
         tienda.setText("");
-        color.setText("");
         talla.setText("");
         tipo.setText("");
         cantidad.setText("");

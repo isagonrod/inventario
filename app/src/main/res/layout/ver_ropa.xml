@@ -18,9 +18,9 @@
         android:id="@+id/etNombreRopa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/tvMarcaRopa"
@@ -32,9 +32,9 @@
         android:id="@+id/etMarcaRopa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/tvTiendaRopa"
@@ -46,9 +46,9 @@
         android:id="@+id/etTiendaRopa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,27 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginEnd="10dp">
-
-            <TextView
-                android:id="@+id/tvColorRopa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hint_color" />
-
-            <TextView
-                android:id="@+id/etColorRopa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:layout_marginBottom="10dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginEnd="20dp">
 
             <TextView
                 android:id="@+id/tvTallaRopa"
@@ -91,26 +71,34 @@
                 android:id="@+id/etTallaRopa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:textColor="@color/black"
-                android:textSize="30sp"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="30sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTipoRopa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hint_tipo_ropa"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/etTipoRopa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvTipoRopa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hint_tipo_ropa"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/etTipoRopa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginBottom="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -120,8 +108,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginEnd="10dp">
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvCantidadRopa"
@@ -133,10 +121,11 @@
                 android:id="@+id/etCantidadRopa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:textColor="@color/black"
-                android:textSize="30sp"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="30sp" />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -153,9 +142,9 @@
                 android:id="@+id/etEstadoRopa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:textColor="@color/black"
-                android:textSize="30sp"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="30sp" />
         </LinearLayout>
     </LinearLayout>
 

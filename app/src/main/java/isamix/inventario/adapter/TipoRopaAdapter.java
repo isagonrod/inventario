@@ -32,7 +32,7 @@ public class TipoRopaAdapter extends RecyclerView.Adapter<TipoRopaAdapter.TipoRo
     @NonNull
     @Override
     public TipoRopaViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_tipo_ropa, null, true);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_categoria, null, true);
         return new TipoRopaViewHolder(view);
     }
 
@@ -52,7 +52,7 @@ public class TipoRopaAdapter extends RecyclerView.Adapter<TipoRopaAdapter.TipoRo
 
         public TipoRopaViewHolder(@NonNull View itemView) {
             super(itemView);
-            item = itemView.findViewById(R.id.itemTipoRopa);
+            item = itemView.findViewById(R.id.item);
 
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(v.getContext(), ListaRopaPorTipo.class);

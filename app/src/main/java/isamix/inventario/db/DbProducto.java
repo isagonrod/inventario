@@ -24,7 +24,8 @@ public class DbProducto extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarProducto(String nombre, String marca, String cantidad, String precio, String tienda, String categoria, int paraComprar) {
+    public long insertarProducto(String nombre, String marca, String cantidad, String precio,
+                                 String tienda, String categoria, int paraComprar) {
 
         long id = 0;
 
@@ -78,7 +79,7 @@ public class DbProducto extends DbHelper {
         Producto producto;
         Cursor cursorProductos;
 
-        String select = "SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "' ORDER BY cantidad, nombre ASC";
+        String select = "SELECT * FROM " + TABLE_PRODUCTO + " WHERE categoria = '" + categoria + "' ORDER BY nombre ASC";
         cursorProductos = db.rawQuery(select, null);
 
         if (cursorProductos.moveToFirst()) {
@@ -146,7 +147,8 @@ public class DbProducto extends DbHelper {
         return producto;
     }
 
-    public boolean editarProducto(int id, String nombre, String marca, int cantidad, double precio, String tienda, String categoria, int paraComprar) {
+    public boolean editarProducto(int id, String nombre, String marca, int cantidad, double precio,
+                                  String tienda, String categoria, int paraComprar) {
 
         boolean correcto;
 

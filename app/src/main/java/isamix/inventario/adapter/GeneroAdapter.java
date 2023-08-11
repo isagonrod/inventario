@@ -32,7 +32,7 @@ public class GeneroAdapter extends RecyclerView.Adapter<GeneroAdapter.GeneroView
     @NonNull
     @Override
     public GeneroViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_genero, null, true);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_categoria, null, true);
         return new GeneroViewHolder(view);
     }
 
@@ -52,7 +52,7 @@ public class GeneroAdapter extends RecyclerView.Adapter<GeneroAdapter.GeneroView
 
         public GeneroViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemGenero = itemView.findViewById(R.id.itemGenero);
+            itemGenero = itemView.findViewById(R.id.item);
 
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(v.getContext(), ListaLibroPorGenero.class);

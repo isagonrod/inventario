@@ -1,8 +1,11 @@
 package isamix.inventario.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.SupportActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,10 +16,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import isamix.inventario.R;
 import isamix.inventario.crud.juego.EditarJuego;
+import isamix.inventario.crud.juego.ListaJuego;
+import isamix.inventario.crud.juego.ListaJuegoPorTipo;
 import isamix.inventario.crud.juego.VerJuego;
 import isamix.inventario.db.DbJuego;
 import isamix.inventario.modelo.Juego;
@@ -35,6 +41,7 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     @NonNull
     @Override
     public JuegoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        @SuppressLint("InflateParams")
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_juego, null, true);
         return new JuegoViewHolder(view);
     }
@@ -43,6 +50,7 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     public void onBindViewHolder(@NonNull JuegoViewHolder juegoViewHolder, int i) {
         juegoViewHolder.nombre.setText(listaJuegos.get(i).getNombre());
         juegoViewHolder.tipoJuego.setText(listaJuegos.get(i).getTipoJuego());
+        juegoViewHolder.marcaJuego.setText(listaJuegos.get(i).getMarca());
         juegoViewHolder.numJugadores.setText(listaJuegos.get(i).getNumJugadores());
     }
 
@@ -51,6 +59,7 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
         return listaJuegos.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void filtradoJuegos(String texto) {
         int longitud = texto.length();
         if (longitud == 0) {
@@ -72,7 +81,7 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
 
     public class JuegoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nombre, tipoJuego, numJugadores;
+        TextView nombre, tipoJuego, marcaJuego, numJugadores;
         Button btnEditar, btnEliminar;
         DbJuego dbJuego;
 
@@ -81,6 +90,7 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
 
             nombre = itemView.findViewById(R.id.viewGameName);
             tipoJuego = itemView.findViewById(R.id.viewGameType);
+            marcaJuego = itemView.findViewById(R.id.viewGameBrand);
             numJugadores = itemView.findViewById(R.id.viewGameNum);
 
             btnEditar = itemView.findViewById(R.id.editButton);
@@ -106,5 +116,4 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
             });
         }
     }
-
 }

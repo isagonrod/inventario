@@ -49,7 +49,6 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     @Override
     public void onBindViewHolder(@NonNull JuegoViewHolder juegoViewHolder, int i) {
         juegoViewHolder.nombre.setText(listaJuegos.get(i).getNombre());
-        juegoViewHolder.tipoJuego.setText(listaJuegos.get(i).getTipoJuego());
         juegoViewHolder.marcaJuego.setText(listaJuegos.get(i).getMarca());
         juegoViewHolder.numJugadores.setText(listaJuegos.get(i).getNumJugadores());
     }
@@ -81,7 +80,7 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
 
     public class JuegoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nombre, tipoJuego, marcaJuego, numJugadores;
+        TextView nombre, marcaJuego, numJugadores;
         Button btnEditar, btnEliminar;
         DbJuego dbJuego;
 
@@ -89,7 +88,6 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
             super(itemView);
 
             nombre = itemView.findViewById(R.id.viewGameName);
-            tipoJuego = itemView.findViewById(R.id.viewGameType);
             marcaJuego = itemView.findViewById(R.id.viewGameBrand);
             numJugadores = itemView.findViewById(R.id.viewGameNum);
 

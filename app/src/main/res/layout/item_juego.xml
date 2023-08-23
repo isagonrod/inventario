@@ -51,15 +51,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/viewGameType"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/borde_tipo_juego"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/viewGameBrand"
                     android:textSize="14sp"
                     android:textColor="@color/white"

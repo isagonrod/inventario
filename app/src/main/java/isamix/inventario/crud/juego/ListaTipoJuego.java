@@ -29,7 +29,7 @@ import isamix.inventario.modelo.TipoJuego;
 public class ListaTipoJuego extends AppCompatActivity {
 
     RecyclerView listaTipos;
-    Button btn_newType, btn_newGame, btn_gameList;
+    Button btn_newType, btn_newGame;
     List<TipoJuego> arrayListTipos;
     TipoJuegoAdapter adapter;
 
@@ -40,7 +40,6 @@ public class ListaTipoJuego extends AppCompatActivity {
 
         btn_newType = findViewById(R.id.addNewTypeGame);
         btn_newGame = findViewById(R.id.addNewGame);
-        btn_gameList = findViewById(R.id.getGameList);
 
         listaTipos = findViewById(R.id.listaTiposJuego);
         listaTipos.setLayoutManager(new GridLayoutManager(this, 2));
@@ -52,7 +51,6 @@ public class ListaTipoJuego extends AppCompatActivity {
 
         btn_newType.setOnClickListener(v -> crearNuevoTipoJuego());
         btn_newGame.setOnClickListener(v -> verLista(NuevoJuego.class));
-        btn_gameList.setOnClickListener(v -> verLista(ListaJuego.class));
     }
 
     public void crearNuevoTipoJuego() {

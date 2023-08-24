@@ -118,6 +118,10 @@ public class NuevaRopa extends AppCompatActivity {
                     dbEstado.editarEstado(state.getId(), state.getEstado());
                 }
 
+                if (cantidad.getText().toString().isEmpty()) {
+                    cantidad.setText("0");
+                }
+
                 dbRopa.insertarRopa(
                         nombre.getText().toString(),
                         marca.getText().toString(),

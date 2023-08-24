@@ -24,7 +24,7 @@ public class DbPelicula extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarPelicula(String titulo, String director, int fecha, int minDuracion) {
+    public long insertarPelicula(String titulo, String director, int fecha, int minDuracion, String estado) {
         long id = 0;
         try {
             ContentValues values = new ContentValues();
@@ -32,6 +32,7 @@ public class DbPelicula extends DbHelper {
             values.put("director", director);
             values.put("fechaEstreno", fecha);
             values.put("minDuracion", minDuracion);
+            values.put("estado", estado);
             id = db.insert(TABLE_PELICULA, null, values);
         } catch (Exception ex) {
             ex.toString();
@@ -53,6 +54,7 @@ public class DbPelicula extends DbHelper {
                 pelicula.setDirector(cursorPelicula.getString(2));
                 pelicula.setFechaEstreno(cursorPelicula.getInt(3));
                 pelicula.setMinDuracion(cursorPelicula.getInt(4));
+                pelicula.setEstado(cursorPelicula.getString(5));
                 listaPeliculas.add(pelicula);
             } while (cursorPelicula.moveToNext());
         }
@@ -73,20 +75,22 @@ public class DbPelicula extends DbHelper {
                 pelicula.setDirector(cursorPelicula.getString(2));
                 pelicula.setFechaEstreno(cursorPelicula.getInt(3));
                 pelicula.setMinDuracion(cursorPelicula.getInt(4));
+                pelicula.setEstado(cursorPelicula.getString(5));
             } while (cursorPelicula.moveToNext());
         }
         cursorPelicula.close();
         return pelicula;
     }
 
-    public boolean editarPelicula(int id, String titulo, String director, int fecha, int minDuracion) {
+    public boolean editarPelicula(int id, String titulo, String director, int fecha, int minDuracion, String estado) {
         boolean correcto;
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             db.execSQL("UPDATE " + TABLE_PELICULA + " SET " +
                     "titulo = '" + titulo +"', " +
                     "director = '" + director + "', " +
                     "fechaEstreno = '" + fecha + "', " +
-                    "minDuracion = '" + minDuracion + "' " +
+                    "minDuracion = '" + minDuracion + "', " +
+                    "estado = '" + estado + "' " +
                     "WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {

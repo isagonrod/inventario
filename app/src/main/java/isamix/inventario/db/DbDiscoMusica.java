@@ -25,13 +25,14 @@ public class DbDiscoMusica extends DbHelper {
         this.db = dbHelper.getWritableDatabase();
     }
 
-    public long insertarDiscoMusica(String titulo, String artista, int fecha) {
+    public long insertarDiscoMusica(String titulo, String artista, int fecha, String estado) {
         long id = 0;
         try {
             ContentValues values = new ContentValues();
             values.put("titulo", titulo);
             values.put("artista_grupo", artista);
             values.put("fechaLanzamiento", fecha);
+            values.put("estado", estado);
             id = db.insert(TABLE_DISCO_MUSICA, null, values);
         } catch (Exception ex) {
             ex.toString();
@@ -52,6 +53,7 @@ public class DbDiscoMusica extends DbHelper {
                 discoMusica.setTitulo(cursorMusica.getString(1));
                 discoMusica.setArtista_grupo(cursorMusica.getString(2));
                 discoMusica.setFechaLanzamiento(cursorMusica.getInt(3));
+                discoMusica.setEstado(cursorMusica.getString(4));
                 listaDiscosMusica.add(discoMusica);
             } while (cursorMusica.moveToNext());
         }
@@ -71,19 +73,21 @@ public class DbDiscoMusica extends DbHelper {
                 discoMusica.setTitulo(cursorMusica.getString(1));
                 discoMusica.setArtista_grupo(cursorMusica.getString(2));
                 discoMusica.setFechaLanzamiento(cursorMusica.getInt(3));
+                discoMusica.setEstado(cursorMusica.getString(4));
             } while (cursorMusica.moveToNext());
         }
         cursorMusica.close();
         return discoMusica;
     }
 
-    public boolean editarDiscoMusica(int id, String titulo, String artista, int fecha) {
+    public boolean editarDiscoMusica(int id, String titulo, String artista, int fecha, String estado) {
         boolean correcto;
         try (SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             db.execSQL("UPDATE " + TABLE_DISCO_MUSICA + " SET " +
                     "titulo = '" + titulo +"', " +
                     "artista_grupo = '" + artista + "', " +
-                    "fechaLanzamiento = '" + fecha + "' " +
+                    "fechaLanzamiento = '" + fecha + "', " +
+                    "estado = '" + estado + "' " +
                     "WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {

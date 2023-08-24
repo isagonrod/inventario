@@ -7,6 +7,7 @@ public class Juego {
     private String marca;
     private String tipoJuego;
     private String numJugadores;
+    private String estado;
 
     public int getId() {
         return id;
@@ -46,5 +47,13 @@ public class Juego {
 
     public void setNumJugadores(String numJugadores) {
         this.numJugadores = numJugadores;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

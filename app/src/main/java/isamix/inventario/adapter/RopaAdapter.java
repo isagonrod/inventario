@@ -50,7 +50,7 @@ public class RopaAdapter extends RecyclerView.Adapter<RopaAdapter.RopaViewHolder
         ropaViewHolder.nombre.setText(listaRopa.get(i).getNombre());
 
         ropaViewHolder.cantidad.setText(String.valueOf(listaRopa.get(i).getCantidad()));
-        if (ropaViewHolder.cantidad.getText().toString().isEmpty()) {
+        if (ropaViewHolder.cantidad.getText().toString().isEmpty() || ropaViewHolder.cantidad.getText().toString().equals("0")) {
             ropaViewHolder.cantidad.setVisibility(View.GONE);
         }
 

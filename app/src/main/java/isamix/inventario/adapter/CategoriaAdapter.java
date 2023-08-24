@@ -55,7 +55,7 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.Cate
         @SuppressLint("NotifyDataSetChanged")
         public CategoriaViewHolder(@NonNull View itemView) {
             super(itemView);
-            viewCategoria = itemView.findViewById(R.id.viewCategoria);
+            viewCategoria = itemView.findViewById(R.id.item);
 
             itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(view.getContext(), ListaProductoPorCategoria.class);

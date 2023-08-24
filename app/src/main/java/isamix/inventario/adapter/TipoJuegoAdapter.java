@@ -32,7 +32,7 @@ public class TipoJuegoAdapter extends RecyclerView.Adapter<TipoJuegoAdapter.Tipo
     @NonNull
     @Override
     public TipoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_tipo_juego, null, true);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_categoria, null, true);
         return new TipoViewHolder(view);
     }
 
@@ -52,7 +52,7 @@ public class TipoJuegoAdapter extends RecyclerView.Adapter<TipoJuegoAdapter.Tipo
 
         public TipoViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemTipo = itemView.findViewById(R.id.itemTipo);
+            itemTipo = itemView.findViewById(R.id.item);
 
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(v.getContext(), ListaJuegoPorTipo.class);

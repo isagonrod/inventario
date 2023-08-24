@@ -23,19 +23,23 @@ import isamix.inventario.crud.libro.ListaGenero;
 import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.crud.textil.ListaTextil;
 import isamix.inventario.db.DbDiscoMusica;
+import isamix.inventario.db.DbEstado;
 import isamix.inventario.db.DbPersona;
 import isamix.inventario.modelo.DiscoMusica;
+import isamix.inventario.modelo.Estado;
 import isamix.inventario.modelo.Persona;
 
 public class EditarDisco extends AppCompatActivity {
 
     EditText titulo, fechaLanzamiento;
-    AutoCompleteTextView artista;
+    AutoCompleteTextView artista, estado;
     Button btnGuardar, btnEditar, btnEliminar;
     DbDiscoMusica dbDiscoMusica;
     DbPersona dbArtista;
+    DbEstado dbEstado;
     DiscoMusica discoMusica;
     List<Persona> artistas, grupos;
+    List<Estado> estados;
     int id = 0;
     boolean correcto = false;
 
@@ -47,6 +51,7 @@ public class EditarDisco extends AppCompatActivity {
         titulo = findViewById(R.id.etDiscTitle);
         artista = findViewById(R.id.etDiscArtist);
         fechaLanzamiento = findViewById(R.id.etDiscYear);
+        estado = findViewById(R.id.etDiscState);
 
         btnGuardar = findViewById(R.id.btnGuardar);
         btnEditar = findViewById(R.id.fabEditar);
@@ -56,13 +61,19 @@ public class EditarDisco extends AppCompatActivity {
 
         dbDiscoMusica = new DbDiscoMusica(EditarDisco.this);
         dbArtista = new DbPersona(EditarDisco.this);
+        dbEstado = new DbEstado(this);
         artistas = dbArtista.mostrarPersonasPorProfesion("Artista");
         grupos = dbArtista.mostrarPersonasPorProfesion("Grupo/Banda");
         artistas.addAll(grupos);
+        estados = dbEstado.mostrarEstados();
 
         ArrayAdapter<Persona> artistaAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.support.design.R.layout.support_simple_spinner_dropdown_item, artistas);
         artista.setAdapter(artistaAdapter);
+
+        ArrayAdapter<Estado> estadoAdapter = new ArrayAdapter<>(getApplicationContext(),
+                android.support.design.R.layout.support_simple_spinner_dropdown_item, estados);
+        estado.setAdapter(estadoAdapter);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -82,6 +93,7 @@ public class EditarDisco extends AppCompatActivity {
             titulo.setText(discoMusica.getTitulo());
             artista.setText(discoMusica.getArtista_grupo());
             fechaLanzamiento.setText(String.valueOf(discoMusica.getFechaLanzamiento()));
+            estado.setText(discoMusica.getEstado());
         }
 
         btnGuardar.setOnClickListener(v -> {
@@ -90,10 +102,12 @@ public class EditarDisco extends AppCompatActivity {
                 correcto = dbDiscosMusica.editarDiscoMusica(id,
                         titulo.getText().toString(),
                         artista.getText().toString(),
-                        Integer.parseInt(fechaLanzamiento.getText().toString()));
+                        Integer.parseInt(fechaLanzamiento.getText().toString()),
+                        estado.getText().toString());
 
                 Persona artist = dbArtista.getPersona(artista.getText().toString(), "Artista");
                 Persona group = dbArtista.getPersona(artista.getText().toString(), "Grupo/Banda");
+                Estado state = dbEstado.getEstado(estado.getText().toString());
 
                 if (artist == null) {
                     dbArtista.insertarPersona(artista.getText().toString(), "Artista");
@@ -105,6 +119,12 @@ public class EditarDisco extends AppCompatActivity {
                     dbArtista.insertarPersona(artista.getText().toString(), "Grupo/Banda");
                 } else {
                     dbArtista.editarPersona(group.getId(), group.getNombreCompleto(), group.getProfesion());
+                }
+
+                if (state == null) {
+                    dbEstado.insertarEstado(estado.getText().toString());
+                } else {
+                    dbEstado.editarEstado(state.getId(), state.getEstado());
                 }
 
                 if (correcto) {

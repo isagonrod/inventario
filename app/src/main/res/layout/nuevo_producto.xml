@@ -112,7 +112,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/viewCategoria"
+        android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/oblig_category"
@@ -120,7 +120,7 @@
 
     <AutoCompleteTextView
         android:id="@+id/categoria"
-        android:labelFor="@+id/viewCategoria"
+        android:labelFor="@+id/item"
         android:textSize="24sp"
         android:inputType="text"
         android:layout_width="match_parent"

@@ -6,6 +6,7 @@ public class DiscoMusica {
     private String titulo;
     private String artista_grupo;
     private int fechaLanzamiento;
+    private String estado;
 
     public int getId() {
         return id;
@@ -37,5 +38,13 @@ public class DiscoMusica {
 
     public void setFechaLanzamiento(int fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

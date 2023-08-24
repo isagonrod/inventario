@@ -87,7 +87,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 "marca TEXT, " +
                 "tipoJuego TEXT, " +
                 "numJugadores TEXT, " +
+                "estado TEXT, " +
                 "FOREIGN KEY(marca) REFERENCES "+ TABLE_MARCA + "(id)," +
+                "FOREIGN KEY(estado) REFERENCES "+ TABLE_ESTADO + "(id)," +
                 "FOREIGN KEY(tipoJuego) REFERENCES " + TABLE_TIPO_JUEGO + "(id))");
 
         db.execSQL("CREATE TABLE " + TABLE_PELICULA + " (" +
@@ -96,6 +98,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "director TEXT NOT NULL, " +
                 "fechaEstreno INTEGER, " +
                 "minDuracion INTEGER, " +
+                "estado TEXT, " +
+                "FOREIGN KEY(estado) REFERENCES "+ TABLE_ESTADO + "(id)," +
                 "FOREIGN KEY(director) REFERENCES " + TABLE_PERSONA + "(id))");
 
         db.execSQL("CREATE TABLE " + TABLE_DISCO_MUSICA + " (" +
@@ -103,6 +107,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "titulo TEXT NOT NULL, " +
                 "artista_grupo TEXT NOT NULL, " +
                 "fechaLanzamiento INTEGER, " +
+                "estado TEXT, " +
+                "FOREIGN KEY(estado) REFERENCES "+ TABLE_ESTADO + "(id)," +
                 "FOREIGN KEY(artista_grupo) REFERENCES " + TABLE_PERSONA + "(id))");
 
         db.execSQL("CREATE TABLE " + TABLE_TIPO_ROPA + " (id INTEGER PRIMARY KEY AUTOINCREMENT, tipoRopa TEXT NOT NULL)");
@@ -125,21 +131,5 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTO);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIENDA);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIA);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MARCA);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERSONA);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFESION);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LIBRO);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_GENERO);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_JUEGO);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIPO_JUEGO);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PELICULA);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DISCO_MUSICA);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ESTADO);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TIPO_ROPA);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROPA);
-//        onCreate(db);
     }
 }

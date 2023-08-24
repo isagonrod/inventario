@@ -7,6 +7,7 @@ public class Pelicula {
     private String director;
     private int fechaEstreno;
     private int minDuracion;
+    private String estado;
 
     public int getId() {
         return id;
@@ -46,5 +47,13 @@ public class Pelicula {
 
     public void setMinDuracion(int minDuracion) {
         this.minDuracion = minDuracion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

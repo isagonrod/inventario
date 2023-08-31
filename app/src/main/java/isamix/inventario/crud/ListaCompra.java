@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
@@ -70,13 +71,23 @@ public class ListaCompra extends AppCompatActivity implements SearchView.OnQuery
         btnTerminarCompra.setOnClickListener(v -> {
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
-                int itemColor = listItem.getBackground() != null ?
-                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
-                if (itemColor == Color.YELLOW) {
-                    int cantidadComprada = this.listaCompra.get(i).getCantidad();
-                    int cantidadInicial = dbProducto.verProducto(listaCompra.get(i).getId()).getCantidad();
-                    int cantidadTotal = cantidadInicial + cantidadComprada;
-                    dbProducto.finCompra(this.listaCompra.get(i).getId(), cantidadTotal);
+//                int itemColor = listItem.getBackground() != null ?
+//                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
+//                if (itemColor == Color.YELLOW) {
+//                    int cantidadComprada = this.listaCompra.get(i).getCantidad();
+//                    int cantidadInicial = dbProducto.verProducto(listaCompra.get(i).getId()).getCantidad();
+//                    int cantidadTotal = cantidadInicial + cantidadComprada;
+//                    dbProducto.finCompra(this.listaCompra.get(i).getId(), cantidadTotal);
+//                    adapter.eliminarItem(i);
+//                    i--;
+//                    listaProductos.removeView(listItem);
+//                }
+                boolean checked = ((CheckBox) v).isChecked();
+                int cantComprada = this.listaCompra.get(i).getCantidad();
+                int cantInicial = dbProducto.verProducto(listaCompra.get(i).getId()).getCantidad();
+                int cantTotal = cantInicial + cantComprada;
+                if (checked) {
+                    dbProducto.finCompra(this.listaCompra.get(i).getId(), cantTotal);
                     adapter.eliminarItem(i);
                     i--;
                     listaProductos.removeView(listItem);

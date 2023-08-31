@@ -8,8 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,23 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
         holder.txtMarca.setText(listaProductos.get(position).getMarca());
         holder.txtTienda.setText(listaProductos.get(position).getTienda());
         holder.txtCategoria.setText(listaProductos.get(position).getCategoria());
+
+        holder.checkBox.setOnClickListener(v -> {
+            if (((CheckBox)v).isChecked()) {
+                //checkBox.setChecked(true);
+                Toast.makeText(v.getContext(), "id = " + listaProductos.get(position).getId(), Toast.LENGTH_SHORT).show();
+                listaProductos.get(position).setParaComprar(1);
+//                if (!txtCantidad.getText().toString().equals("")) {
+//                    listaProductos.get(position).setCantidad(Integer.parseInt(String.valueOf(txtCantidad.getText())));
+//                } else {
+//                    listaProductos.get(position).setCantidad(0);
+//                }
+            } else {
+                //itemView.setBackgroundColor(Color.WHITE);
+                //checkBox.setChecked(false);
+                listaProductos.get(position).setParaComprar(0);
+            }
+        });
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -72,7 +91,8 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
     public class CompraViewHolder extends RecyclerView.ViewHolder {
 
         EditText txtCantidad;
-        TextView txtNombre, txtMarca, txtTienda, txtCategoria;
+        TextView txtIdProducto, txtNombre, txtMarca, txtTienda, txtCategoria;
+        CheckBox checkBox;
 
         public CompraViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,15 +101,23 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
             txtMarca = itemView.findViewById(R.id.txtMarca);
             txtTienda = itemView.findViewById(R.id.txtTienda);
             txtCategoria = itemView.findViewById(R.id.txtCategoria);
+            checkBox = itemView.findViewById(R.id.checkbox);
 
             itemView.setOnClickListener(view -> {
-                int itemColor = view.getBackground() != null ? ((ColorDrawable) view.getBackground()).getColor() : Color.WHITE;
-                if (itemColor == Color.WHITE) {
-                    itemView.setBackgroundColor(Color.YELLOW);
+                //int itemColor = view.getBackground() != null ? ((ColorDrawable) view.getBackground()).getColor() : Color.WHITE;
+                if (!checkBox.isChecked()) {
+                    //itemView.setBackgroundColor(Color.YELLOW);
+                    checkBox.setChecked(true);
+                    //Toast.makeText(itemView.getContext(), "id = " + listaProductos.get(getAdapterPosition()).getId(), Toast.LENGTH_SHORT).show();
                     listaProductos.get(getAdapterPosition()).setParaComprar(1);
-                    listaProductos.get(getAdapterPosition()).setCantidad(Integer.parseInt(String.valueOf(txtCantidad.getText())));
+                    if (!txtCantidad.getText().toString().equals("")) {
+                        listaProductos.get(getAdapterPosition()).setCantidad(Integer.parseInt(String.valueOf(txtCantidad.getText())));
+                    } else {
+                        listaProductos.get(getAdapterPosition()).setCantidad(0);
+                    }
                 } else {
-                    itemView.setBackgroundColor(Color.WHITE);
+                    //itemView.setBackgroundColor(Color.WHITE);
+                    checkBox.setChecked(false);
                     listaProductos.get(getAdapterPosition()).setParaComprar(0);
                 }
             });

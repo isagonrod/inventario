@@ -23,6 +23,7 @@ import isamix.inventario.R;
 import isamix.inventario.adapter.CompraAdapter;
 import isamix.inventario.crud.juego.ListaTipoJuego;
 import isamix.inventario.crud.libro.ListaGenero;
+import isamix.inventario.crud.multimedia.ListaMultimedia;
 import isamix.inventario.crud.producto.ListaCategoria;
 import isamix.inventario.db.DbProducto;
 import isamix.inventario.modelo.Producto;
@@ -71,22 +72,11 @@ public class ListaCompra extends AppCompatActivity implements SearchView.OnQuery
         btnTerminarCompra.setOnClickListener(v -> {
             for (int i = 0; i < listaProductos.getChildCount(); i++) {
                 View listItem = listaProductos.getChildAt(i);
-//                int itemColor = listItem.getBackground() != null ?
-//                        ((ColorDrawable) listItem.getBackground()).getColor() : Color.WHITE;
-//                if (itemColor == Color.YELLOW) {
-//                    int cantidadComprada = this.listaCompra.get(i).getCantidad();
-//                    int cantidadInicial = dbProducto.verProducto(listaCompra.get(i).getId()).getCantidad();
-//                    int cantidadTotal = cantidadInicial + cantidadComprada;
-//                    dbProducto.finCompra(this.listaCompra.get(i).getId(), cantidadTotal);
-//                    adapter.eliminarItem(i);
-//                    i--;
-//                    listaProductos.removeView(listItem);
-//                }
                 boolean checked = listaCompra.get(i).getParaComprar() == 0;
                 int cantComprada = this.listaCompra.get(i).getCantidad();
                 int cantInicial = dbProducto.verProducto(listaCompra.get(i).getId()).getCantidad();
                 int cantTotal = cantInicial + cantComprada;
-                if (checked) {
+                if (checked && cantTotal > 0) {
                     dbProducto.finCompra(this.listaCompra.get(i).getId(), cantTotal);
                     adapter.eliminarItem(i);
                     i--;
@@ -132,8 +122,9 @@ public class ListaCompra extends AppCompatActivity implements SearchView.OnQuery
             case R.id.menuGestionJuegos:
                 verLista(ListaTipoJuego.class);
                 return true;
-//            case R.id.menuGestionMultimedia:
-//                return true;
+            case R.id.menuGestionMultimedia:
+                verLista(ListaMultimedia.class);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

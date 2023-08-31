@@ -45,8 +45,6 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
 
         holder.checkBox.setOnClickListener(v -> {
             if (((CheckBox)v).isChecked()) {
-                //checkBox.setChecked(true);
-                Toast.makeText(v.getContext(), "id = " + listaProductos.get(position).getId(), Toast.LENGTH_SHORT).show();
                 listaProductos.get(position).setParaComprar(0);
                 if (!holder.txtCantidad.getText().toString().isEmpty()) {
                     listaProductos.get(position).setCantidad(Integer.parseInt(String.valueOf(holder.txtCantidad.getText())));
@@ -54,8 +52,6 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
                     listaProductos.get(position).setCantidad(0);
                 }
             } else {
-                //itemView.setBackgroundColor(Color.WHITE);
-                //checkBox.setChecked(false);
                 listaProductos.get(position).setParaComprar(1);
             }
         });
@@ -91,7 +87,7 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
     public class CompraViewHolder extends RecyclerView.ViewHolder {
 
         EditText txtCantidad;
-        TextView txtIdProducto, txtNombre, txtMarca, txtTienda, txtCategoria;
+        TextView txtNombre, txtMarca, txtTienda, txtCategoria;
         CheckBox checkBox;
 
         public CompraViewHolder(@NonNull View itemView) {
@@ -102,25 +98,6 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
             txtTienda = itemView.findViewById(R.id.txtTienda);
             txtCategoria = itemView.findViewById(R.id.txtCategoria);
             checkBox = itemView.findViewById(R.id.checkbox);
-
-            itemView.setOnClickListener(view -> {
-                //int itemColor = view.getBackground() != null ? ((ColorDrawable) view.getBackground()).getColor() : Color.WHITE;
-                if (!checkBox.isChecked()) {
-                    //itemView.setBackgroundColor(Color.YELLOW);
-                    checkBox.setChecked(true);
-                    //Toast.makeText(itemView.getContext(), "id = " + listaProductos.get(getAdapterPosition()).getId(), Toast.LENGTH_SHORT).show();
-                    listaProductos.get(getAdapterPosition()).setParaComprar(1);
-                    if (!txtCantidad.getText().toString().isEmpty()) {
-                        listaProductos.get(getAdapterPosition()).setCantidad(Integer.parseInt(String.valueOf(txtCantidad.getText())));
-                    } else {
-                        listaProductos.get(getAdapterPosition()).setCantidad(0);
-                    }
-                } else {
-                    //itemView.setBackgroundColor(Color.WHITE);
-                    checkBox.setChecked(false);
-                    listaProductos.get(getAdapterPosition()).setParaComprar(0);
-                }
-            });
         }
     }
 }

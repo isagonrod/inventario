@@ -82,7 +82,7 @@ public class ListaCompra extends AppCompatActivity implements SearchView.OnQuery
 //                    i--;
 //                    listaProductos.removeView(listItem);
 //                }
-                boolean checked = ((CheckBox) v).isChecked();
+                boolean checked = listaCompra.get(i).getParaComprar() == 0;
                 int cantComprada = this.listaCompra.get(i).getCantidad();
                 int cantInicial = dbProducto.verProducto(listaCompra.get(i).getId()).getCantidad();
                 int cantTotal = cantInicial + cantComprada;

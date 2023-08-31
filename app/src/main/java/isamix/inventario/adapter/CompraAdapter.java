@@ -47,16 +47,16 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
             if (((CheckBox)v).isChecked()) {
                 //checkBox.setChecked(true);
                 Toast.makeText(v.getContext(), "id = " + listaProductos.get(position).getId(), Toast.LENGTH_SHORT).show();
-                listaProductos.get(position).setParaComprar(1);
-//                if (!txtCantidad.getText().toString().equals("")) {
-//                    listaProductos.get(position).setCantidad(Integer.parseInt(String.valueOf(txtCantidad.getText())));
-//                } else {
-//                    listaProductos.get(position).setCantidad(0);
-//                }
+                listaProductos.get(position).setParaComprar(0);
+                if (!holder.txtCantidad.getText().toString().isEmpty()) {
+                    listaProductos.get(position).setCantidad(Integer.parseInt(String.valueOf(holder.txtCantidad.getText())));
+                } else {
+                    listaProductos.get(position).setCantidad(0);
+                }
             } else {
                 //itemView.setBackgroundColor(Color.WHITE);
                 //checkBox.setChecked(false);
-                listaProductos.get(position).setParaComprar(0);
+                listaProductos.get(position).setParaComprar(1);
             }
         });
     }
@@ -110,7 +110,7 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.CompraView
                     checkBox.setChecked(true);
                     //Toast.makeText(itemView.getContext(), "id = " + listaProductos.get(getAdapterPosition()).getId(), Toast.LENGTH_SHORT).show();
                     listaProductos.get(getAdapterPosition()).setParaComprar(1);
-                    if (!txtCantidad.getText().toString().equals("")) {
+                    if (!txtCantidad.getText().toString().isEmpty()) {
                         listaProductos.get(getAdapterPosition()).setCantidad(Integer.parseInt(String.valueOf(txtCantidad.getText())));
                     } else {
                         listaProductos.get(getAdapterPosition()).setCantidad(0);
